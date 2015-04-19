@@ -13,7 +13,6 @@ public class PlayerMarker implements Listener {
 
 	/*
 	 * @SuppressWarnings("deprecation")
-	 * 
 	 * @Override public void run() { Iterator<NationPlayer> i =
 	 * Nations.getIteratorOfPlayers(); while (i.hasNext()) { final NationPlayer
 	 * p = i.next(); FallingBlock block = null; for (Entity e :
@@ -82,7 +81,7 @@ public class PlayerMarker implements Listener {
 			return;
 		if (e.getFrom().getBlock().getLocation().equals(e.getTo().getBlock().getLocation()))
 			return;
-		if(!e.getPlayer().getWorld().getName().equals(Nations.getNationWorld().getName()))
+		if (!e.getPlayer().getWorld().getName().equals(Nations.getNationWorld().getName()))
 			return;
 		final NationPlayer np = Nations.instanceOf(e.getPlayer());
 		if (np != null) {
@@ -91,14 +90,14 @@ public class PlayerMarker implements Listener {
 				return;
 			}
 			/*
-			boolean up = false;
-			if(e.getTo().getBlockY() > e.getFrom().getBlockY())
-				if(e.getTo().getBlockX() == e.getFrom().getBlockX() && e.getTo().getBlockZ() == e.getFrom().getBlockZ())
-					up = true;
-			final boolean finalUp = up;
-			*/
+			 * boolean up = false;
+			 * if(e.getTo().getBlockY() > e.getFrom().getBlockY())
+			 * if(e.getTo().getBlockX() == e.getFrom().getBlockX() && e.getTo().getBlockZ() == e.getFrom().getBlockZ())
+			 * up = true;
+			 * final boolean finalUp = up;
+			 */
 			Bukkit.getScheduler().runTaskLater(Nations.plugin, new Runnable() {
-				
+
 				@Override
 				public void run() {
 					if (!markerMap.containsKey(e.getPlayer())) {
@@ -112,20 +111,19 @@ public class PlayerMarker implements Listener {
 	}
 
 	/*
-	@EventHandler
-	public void onBlockDestroy(BlockBreakEvent e) {
-		for (Player p : markerMap.keySet()) {
-			// markerMap.get(p).calculateLocation();
-			// System.out.println(e.getBlock().getLocation() + " against " +
-			// markerMap.get(p).currentLocation.getBlock().getLocation());
-			if (e.getBlock().getLocation().equals(markerMap.get(p).currentLocation.getBlock().getLocation())) {
-				e.setCancelled(true);
-			}
-		}
-	}
-	*/
+	 * @EventHandler
+	 * public void onBlockDestroy(BlockBreakEvent e) {
+	 * for (Player p : markerMap.keySet()) {
+	 * // markerMap.get(p).calculateLocation();
+	 * // System.out.println(e.getBlock().getLocation() + " against " +
+	 * // markerMap.get(p).currentLocation.getBlock().getLocation());
+	 * if (e.getBlock().getLocation().equals(markerMap.get(p).currentLocation.getBlock().getLocation())) {
+	 * e.setCancelled(true);
+	 * }
+	 * }
+	 * }
+	 */
 
-	@SuppressWarnings("deprecation")
 	public static void removeItems() {
 		for (Player p : Bukkit.getOnlinePlayers())
 			removeItem(p);

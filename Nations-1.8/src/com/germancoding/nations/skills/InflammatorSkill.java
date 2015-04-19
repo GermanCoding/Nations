@@ -28,12 +28,9 @@ public class InflammatorSkill extends Skill {
 	private ArrayList<NationPlayer> players = new ArrayList<NationPlayer>();
 
 	@EventHandler
-	public void blockFireSpread(BlockIgniteEvent e)
-	{
-		if (e.getCause() == IgniteCause.SPREAD)
-		{
-			for (NationPlayer p : players)
-			{
+	public void blockFireSpread(BlockIgniteEvent e) {
+		if (e.getCause() == IgniteCause.SPREAD) {
+			for (NationPlayer p : players) {
 				if (!e.getBlock().getWorld().equals(p.getBukkitPlayer().getWorld()))
 					continue;
 				if (e.getIgnitingBlock().getLocation().distanceSquared(p.getBukkitPlayer().getLocation()) <= 32 * 32) // 32 blocks are a bit overkilled, but... I don't care.
@@ -42,13 +39,10 @@ public class InflammatorSkill extends Skill {
 				}
 			}
 		}
-		if (e.getCause() == IgniteCause.FLINT_AND_STEEL)
-		{
-			if (e.getPlayer() != null)
-			{
+		if (e.getCause() == IgniteCause.FLINT_AND_STEEL) {
+			if (e.getPlayer() != null) {
 				try {
-					if (SkillManager.isSkillItem(e.getPlayer().getItemInHand()))
-					{
+					if (SkillManager.isSkillItem(e.getPlayer().getItemInHand())) {
 						e.setCancelled(true); // It's so sad that Bukkit ignores our setCancelled() in PlayerInteractEvent. So we have to do everything on our own...
 					}
 				} catch (IllegalItemException e1) {
@@ -59,32 +53,23 @@ public class InflammatorSkill extends Skill {
 	}
 
 	@EventHandler
-	public void onFireDamage(EntityDamageEvent e)
-	{
+	public void onFireDamage(EntityDamageEvent e) {
 		if (!(e.getEntity() instanceof Player))
 			return;
-		if (e.getCause() == DamageCause.FIRE || e.getCause() == DamageCause.FIRE_TICK)
-		{
-			if (players.contains(Nations.instanceOf((Player) e.getEntity())))
-			{
+		if (e.getCause() == DamageCause.FIRE || e.getCause() == DamageCause.FIRE_TICK) {
+			if (players.contains(Nations.instanceOf((Player) e.getEntity()))) {
 				e.setCancelled(true);
 				e.getEntity().setFireTicks(0);
-			}
-			else
-			{
-				for (NationPlayer p : players)
-				{
-					if (p.getBukkitPlayer().getWorld().equals(e.getEntity().getWorld()))
-					{
+			} else {
+				for (NationPlayer p : players) {
+					if (p.getBukkitPlayer().getWorld().equals(e.getEntity().getWorld())) {
 						if (p.getBukkitPlayer().getLocation().distanceSquared(e.getEntity().getLocation()) <= 16 * 16) // TODO: Maybe a better check then just distance comparison?
 						{
 							Player damaged = (Player) e.getEntity();
-							if (Nations.instanceOf(damaged) != null)
-							{
+							if (Nations.instanceOf(damaged) != null) {
 								if (Nations.instanceOf(damaged).getNation().equalsIgnoreCase(p.getNation()))
 									e.setCancelled(true);
-								else
-								{
+								else {
 									Nations.instanceOf(damaged).setLastdamager(p);
 									// Our player burnt another player. Give points for that!
 									NationItemStack i = Util.getItemStackByType(p, getSkillType());
@@ -106,10 +91,8 @@ public class InflammatorSkill extends Skill {
 		Player p = np.getBukkitPlayer();
 		Location base = p.getLocation();
 		final ArrayList<ChangedBlock> fireBlocks = new ArrayList<ChangedBlock>();
-		for (int x = -2; x <= 2; x++)
-		{
-			for (int z = -2; z <= 2; z++)
-			{
+		for (int x = -2; x <= 2; x++) {
+			for (int z = -2; z <= 2; z++) {
 				Location current = base.clone().add(x, 0, z);
 				Block fire = findFirePosition(current);
 				fireBlocks.add(new ChangedBlock(fire.getLocation(), Material.AIR, fire.getData()));
@@ -120,8 +103,7 @@ public class InflammatorSkill extends Skill {
 
 			@Override
 			public void run() {
-				for (ChangedBlock b : fireBlocks)
-				{
+				for (ChangedBlock b : fireBlocks) {
 					b.restore();
 				}
 				fireBlocks.clear();
@@ -138,33 +120,25 @@ public class InflammatorSkill extends Skill {
 		return 5;
 	}
 
-	private Block findFirePosition(Location base)
-	{
+	private Block findFirePosition(Location base) {
 		Block toFind = base.getBlock();
-		if (toFind.getType() == Material.AIR)
-		{
+		if (toFind.getType() == Material.AIR) {
 			return findFirePositionBelow(toFind);
-		}
-		else
-		{
+		} else {
 			return findFirePositionUp(toFind);
 		}
 	}
 
-	private Block findFirePositionBelow(Block b)
-	{
-		while (b.getType() == Material.AIR)
-		{
+	private Block findFirePositionBelow(Block b) {
+		while (b.getType() == Material.AIR) {
 			b = b.getRelative(BlockFace.DOWN);
 		}
 		b = b.getRelative(BlockFace.UP);
 		return b;
 	}
 
-	private Block findFirePositionUp(Block b)
-	{
-		while (b.getType() != Material.AIR)
-		{
+	private Block findFirePositionUp(Block b) {
+		while (b.getType() != Material.AIR) {
 			b = b.getRelative(BlockFace.UP);
 		}
 		return b;

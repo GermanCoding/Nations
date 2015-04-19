@@ -10,7 +10,7 @@ import org.bukkit.scheduler.BukkitRunnable;
 import com.germancoding.nations.NationPlayer;
 import com.germancoding.nations.Nations;
 
-public class BlutrauschSkill extends Skill{
+public class BlutrauschSkill extends Skill {
 
 	public int activate(NationPlayer np) {
 		final Player p = np.getBukkitPlayer();
@@ -18,7 +18,7 @@ public class BlutrauschSkill extends Skill{
 		p.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 1200, 3)); // Level IV???
 		p.setMetadata("ABILITY_BLUTRAUSCH", new FixedMetadataValue(Nations.plugin, 1));
 		new BukkitRunnable() {
-			
+
 			@Override
 			public void run() {
 				p.removeMetadata("ABILITY_BLUTRAUSCH", Nations.plugin);

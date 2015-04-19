@@ -2,6 +2,7 @@ package com.germancoding.nations;
 
 /**
  * This exception is thrown when the plugin found a invalid NationItemStack or if a NationItemStack failed to load.
+ * 
  * @author Max
  *
  */

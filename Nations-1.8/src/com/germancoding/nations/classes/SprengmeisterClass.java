@@ -3,7 +3,7 @@ package com.germancoding.nations.classes;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
-public class SprengmeisterClass extends NationClass{
+public class SprengmeisterClass extends NationClass {
 
 	@Override
 	public ItemStack[] getKitItems() {
@@ -11,7 +11,7 @@ public class SprengmeisterClass extends NationClass{
 		ItemStack chestplate = new ItemStack(Material.CHAINMAIL_CHESTPLATE);
 		ItemStack leggings = new ItemStack(Material.IRON_LEGGINGS);
 		ItemStack boots = new ItemStack(Material.IRON_BOOTS);
-		ItemStack[] items = {helmet, chestplate ,leggings, boots};
+		ItemStack[] items = { helmet, chestplate, leggings, boots };
 		return items;
 	}
 

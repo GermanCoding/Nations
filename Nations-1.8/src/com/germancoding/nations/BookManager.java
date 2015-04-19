@@ -4,6 +4,7 @@ import org.bukkit.entity.Player;
 
 /**
  * Actually under construction
+ * 
  * @author Max
  *
  */

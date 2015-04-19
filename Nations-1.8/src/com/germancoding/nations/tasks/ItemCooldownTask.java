@@ -88,8 +88,7 @@ public class ItemCooldownTask implements Runnable {
 					instances.remove(this);
 				}
 				Nations.scheduler.cancelTask(this.task);
-				if(Nations.DEBUG)
-				{
+				if (Nations.DEBUG) {
 					Nations.logger.info("[Cooldown] [Item] Cooldown finished at item id " + id);
 				}
 			}

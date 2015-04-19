@@ -16,7 +16,8 @@ import org.bukkit.block.Block;
 import org.bukkit.material.Gate;
 
 /**
- * All classes in this package are from @Adamki11s. It is a pathfinding algorithm, actually not used. 
+ * All classes in this package are from @Adamki11s. It is a pathfinding algorithm, actually not used.
+ * 
  * @author Max
  *
  */
@@ -87,7 +88,7 @@ public class Pathfinder {
 	}
 
 	boolean checkOnce = false;
-	
+
 	private int abs(int i) {
 		return (i < 0 ? -i : i);
 	}
@@ -97,9 +98,9 @@ public class Pathfinder {
 		if (!checkOnce) {
 			// invert the boolean flag
 			checkOnce ^= true;
-			if((abs(sx - ex) > range) || (abs(sy - ey) > range) || (abs(sz - ez) > range)){
+			if ((abs(sx - ex) > range) || (abs(sy - ey) > range) || (abs(sz - ez) > range)) {
 				this.result = PathingResult.NO_PATH;
-				return null;//jump out
+				return null;// jump out
 			}
 		}
 		// while not at end
@@ -204,8 +205,7 @@ public class Pathfinder {
 
 					if (x != 0 && z != 0 && (y == 0 || y == 1)) {
 						// check to stop jumping through diagonal blocks
-						Tile xOff = new Tile((short) (current.getX() + x), (short) (current.getY() + y), (short) (current.getZ()), current), zOff = new Tile((short) (current.getX()),
-								(short) (current.getY() + y), (short) (current.getZ() + z), current);
+						Tile xOff = new Tile((short) (current.getX() + x), (short) (current.getY() + y), (short) (current.getZ()), current), zOff = new Tile((short) (current.getX()), (short) (current.getY() + y), (short) (current.getZ() + z), current);
 						if (!this.isTileWalkable(xOff) && !this.isTileWalkable(zOff)) {
 							continue;
 						}
@@ -291,8 +291,7 @@ public class Pathfinder {
 	}
 
 	private boolean canBlockBeWalkedThrough(int id) {
-		return (id == 0 || id == 6 || id == 50 || id == 63 || id == 30 || id == 31 || id == 32 || id == 37 || id == 38 || id == 39 || id == 40 || id == 55 || id == 66 || id == 75
-				|| id == 76 || id == 78);
+		return (id == 0 || id == 6 || id == 50 || id == 63 || id == 30 || id == 31 || id == 32 || id == 37 || id == 38 || id == 39 || id == 40 || id == 55 || id == 66 || id == 75 || id == 76 || id == 78);
 	}
 
 	@SuppressWarnings("serial")

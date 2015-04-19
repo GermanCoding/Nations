@@ -8,6 +8,7 @@ import com.germancoding.nations.tasks.KitCooldownTask;
 
 /**
  * Wrapper class for giving kits to players.
+ * 
  * @author Max
  *
  */
@@ -15,8 +16,11 @@ public class KitManager {
 
 	/**
 	 * Gives the player the kit for his current class.
-	 * @param p The player to give.
-	 * @param check If true the plugin will check whether the player is allowed to request a kit (cooldown). If false the check will be not performed, but the cooldown will be reset to 1 hour.
+	 * 
+	 * @param p
+	 *            The player to give.
+	 * @param check
+	 *            If true the plugin will check whether the player is allowed to request a kit (cooldown). If false the check will be not performed, but the cooldown will be reset to 1 hour.
 	 */
 	public static void handleKit(NationPlayer p, boolean check) {
 		if (check) {
@@ -32,8 +36,7 @@ public class KitManager {
 		}
 		try {
 			NationClass clasS = p.getClasS();
-			for(ItemStack i: clasS.getKitItems())
-			{
+			for (ItemStack i : clasS.getKitItems()) {
 				p.getBukkitPlayer().getInventory().addItem(i);
 			}
 			p.getBukkitPlayer().updateInventory();

@@ -83,15 +83,12 @@ public class GolembeschwörungSkill extends Skill implements Listener {
 			else
 				newEnemy = closest;
 			for (Snowman s : newList) {
-				if (s.getTarget() == null || s.getTarget().isDead() || !s.getTarget().isValid())
-				{
-					if (s.getTarget() instanceof Player)
-					{
+				if (s.getTarget() == null || s.getTarget().isDead() || !s.getTarget().isValid()) {
+					if (s.getTarget() instanceof Player) {
 						Player target = (Player) s.getTarget();
 						if (map.containsKey(target.getName()) && newEnemy != null)
 							s.setTarget(newEnemy);
-					}
-					else
+					} else
 						s.setTarget(newEnemy);
 				}
 				/*
@@ -167,8 +164,7 @@ public class GolembeschwörungSkill extends Skill implements Listener {
 					this.cancel();
 					return;
 				}
-				if (snowman.getTarget() == null)
-				{
+				if (snowman.getTarget() == null) {
 					walk2(snowman, p);
 				}
 				/*
@@ -287,25 +283,19 @@ public class GolembeschwörungSkill extends Skill implements Listener {
 	}
 
 	@EventHandler
-	public void noTrail2(org.bukkit.event.entity.EntityChangeBlockEvent e)
-	{
+	public void noTrail2(org.bukkit.event.entity.EntityChangeBlockEvent e) {
 		if (e.getEntity().hasMetadata("golembeschwoerung")) {
 			e.setCancelled(true);
 		}
 	}
 
 	@EventHandler
-	public void noShooting(ProjectileLaunchEvent e)
-	{
-		if (e.getEntity().getShooter() != null)
-		{
-			if (e.getEntity().getShooter() instanceof Snowman)
-			{
+	public void noShooting(ProjectileLaunchEvent e) {
+		if (e.getEntity().getShooter() != null) {
+			if (e.getEntity().getShooter() instanceof Snowman) {
 				Snowman shooter = (Snowman) e.getEntity().getShooter();
-				if (shooter.hasMetadata("golembeschwoerung"))
-				{
-					if (shooter.getTarget() != null && shooter.getTarget() instanceof Player)
-					{
+				if (shooter.hasMetadata("golembeschwoerung")) {
+					if (shooter.getTarget() != null && shooter.getTarget() instanceof Player) {
 						Player target = (Player) shooter.getTarget();
 						if (map.containsKey(target.getName()))
 							e.setCancelled(true);

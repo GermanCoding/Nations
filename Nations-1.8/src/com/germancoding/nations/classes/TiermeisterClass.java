@@ -3,7 +3,7 @@ package com.germancoding.nations.classes;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
-public class TiermeisterClass extends NationClass{
+public class TiermeisterClass extends NationClass {
 
 	@Override
 	public ItemStack[] getKitItems() {
@@ -12,7 +12,7 @@ public class TiermeisterClass extends NationClass{
 		ItemStack woodBoots = new ItemStack(Material.LEATHER_BOOTS, 1);
 		ItemStack woodLeggings = new ItemStack(Material.LEATHER_LEGGINGS, 1);
 		ItemStack ironSword = new ItemStack(Material.STONE_SWORD, 1);
-		ItemStack[] items = {ironSword, woodBoots, woodChestplate, woodHelmet, woodLeggings};
+		ItemStack[] items = { ironSword, woodBoots, woodChestplate, woodHelmet, woodLeggings };
 		return items;
 	}
 

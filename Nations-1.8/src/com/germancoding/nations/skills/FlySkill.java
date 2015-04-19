@@ -17,14 +17,14 @@ import com.germancoding.nations.Nations;
 import com.germancoding.nations.Util;
 import com.germancoding.nations.tasks.PvpTask;
 
-public class FlySkill extends Skill{
-	
+public class FlySkill extends Skill {
+
 	private ArrayList<Player> noFallDamage = new ArrayList<Player>();
 
 	@Override
 	public int activate(final NationPlayer np) {
 		final Player p = np.getBukkitPlayer();
-		if(PvpTask.isInCooldown(p)) // Fly was probably used to escape. Give points for that! :)
+		if (PvpTask.isInCooldown(p)) // Fly was probably used to escape. Give points for that! :)
 		{
 			NationItemStack i = Util.getItemStackByType(np, getSkillType());
 			LevelManager.addExperience(np, i, 0.2);
@@ -32,12 +32,11 @@ public class FlySkill extends Skill{
 		p.setAllowFlight(true);
 		p.setFlying(true);
 		final int pid = Bukkit.getScheduler().scheduleSyncRepeatingTask(Nations.plugin, new Runnable() {
-			
+
 			@Override
 			public void run() {
-				for(ForceField f: ForceField.FIELDS)
-				{
-					if(!f.canPlayerPassField(np, np.getBukkitPlayer().getLocation()))
+				for (ForceField f : ForceField.FIELDS) {
+					if (!f.canPlayerPassField(np, np.getBukkitPlayer().getLocation()))
 						return;
 				}
 				p.setVelocity(p.getLocation().getDirection());
@@ -46,7 +45,7 @@ public class FlySkill extends Skill{
 			}
 		}, 1L, 1L);
 		Bukkit.getScheduler().scheduleSyncDelayedTask(Nations.plugin, new Runnable() {
-			
+
 			@Override
 			public void run() {
 				noFallDamage.add(p);
@@ -57,15 +56,12 @@ public class FlySkill extends Skill{
 		}, 20 * 30);
 		return 30;
 	}
-	
+
 	@EventHandler
-	public void blockFallDamage(EntityDamageEvent e)
-	{
-		if(e.getEntity() instanceof Player && e.getCause() == DamageCause.FALL)
-		{
+	public void blockFallDamage(EntityDamageEvent e) {
+		if (e.getEntity() instanceof Player && e.getCause() == DamageCause.FALL) {
 			Player p = (Player) e.getEntity();
-			if(noFallDamage.contains(p))
-			{
+			if (noFallDamage.contains(p)) {
 				noFallDamage.remove(p);
 				e.setCancelled(true); // The first fall damage after activating Fly is FREE!
 			}
@@ -79,7 +75,7 @@ public class FlySkill extends Skill{
 
 	@Override
 	public String[] getDescription() {
-		String[] desc = {"Fliege durch die Luft"};
+		String[] desc = { "Fliege durch die Luft" };
 		return desc;
 	}
 

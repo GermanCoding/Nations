@@ -15,20 +15,19 @@ import com.germancoding.nations.SkillManager;
 import com.germancoding.nations.tasks.ItemCooldownTask;
 
 @SuppressWarnings("deprecation")
-public class ExplosionSkill extends Skill{
-	
+public class ExplosionSkill extends Skill {
+
 	// TODO: Add experience points for using this skill.
 
 	@Override
 	public int activate(NationPlayer np) {
 		try {
 			Location target = getTarget(np.getBukkitPlayer());
-			if(target == null)
+			if (target == null)
 				throw new Exception("Target is null");
 			World w = target.getWorld();
 			boolean cancelled = !w.createExplosion(target.getX(), target.getY(), target.getZ(), 12f, false, true);
-			if(cancelled)
-			{
+			if (cancelled) {
 				np.getBukkitPlayer().sendMessage(ChatColor.RED + "Die Explosion wurde von irgendetwas aufgehalten! Eventuell ein Kraftfeld?");
 				ItemCooldownTask.kill(SkillManager.getIDOfItem(np.getBukkitPlayer().getItemInHand()));
 			}
@@ -38,7 +37,7 @@ public class ExplosionSkill extends Skill{
 		}
 		return 1;
 	}
-	
+
 	public static Location getTarget(LivingEntity entity) throws Exception {
 		Block block = entity.getTargetBlock(TRANSPARENT_MATERIALS, 300);
 		if (block == null) {
@@ -102,7 +101,7 @@ public class ExplosionSkill extends Skill{
 
 	@Override
 	public String[] getDescription() {
-		String[] desc = { "Erzeugt eine" , "groﬂe Explosion", "in deiner" ,"aktuellen Blickrichtung!"};
+		String[] desc = { "Erzeugt eine", "groﬂe Explosion", "in deiner", "aktuellen Blickrichtung!" };
 		return desc;
 	}
 

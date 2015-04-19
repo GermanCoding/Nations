@@ -131,7 +131,7 @@ public class PacketUtils implements Listener {
 		cancelTimer(player);
 
 		BukkitRunnable runnable = new BukkitRunnable() {
-			
+
 			@Override
 			public void run() {
 				FakeDragon drag = getDragon(player, "");

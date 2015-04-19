@@ -65,10 +65,8 @@ public class NationItemStack {
 		this.setID(ID);
 		this.setMaterial(material);
 		this.setType(type);
-		for(Skill s: Skill.SKILLS)
-		{
-			if(s.getSkillType() == type)
-			{
+		for (Skill s : Skill.SKILLS) {
+			if (s.getSkillType() == type) {
 				this.setDefaultCooldown(s.getDefaultCooldown());
 				break;
 			}
@@ -393,15 +391,13 @@ public class NationItemStack {
 					if (Nations.instanceOf(p) == null)
 						continue;
 				boolean found = false;
-				if (p != null && p.getInventory() != null && p.isOnline())
-				{
+				if (p != null && p.getInventory() != null && p.isOnline()) {
 					for (ItemStack item : p.getInventory().getContents()) {
 						if (item != null) {
 							try {
 								if (SkillManager.isSkillItem(item)) {
 									int ID = SkillManager.getIDOfItem(item);
-									if (getByID(ID) == null || !getByID(ID).getPlayerUuid().equals(p.getUniqueId().toString()))
-									{
+									if (getByID(ID) == null || !getByID(ID).getPlayerUuid().equals(p.getUniqueId().toString())) {
 										if (Nations.DEBUG)
 											Nations.logger.info("[ItemStack] Removed a skill item from " + p.getPlayer().getName() + "'s inventory. Cause: Null or invalid owner.");
 										p.getInventory().remove(item);

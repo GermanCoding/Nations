@@ -9,7 +9,7 @@ import com.germancoding.nations.tasks.DamageRemoverTask;
 public class NationPlayer {
 
 	private String nation;
-	private NationClass clasS; //The word "class" is a keyword :(
+	private NationClass clasS; // The word "class" is a keyword :(
 	private Player bukkitPlayer;
 	private Object lock = new Object();
 	private int kills;
@@ -31,13 +31,13 @@ public class NationPlayer {
 	}
 
 	public boolean hasNation() {
-		if(nation == null)
+		if (nation == null)
 			return false;
 		return !nation.equalsIgnoreCase("null");
 	}
 
 	public boolean hasClass() {
-		if(clasS == null)
+		if (clasS == null)
 			return false;
 		return true;
 	}
@@ -67,7 +67,7 @@ public class NationPlayer {
 	}
 
 	public Player getBukkitPlayer() {
-			return bukkitPlayer;
+		return bukkitPlayer;
 	}
 
 	public void setBukkitPlayer(Player p) {
@@ -133,8 +133,9 @@ public class NationPlayer {
 	public void setLastdamager(NationPlayer lastdamager) {
 		synchronized (lock) {
 			this.lastdamager = lastdamager;
-			if(lastdamager != null); // Notice to myself: Remove that ; when removing the comment below!
-				//System.out.println("Setting " + this.getBukkitPlayer().getName() + "'s lastdamager to " + lastdamager.getBukkitPlayer().getName()); // TODO DEBUG!
+			if (lastdamager != null)
+				; // Notice to myself: Remove that ; when removing the comment below!
+			// System.out.println("Setting " + this.getBukkitPlayer().getName() + "'s lastdamager to " + lastdamager.getBukkitPlayer().getName()); // TODO DEBUG!
 		}
 		if (lastdamager != null)
 			new DamageRemoverTask(this);

@@ -182,16 +182,13 @@ public class ConfigManager {
 				}
 			}
 			File pluginRoot = plugin.getDataFolder();
-			if (pluginRoot.isDirectory())
-			{
+			if (pluginRoot.isDirectory()) {
 				File[] files = pluginRoot.listFiles();
-				if (files != null)
-				{
+				if (files != null) {
 					File itemRoot = new File(plugin.getDataFolder() + "/items");
 					if (!itemRoot.isDirectory())
 						itemRoot.mkdirs();
-					for (File f : files)
-					{
+					for (File f : files) {
 						if (f != null && !f.isDirectory() && f.getName().endsWith(".yml") && f.getName().startsWith("item-")) // Check for item files that are in the root folder (old folder, new folder is /items)
 						{
 							Nations.logger.info("[ConfigManager] Copying " + f.getName() + " to the new directory...");
@@ -202,19 +199,16 @@ public class ConfigManager {
 								FileInputStream in = new FileInputStream(f);
 								FileOutputStream out = new FileOutputStream(newFile);
 								int read = 0;
-								while ((read = in.read()) != -1)
-								{
+								while ((read = in.read()) != -1) {
 									out.write(read);
 								}
 								in.close();
 								out.close();
-								if(!f.delete())
-								{
+								if (!f.delete()) {
 									f.deleteOnExit();
 									Nations.logger.warning("Unable to delete the old file right now, trying to delete it on exit.");
 								}
-							} catch (IOException e)
-							{
+							} catch (IOException e) {
 								Nations.logger.warning("Failed to copy the file! Please have a look at the folders and " + f.getName() + "! This item will NOT be loaded!!! " + e);
 							}
 						}
@@ -374,7 +368,7 @@ public class ConfigManager {
 		}
 		FileConfiguration conf = YamlConfiguration.loadConfiguration(userdata);
 		conf.set("volk", volk);
-		if(klasse != null)
+		if (klasse != null)
 			conf.set("klasse", klasse.toString());
 		else
 			conf.set("klasse", "");
@@ -462,18 +456,15 @@ public class ConfigManager {
 		String volk = conf.getString("volk");
 		NationClass klasse = null;
 		ClassType type = null;
-		try{
+		try {
 			type = ClassType.valueOf(conf.getString("klasse", ClassType.CORRUPT.name()));
-		}catch(Exception e)
-		{
+		} catch (Exception e) {
 			type = ClassType.CORRUPT;
 		}
-		if(type == ClassType.CORRUPT)
-		{
+		if (type == ClassType.CORRUPT) {
 			p.sendMessage(ChatColor.GOLD + "[Nations] " + ChatColor.RED + "Fehler beim laden deiner Klasse! Bitte wähle deine Klasse neu! /n wechseln");
 			new ClassCooldownTask(p.getUniqueId().toString(), 1); // Create a new one second cooldown. This will kill a currently running class cooldown.
-			for(NationItemStack i: NationItemStack.getItemsOf(p.getUniqueId().toString()))
-			{
+			for (NationItemStack i : NationItemStack.getItemsOf(p.getUniqueId().toString())) {
 				i.unregister();
 			}
 		}

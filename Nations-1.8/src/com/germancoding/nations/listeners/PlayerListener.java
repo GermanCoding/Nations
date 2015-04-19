@@ -68,11 +68,9 @@ public class PlayerListener implements Listener {
 			Nations.addPlayer(p, false);
 			if (isNew)
 				Nations.handleNewPlayer(Nations.instanceOf(p));
-			else
-			{
+			else {
 				final Location spawn = SpawnManager.getFirstNationSpawn(Nations.instanceOf(p));
-				if (spawn != null)
-				{
+				if (spawn != null) {
 					Bukkit.getScheduler().runTaskLater(Nations.plugin, new Runnable() {
 
 						@Override
@@ -87,11 +85,9 @@ public class PlayerListener implements Listener {
 				// InventoryManager.switchToMain(p);
 				NationPlayer np = Nations.instanceOf(p);
 				Nations.removePlayer(np);
-				for(ItemStack item: p.getInventory().getContents())
-				{
+				for (ItemStack item : p.getInventory().getContents()) {
 					try {
-						if(SkillManager.isSkillItem(item))
-						{
+						if (SkillManager.isSkillItem(item)) {
 							p.getInventory().remove(item);
 						}
 					} catch (IllegalItemException e1) {
@@ -141,7 +137,6 @@ public class PlayerListener implements Listener {
 		}
 	}
 
-	@SuppressWarnings("deprecation")
 	@EventHandler(priority = EventPriority.HIGHEST)
 	public void onPlayerDoDamage(EntityDamageByEntityEvent e) {
 		if (!Nations.hasNationWorld())
@@ -157,11 +152,9 @@ public class PlayerListener implements Listener {
 				p = (Player) arrow.getShooter();
 				if (arrow.hasMetadata("pfeilhagel")) {
 					e.setDamage(e.getDamage() * 4);
-					if (p != null)
-					{
+					if (p != null) {
 						NationPlayer nShooter = Nations.instanceOf(p);
-						if (nShooter != null)
-						{
+						if (nShooter != null) {
 							NationItemStack item = Util.getItemStackByType(nShooter, SkillType.PFEILHAGEL);
 							LevelManager.addExperience(nShooter, item, 1);
 						}
@@ -200,8 +193,7 @@ public class PlayerListener implements Listener {
 						e.setCancelled(true);
 						return;
 					}
-					if (damagerNation.getBukkitPlayer().hasMetadata("ABILITY_BLUTRAUSCH"))
-					{
+					if (damagerNation.getBukkitPlayer().hasMetadata("ABILITY_BLUTRAUSCH")) {
 						NationItemStack item = Util.getItemStackByType(damagerNation, SkillType.BLUTRAUSCH);
 						LevelManager.addExperience(damagerNation, item, 0.5);
 					}
@@ -246,12 +238,9 @@ public class PlayerListener implements Listener {
 			if (!np.hasClass() && !e.getTo().getBlock().getLocation().equals(e.getFrom().getBlock().getLocation())) {
 				InventoryViewHandler.openClassSelectMenu(np);
 			}
-			if (!e.getTo().getBlock().getLocation().equals(e.getFrom().getBlock().getLocation()))
-			{
-				for (ForceField field : ForceField.FIELDS)
-				{
-					if (!field.canPlayerPassField(np, e.getTo()))
-					{
+			if (!e.getTo().getBlock().getLocation().equals(e.getFrom().getBlock().getLocation())) {
+				for (ForceField field : ForceField.FIELDS) {
+					if (!field.canPlayerPassField(np, e.getTo())) {
 						np.getBukkitPlayer().sendMessage(ChatColor.GOLD + "[Nations] " + ChatColor.RED + "Du wurdest von einem Kraftfeld zurückgeworfen!");
 						Location min = field.getMin();
 						Location max = field.getMax();
@@ -324,8 +313,7 @@ public class PlayerListener implements Listener {
 									other.getBukkitPlayer().hidePlayer(p);
 								} else {
 									if (!other.getBukkitPlayer().canSee(p) && Util.canSee(p, other.getBukkitPlayer())) {
-										p.sendMessage(ChatColor.GOLD + "[Nations] " + ChatColor.GRAY + other.getBukkitPlayer().getName() + ChatColor.GOLD + " kann dich nun wieder " + ChatColor.RED
-												+ "sehen");
+										p.sendMessage(ChatColor.GOLD + "[Nations] " + ChatColor.GRAY + other.getBukkitPlayer().getName() + ChatColor.GOLD + " kann dich nun wieder " + ChatColor.RED + "sehen");
 									}
 									other.getBukkitPlayer().showPlayer(p);
 								}
@@ -352,8 +340,7 @@ public class PlayerListener implements Listener {
 						if (!p.canSee(other.getBukkitPlayer()) && !VisibilityCooldownTask.isInCooldown(other.getBukkitPlayer())) {
 							if (p.getLocation().distance(other.getBukkitPlayer().getLocation()) < 15) {
 								if (Util.canSee(p, other.getBukkitPlayer()))
-									other.getBukkitPlayer().sendMessage(
-											ChatColor.GOLD + "[Nations] " + ChatColor.GRAY + p.getName() + ChatColor.GOLD + " kann dich nun wieder " + ChatColor.RED + "sehen");
+									other.getBukkitPlayer().sendMessage(ChatColor.GOLD + "[Nations] " + ChatColor.GRAY + p.getName() + ChatColor.GOLD + " kann dich nun wieder " + ChatColor.RED + "sehen");
 								p.showPlayer(other.getBukkitPlayer());
 							}
 						}
@@ -413,8 +400,7 @@ public class PlayerListener implements Listener {
 				e.setDeathMessage(e.getDeathMessage().replace(p.getName(), ChatColor.GRAY + p.getName() + ChatColor.WHITE + " von den " + color + nation + ChatColor.WHITE));
 				np.setDeath(np.getDeath() + 1);
 			} else {
-				e.setDeathMessage(ChatColor.GOLD + "[Nations] " + ChatColor.GRAY + p.getName() + ChatColor.GOLD + " von den " + color + nation + ChatColor.GOLD + " wurde von " + ChatColor.RED
-						+ killer.getName() + ChatColor.GOLD + " getötet");
+				e.setDeathMessage(ChatColor.GOLD + "[Nations] " + ChatColor.GRAY + p.getName() + ChatColor.GOLD + " von den " + color + nation + ChatColor.GOLD + " wurde von " + ChatColor.RED + killer.getName() + ChatColor.GOLD + " getötet");
 				Nations.instanceOf(killer).setKills(Nations.instanceOf(killer).getKills() + 1);
 				np.setDeath(np.getDeath() + 1);
 				if (np.getNation().equalsIgnoreCase("Zwerge")) {
@@ -523,8 +509,7 @@ public class PlayerListener implements Listener {
 	}
 
 	@EventHandler(priority = EventPriority.HIGH)
-	public void asyncChat(AsyncPlayerChatEvent e)
-	{
+	public void asyncChat(AsyncPlayerChatEvent e) {
 		onPlayerChat(e.getPlayer(), e.getPlayer().getDisplayName(), e.getMessage(), e);
 	}
 

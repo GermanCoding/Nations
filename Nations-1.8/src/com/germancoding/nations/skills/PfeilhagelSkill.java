@@ -13,9 +13,8 @@ import org.bukkit.util.Vector;
 import com.germancoding.nations.NationPlayer;
 import com.germancoding.nations.Nations;
 
-public class PfeilhagelSkill extends Skill{
+public class PfeilhagelSkill extends Skill {
 
-	@SuppressWarnings("deprecation")
 	public int activate(NationPlayer np) {
 		Random random = new Random();
 		int amount = (random.nextInt(100) + 1) + 100; // Spawn between 101 and 200 arrows
@@ -23,7 +22,7 @@ public class PfeilhagelSkill extends Skill{
 			double multiply = random.nextDouble();
 			float multiply2 = random.nextFloat();
 			int multiply3 = random.nextInt(3);
-			int randomX = random.nextInt(20) - 10; // Spawn our arrows near the player, but not all at the same place - 
+			int randomX = random.nextInt(20) - 10; // Spawn our arrows near the player, but not all at the same place -
 			int randomZ = random.nextInt(20) - 10; // let the random object generate some places for our arrows to get a good effect
 			World w = np.getBukkitPlayer().getLocation().getWorld();
 			Vector direction = np.getBukkitPlayer().getLocation().getDirection().normalize().multiply(10d).multiply(multiply); // Make our arrows fast
@@ -98,7 +97,7 @@ public class PfeilhagelSkill extends Skill{
 
 	@Override
 	public String[] getDescription() {
-		String[] desc = {"Schieﬂe einen Pfeilhagel", "auf deine Gegner!"};
+		String[] desc = { "Schieﬂe einen Pfeilhagel", "auf deine Gegner!" };
 		return desc;
 	}
 

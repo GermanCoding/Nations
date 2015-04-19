@@ -30,8 +30,8 @@ public class Tile {
 		uid = b.toString();
 
 	}
-	
-	public boolean isInRange(int range){
+
+	public boolean isInRange(int range) {
 		return ((range - abs(x) >= 0) && (range - abs(y) >= 0) && (range - abs(z) >= 0));
 	}
 

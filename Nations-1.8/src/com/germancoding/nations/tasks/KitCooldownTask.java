@@ -66,8 +66,7 @@ public class KitCooldownTask implements Runnable {
 				}
 			}
 		}
-		if(Nations.DEBUG)
-		{
+		if (Nations.DEBUG) {
 			Nations.logger.info("[Cooldown] [Kit] New Cooldown: " + player + " , " + seconds);
 		}
 	}
@@ -83,8 +82,7 @@ public class KitCooldownTask implements Runnable {
 					instances.remove(this);
 				}
 				Nations.scheduler.cancelTask(this.task);
-				if(Nations.DEBUG)
-				{
+				if (Nations.DEBUG) {
 					Nations.logger.info("[Cooldown] [Kit] Cooldown finished at player " + p);
 				}
 			}

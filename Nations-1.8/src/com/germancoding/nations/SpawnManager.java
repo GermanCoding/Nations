@@ -17,16 +17,16 @@ public class SpawnManager {
 				SPAWNS_ELFEN.add(l);
 			}
 		}
-		if(Nations.DEBUG)
+		if (Nations.DEBUG)
 			Nations.logger.info("[SpawnManager] Loaded " + spawns.size() + " spawns for Elfen.");
 	}
 
 	public static void loadZwergeLocations(ArrayList<Location> locations) {
 		for (Location l : locations) {
-			if(l != null)
+			if (l != null)
 				SPAWNS_ZWERGE.add(l);
 		}
-		if(Nations.DEBUG)
+		if (Nations.DEBUG)
 			Nations.logger.info("[SpawnManager] Loaded " + locations.size() + " spawns for Dwarfs.");
 	}
 
@@ -93,14 +93,13 @@ public class SpawnManager {
 		}
 		if (found == null) {
 			found = w.getSpawnLocation();
-			if(Nations.DEBUG)
+			if (Nations.DEBUG)
 				Nations.plugin.getLogger().warning("No save spawn found but there were some?! Returning default spawn...");
 		}
 		return found;
 	}
-	
-	public static Location getFirstNationSpawn(NationPlayer p)
-	{
+
+	public static Location getFirstNationSpawn(NationPlayer p) {
 		String nation = p.getNation();
 		ArrayList<Location> SPAWNS;
 		if (nation.equalsIgnoreCase("Zwerge")) {

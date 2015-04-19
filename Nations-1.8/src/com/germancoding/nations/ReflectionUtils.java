@@ -27,15 +27,19 @@ import org.bukkit.Bukkit;
  */
 public final class ReflectionUtils {
 	// Prevent accidential construction
-	private ReflectionUtils() {}
+	private ReflectionUtils() {
+	}
 
 	/**
 	 * Returns the constructor of a given class with the given parameter types
 	 * 
-	 * @param clazz Target class
-	 * @param parameterTypes Parameter types of the desired constructor
+	 * @param clazz
+	 *            Target class
+	 * @param parameterTypes
+	 *            Parameter types of the desired constructor
 	 * @return The constructor of the target class with the specified parameter types
-	 * @throws NoSuchMethodException If the desired constructor with the specified parameter types cannot be found
+	 * @throws NoSuchMethodException
+	 *             If the desired constructor with the specified parameter types cannot be found
 	 * @see DataType
 	 * @see DataType#getPrimitive(Class[])
 	 * @see DataType#compare(Class[], Class[])
@@ -54,12 +58,17 @@ public final class ReflectionUtils {
 	/**
 	 * Returns the constructor of a desired class with the given parameter types
 	 * 
-	 * @param className Name of the desired target class
-	 * @param packageType Package where the desired target class is located
-	 * @param parameterTypes Parameter types of the desired constructor
+	 * @param className
+	 *            Name of the desired target class
+	 * @param packageType
+	 *            Package where the desired target class is located
+	 * @param parameterTypes
+	 *            Parameter types of the desired constructor
 	 * @return The constructor of the desired target class with the specified parameter types
-	 * @throws NoSuchMethodException If the desired constructor with the specified parameter types cannot be found
-	 * @throws ClassNotFoundException ClassNotFoundException If the desired target class with the specified name and package cannot be found
+	 * @throws NoSuchMethodException
+	 *             If the desired constructor with the specified parameter types cannot be found
+	 * @throws ClassNotFoundException
+	 *             ClassNotFoundException If the desired target class with the specified name and package cannot be found
 	 * @see #getClass(String, PackageType)
 	 * @see #getConstructor(Class, Class...)
 	 */
@@ -70,14 +79,21 @@ public final class ReflectionUtils {
 	/**
 	 * Returns an instance of a class with the given arguments
 	 * 
-	 * @param clazz Target class
-	 * @param arguments Arguments which are used to construct an object of the target class
+	 * @param clazz
+	 *            Target class
+	 * @param arguments
+	 *            Arguments which are used to construct an object of the target class
 	 * @return The instance of the target class with the specified arguments
-	 * @throws InstantiationException If you cannot create an instance of the target class due to certain circumstances
-	 * @throws IllegalAccessException If the desired constructor cannot be accessed due to certain circumstances
-	 * @throws IllegalArgumentException If the types of the arguments do not match the parameter types of the constructor (this should not occur since it searches for a constructor with the types of the arguments)
-	 * @throws InvocationTargetException If the desired constructor cannot be invoked
-	 * @throws NoSuchMethodException If the desired constructor with the specified arguments cannot be found
+	 * @throws InstantiationException
+	 *             If you cannot create an instance of the target class due to certain circumstances
+	 * @throws IllegalAccessException
+	 *             If the desired constructor cannot be accessed due to certain circumstances
+	 * @throws IllegalArgumentException
+	 *             If the types of the arguments do not match the parameter types of the constructor (this should not occur since it searches for a constructor with the types of the arguments)
+	 * @throws InvocationTargetException
+	 *             If the desired constructor cannot be invoked
+	 * @throws NoSuchMethodException
+	 *             If the desired constructor with the specified arguments cannot be found
 	 */
 	public static Object instantiateObject(Class<?> clazz, Object... arguments) throws InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException {
 		return getConstructor(clazz, DataType.getPrimitive(arguments)).newInstance(arguments);
@@ -86,16 +102,25 @@ public final class ReflectionUtils {
 	/**
 	 * Returns an instance of a desired class with the given arguments
 	 * 
-	 * @param className Name of the desired target class
-	 * @param packageType Package where the desired target class is located
-	 * @param arguments Arguments which are used to construct an object of the desired target class
+	 * @param className
+	 *            Name of the desired target class
+	 * @param packageType
+	 *            Package where the desired target class is located
+	 * @param arguments
+	 *            Arguments which are used to construct an object of the desired target class
 	 * @return The instance of the desired target class with the specified arguments
-	 * @throws InstantiationException If you cannot create an instance of the desired target class due to certain circumstances
-	 * @throws IllegalAccessException If the desired constructor cannot be accessed due to certain circumstances
-	 * @throws IllegalArgumentException If the types of the arguments do not match the parameter types of the constructor (this should not occur since it searches for a constructor with the types of the arguments)
-	 * @throws InvocationTargetException If the desired constructor cannot be invoked
-	 * @throws NoSuchMethodException If the desired constructor with the specified arguments cannot be found
-	 * @throws ClassNotFoundException If the desired target class with the specified name and package cannot be found
+	 * @throws InstantiationException
+	 *             If you cannot create an instance of the desired target class due to certain circumstances
+	 * @throws IllegalAccessException
+	 *             If the desired constructor cannot be accessed due to certain circumstances
+	 * @throws IllegalArgumentException
+	 *             If the types of the arguments do not match the parameter types of the constructor (this should not occur since it searches for a constructor with the types of the arguments)
+	 * @throws InvocationTargetException
+	 *             If the desired constructor cannot be invoked
+	 * @throws NoSuchMethodException
+	 *             If the desired constructor with the specified arguments cannot be found
+	 * @throws ClassNotFoundException
+	 *             If the desired target class with the specified name and package cannot be found
 	 * @see #getClass(String, PackageType)
 	 * @see #instantiateObject(Class, Object...)
 	 */
@@ -106,11 +131,15 @@ public final class ReflectionUtils {
 	/**
 	 * Returns a method of a class with the given parameter types
 	 * 
-	 * @param clazz Target class
-	 * @param methodName Name of the desired method
-	 * @param parameterTypes Parameter types of the desired method
+	 * @param clazz
+	 *            Target class
+	 * @param methodName
+	 *            Name of the desired method
+	 * @param parameterTypes
+	 *            Parameter types of the desired method
 	 * @return The method of the target class with the specified name and parameter types
-	 * @throws NoSuchMethodException If the desired method of the target class with the specified name and parameter types cannot be found
+	 * @throws NoSuchMethodException
+	 *             If the desired method of the target class with the specified name and parameter types cannot be found
 	 * @see DataType#getPrimitive(Class[])
 	 * @see DataType#compare(Class[], Class[])
 	 */
@@ -128,13 +157,19 @@ public final class ReflectionUtils {
 	/**
 	 * Returns a method of a desired class with the given parameter types
 	 * 
-	 * @param className Name of the desired target class
-	 * @param packageType Package where the desired target class is located
-	 * @param methodName Name of the desired method
-	 * @param parameterTypes Parameter types of the desired method
+	 * @param className
+	 *            Name of the desired target class
+	 * @param packageType
+	 *            Package where the desired target class is located
+	 * @param methodName
+	 *            Name of the desired method
+	 * @param parameterTypes
+	 *            Parameter types of the desired method
 	 * @return The method of the desired target class with the specified name and parameter types
-	 * @throws NoSuchMethodException If the desired method of the desired target class with the specified name and parameter types cannot be found
-	 * @throws ClassNotFoundException If the desired target class with the specified name and package cannot be found
+	 * @throws NoSuchMethodException
+	 *             If the desired method of the desired target class with the specified name and parameter types cannot be found
+	 * @throws ClassNotFoundException
+	 *             If the desired target class with the specified name and package cannot be found
 	 * @see #getClass(String, PackageType)
 	 * @see #getMethod(Class, String, Class...)
 	 */
@@ -145,14 +180,21 @@ public final class ReflectionUtils {
 	/**
 	 * Invokes a method on an object with the given arguments
 	 * 
-	 * @param instance Target object
-	 * @param methodName Name of the desired method
-	 * @param arguments Arguments which are used to invoke the desired method
+	 * @param instance
+	 *            Target object
+	 * @param methodName
+	 *            Name of the desired method
+	 * @param arguments
+	 *            Arguments which are used to invoke the desired method
 	 * @return The result of invoking the desired method on the target object
-	 * @throws IllegalAccessException If the desired method cannot be accessed due to certain circumstances
-	 * @throws IllegalArgumentException If the types of the arguments do not match the parameter types of the method (this should not occur since it searches for a method with the types of the arguments)
-	 * @throws InvocationTargetException If the desired method cannot be invoked on the target object
-	 * @throws NoSuchMethodException If the desired method of the class of the target object with the specified name and arguments cannot be found
+	 * @throws IllegalAccessException
+	 *             If the desired method cannot be accessed due to certain circumstances
+	 * @throws IllegalArgumentException
+	 *             If the types of the arguments do not match the parameter types of the method (this should not occur since it searches for a method with the types of the arguments)
+	 * @throws InvocationTargetException
+	 *             If the desired method cannot be invoked on the target object
+	 * @throws NoSuchMethodException
+	 *             If the desired method of the class of the target object with the specified name and arguments cannot be found
 	 * @see #getMethod(Class, String, Class...)
 	 * @see DataType#getPrimitive(Object[])
 	 */
@@ -163,15 +205,23 @@ public final class ReflectionUtils {
 	/**
 	 * Invokes a method of the target class on an object with the given arguments
 	 * 
-	 * @param instance Target object
-	 * @param clazz Target class
-	 * @param methodName Name of the desired method
-	 * @param arguments Arguments which are used to invoke the desired method
+	 * @param instance
+	 *            Target object
+	 * @param clazz
+	 *            Target class
+	 * @param methodName
+	 *            Name of the desired method
+	 * @param arguments
+	 *            Arguments which are used to invoke the desired method
 	 * @return The result of invoking the desired method on the target object
-	 * @throws IllegalAccessException If the desired method cannot be accessed due to certain circumstances
-	 * @throws IllegalArgumentException If the types of the arguments do not match the parameter types of the method (this should not occur since it searches for a method with the types of the arguments)
-	 * @throws InvocationTargetException If the desired method cannot be invoked on the target object
-	 * @throws NoSuchMethodException If the desired method of the target class with the specified name and arguments cannot be found
+	 * @throws IllegalAccessException
+	 *             If the desired method cannot be accessed due to certain circumstances
+	 * @throws IllegalArgumentException
+	 *             If the types of the arguments do not match the parameter types of the method (this should not occur since it searches for a method with the types of the arguments)
+	 * @throws InvocationTargetException
+	 *             If the desired method cannot be invoked on the target object
+	 * @throws NoSuchMethodException
+	 *             If the desired method of the target class with the specified name and arguments cannot be found
 	 * @see #getMethod(Class, String, Class...)
 	 * @see DataType#getPrimitive(Object[])
 	 */
@@ -182,17 +232,27 @@ public final class ReflectionUtils {
 	/**
 	 * Invokes a method of a desired class on an object with the given arguments
 	 * 
-	 * @param instance Target object
-	 * @param className Name of the desired target class
-	 * @param packageType Package where the desired target class is located
-	 * @param methodName Name of the desired method
-	 * @param arguments Arguments which are used to invoke the desired method
+	 * @param instance
+	 *            Target object
+	 * @param className
+	 *            Name of the desired target class
+	 * @param packageType
+	 *            Package where the desired target class is located
+	 * @param methodName
+	 *            Name of the desired method
+	 * @param arguments
+	 *            Arguments which are used to invoke the desired method
 	 * @return The result of invoking the desired method on the target object
-	 * @throws IllegalAccessException If the desired method cannot be accessed due to certain circumstances
-	 * @throws IllegalArgumentException If the types of the arguments do not match the parameter types of the method (this should not occur since it searches for a method with the types of the arguments)
-	 * @throws InvocationTargetException If the desired method cannot be invoked on the target object
-	 * @throws NoSuchMethodException If the desired method of the desired target class with the specified name and arguments cannot be found
-	 * @throws ClassNotFoundException If the desired target class with the specified name and package cannot be found
+	 * @throws IllegalAccessException
+	 *             If the desired method cannot be accessed due to certain circumstances
+	 * @throws IllegalArgumentException
+	 *             If the types of the arguments do not match the parameter types of the method (this should not occur since it searches for a method with the types of the arguments)
+	 * @throws InvocationTargetException
+	 *             If the desired method cannot be invoked on the target object
+	 * @throws NoSuchMethodException
+	 *             If the desired method of the desired target class with the specified name and arguments cannot be found
+	 * @throws ClassNotFoundException
+	 *             If the desired target class with the specified name and package cannot be found
 	 * @see #getClass(String, PackageType)
 	 * @see #invokeMethod(Object, Class, String, Object...)
 	 */
@@ -203,12 +263,17 @@ public final class ReflectionUtils {
 	/**
 	 * Returns a field of the target class with the given name
 	 * 
-	 * @param clazz Target class
-	 * @param declared Whether the desired field is declared or not
-	 * @param fieldName Name of the desired field
+	 * @param clazz
+	 *            Target class
+	 * @param declared
+	 *            Whether the desired field is declared or not
+	 * @param fieldName
+	 *            Name of the desired field
 	 * @return The field of the target class with the specified name
-	 * @throws NoSuchFieldException If the desired field of the given class cannot be found
-	 * @throws SecurityException If the desired field cannot be made accessible
+	 * @throws NoSuchFieldException
+	 *             If the desired field of the given class cannot be found
+	 * @throws SecurityException
+	 *             If the desired field cannot be made accessible
 	 */
 	public static Field getField(Class<?> clazz, boolean declared, String fieldName) throws NoSuchFieldException, SecurityException {
 		Field field = declared ? clazz.getDeclaredField(fieldName) : clazz.getField(fieldName);
@@ -219,14 +284,21 @@ public final class ReflectionUtils {
 	/**
 	 * Returns a field of a desired class with the given name
 	 * 
-	 * @param className Name of the desired target class
-	 * @param packageType Package where the desired target class is located
-	 * @param declared Whether the desired field is declared or not
-	 * @param fieldName Name of the desired field
+	 * @param className
+	 *            Name of the desired target class
+	 * @param packageType
+	 *            Package where the desired target class is located
+	 * @param declared
+	 *            Whether the desired field is declared or not
+	 * @param fieldName
+	 *            Name of the desired field
 	 * @return The field of the desired target class with the specified name
-	 * @throws NoSuchFieldException If the desired field of the desired class cannot be found
-	 * @throws SecurityException If the desired field cannot be made accessible
-	 * @throws ClassNotFoundException If the desired target class with the specified name and package cannot be found
+	 * @throws NoSuchFieldException
+	 *             If the desired field of the desired class cannot be found
+	 * @throws SecurityException
+	 *             If the desired field cannot be made accessible
+	 * @throws ClassNotFoundException
+	 *             If the desired target class with the specified name and package cannot be found
 	 * @see #getField(Class, boolean, String)
 	 */
 	public static Field getField(String className, PackageType packageType, boolean declared, String fieldName) throws NoSuchFieldException, SecurityException, ClassNotFoundException {
@@ -236,15 +308,23 @@ public final class ReflectionUtils {
 	/**
 	 * Returns the value of a field of the given class of an object
 	 * 
-	 * @param instance Target object
-	 * @param clazz Target class
-	 * @param declared Whether the desired field is declared or not
-	 * @param fieldName Name of the desired field
+	 * @param instance
+	 *            Target object
+	 * @param clazz
+	 *            Target class
+	 * @param declared
+	 *            Whether the desired field is declared or not
+	 * @param fieldName
+	 *            Name of the desired field
 	 * @return The value of field of the target object
-	 * @throws IllegalArgumentException If the target object does not feature the desired field
-	 * @throws IllegalAccessException If the desired field cannot be accessed
-	 * @throws NoSuchFieldException If the desired field of the target class cannot be found
-	 * @throws SecurityException If the desired field cannot be made accessible
+	 * @throws IllegalArgumentException
+	 *             If the target object does not feature the desired field
+	 * @throws IllegalAccessException
+	 *             If the desired field cannot be accessed
+	 * @throws NoSuchFieldException
+	 *             If the desired field of the target class cannot be found
+	 * @throws SecurityException
+	 *             If the desired field cannot be made accessible
 	 * @see #getField(Class, boolean, String)
 	 */
 	public static Object getValue(Object instance, Class<?> clazz, boolean declared, String fieldName) throws IllegalArgumentException, IllegalAccessException, NoSuchFieldException, SecurityException {
@@ -254,17 +334,27 @@ public final class ReflectionUtils {
 	/**
 	 * Returns the value of a field of a desired class of an object
 	 * 
-	 * @param instance Target object
-	 * @param className Name of the desired target class
-	 * @param packageType Package where the desired target class is located
-	 * @param declared Whether the desired field is declared or not
-	 * @param fieldName Name of the desired field
+	 * @param instance
+	 *            Target object
+	 * @param className
+	 *            Name of the desired target class
+	 * @param packageType
+	 *            Package where the desired target class is located
+	 * @param declared
+	 *            Whether the desired field is declared or not
+	 * @param fieldName
+	 *            Name of the desired field
 	 * @return The value of field of the target object
-	 * @throws IllegalArgumentException If the target object does not feature the desired field
-	 * @throws IllegalAccessException If the desired field cannot be accessed
-	 * @throws NoSuchFieldException If the desired field of the desired class cannot be found
-	 * @throws SecurityException If the desired field cannot be made accessible
-	 * @throws ClassNotFoundException If the desired target class with the specified name and package cannot be found
+	 * @throws IllegalArgumentException
+	 *             If the target object does not feature the desired field
+	 * @throws IllegalAccessException
+	 *             If the desired field cannot be accessed
+	 * @throws NoSuchFieldException
+	 *             If the desired field of the desired class cannot be found
+	 * @throws SecurityException
+	 *             If the desired field cannot be made accessible
+	 * @throws ClassNotFoundException
+	 *             If the desired target class with the specified name and package cannot be found
 	 * @see #getValue(Object, Class, boolean, String)
 	 */
 	public static Object getValue(Object instance, String className, PackageType packageType, boolean declared, String fieldName) throws IllegalArgumentException, IllegalAccessException, NoSuchFieldException, SecurityException, ClassNotFoundException {
@@ -274,14 +364,21 @@ public final class ReflectionUtils {
 	/**
 	 * Returns the value of a field with the given name of an object
 	 * 
-	 * @param instance Target object
-	 * @param declared Whether the desired field is declared or not
-	 * @param fieldName Name of the desired field
+	 * @param instance
+	 *            Target object
+	 * @param declared
+	 *            Whether the desired field is declared or not
+	 * @param fieldName
+	 *            Name of the desired field
 	 * @return The value of field of the target object
-	 * @throws IllegalArgumentException If the target object does not feature the desired field (should not occur since it searches for a field with the given name in the class of the object)
-	 * @throws IllegalAccessException If the desired field cannot be accessed
-	 * @throws NoSuchFieldException If the desired field of the target object cannot be found
-	 * @throws SecurityException If the desired field cannot be made accessible
+	 * @throws IllegalArgumentException
+	 *             If the target object does not feature the desired field (should not occur since it searches for a field with the given name in the class of the object)
+	 * @throws IllegalAccessException
+	 *             If the desired field cannot be accessed
+	 * @throws NoSuchFieldException
+	 *             If the desired field of the target object cannot be found
+	 * @throws SecurityException
+	 *             If the desired field cannot be made accessible
 	 * @see #getValue(Object, Class, boolean, String)
 	 */
 	public static Object getValue(Object instance, boolean declared, String fieldName) throws IllegalArgumentException, IllegalAccessException, NoSuchFieldException, SecurityException {
@@ -291,15 +388,24 @@ public final class ReflectionUtils {
 	/**
 	 * Sets the value of a field of the given class of an object
 	 * 
-	 * @param instance Target object
-	 * @param clazz Target class
-	 * @param declared Whether the desired field is declared or not
-	 * @param fieldName Name of the desired field
-	 * @param value New value
-	 * @throws IllegalArgumentException If the type of the value does not match the type of the desired field
-	 * @throws IllegalAccessException If the desired field cannot be accessed
-	 * @throws NoSuchFieldException If the desired field of the target class cannot be found
-	 * @throws SecurityException If the desired field cannot be made accessible
+	 * @param instance
+	 *            Target object
+	 * @param clazz
+	 *            Target class
+	 * @param declared
+	 *            Whether the desired field is declared or not
+	 * @param fieldName
+	 *            Name of the desired field
+	 * @param value
+	 *            New value
+	 * @throws IllegalArgumentException
+	 *             If the type of the value does not match the type of the desired field
+	 * @throws IllegalAccessException
+	 *             If the desired field cannot be accessed
+	 * @throws NoSuchFieldException
+	 *             If the desired field of the target class cannot be found
+	 * @throws SecurityException
+	 *             If the desired field cannot be made accessible
 	 * @see #getField(Class, boolean, String)
 	 */
 	public static void setValue(Object instance, Class<?> clazz, boolean declared, String fieldName, Object value) throws IllegalArgumentException, IllegalAccessException, NoSuchFieldException, SecurityException {
@@ -309,17 +415,28 @@ public final class ReflectionUtils {
 	/**
 	 * Sets the value of a field of a desired class of an object
 	 * 
-	 * @param instance Target object
-	 * @param className Name of the desired target class
-	 * @param packageType Package where the desired target class is located
-	 * @param declared Whether the desired field is declared or not
-	 * @param fieldName Name of the desired field
-	 * @param value New value
-	 * @throws IllegalArgumentException If the type of the value does not match the type of the desired field
-	 * @throws IllegalAccessException If the desired field cannot be accessed
-	 * @throws NoSuchFieldException If the desired field of the desired class cannot be found
-	 * @throws SecurityException If the desired field cannot be made accessible
-	 * @throws ClassNotFoundException If the desired target class with the specified name and package cannot be found
+	 * @param instance
+	 *            Target object
+	 * @param className
+	 *            Name of the desired target class
+	 * @param packageType
+	 *            Package where the desired target class is located
+	 * @param declared
+	 *            Whether the desired field is declared or not
+	 * @param fieldName
+	 *            Name of the desired field
+	 * @param value
+	 *            New value
+	 * @throws IllegalArgumentException
+	 *             If the type of the value does not match the type of the desired field
+	 * @throws IllegalAccessException
+	 *             If the desired field cannot be accessed
+	 * @throws NoSuchFieldException
+	 *             If the desired field of the desired class cannot be found
+	 * @throws SecurityException
+	 *             If the desired field cannot be made accessible
+	 * @throws ClassNotFoundException
+	 *             If the desired target class with the specified name and package cannot be found
 	 * @see #setValue(Object, Class, boolean, String, Object)
 	 */
 	public static void setValue(Object instance, String className, PackageType packageType, boolean declared, String fieldName, Object value) throws IllegalArgumentException, IllegalAccessException, NoSuchFieldException, SecurityException, ClassNotFoundException {
@@ -329,14 +446,22 @@ public final class ReflectionUtils {
 	/**
 	 * Sets the value of a field with the given name of an object
 	 * 
-	 * @param instance Target object
-	 * @param declared Whether the desired field is declared or not
-	 * @param fieldName Name of the desired field
-	 * @param value New value
-	 * @throws IllegalArgumentException If the type of the value does not match the type of the desired field
-	 * @throws IllegalAccessException If the desired field cannot be accessed
-	 * @throws NoSuchFieldException If the desired field of the target object cannot be found
-	 * @throws SecurityException If the desired field cannot be made accessible
+	 * @param instance
+	 *            Target object
+	 * @param declared
+	 *            Whether the desired field is declared or not
+	 * @param fieldName
+	 *            Name of the desired field
+	 * @param value
+	 *            New value
+	 * @throws IllegalArgumentException
+	 *             If the type of the value does not match the type of the desired field
+	 * @throws IllegalAccessException
+	 *             If the desired field cannot be accessed
+	 * @throws NoSuchFieldException
+	 *             If the desired field of the target object cannot be found
+	 * @throws SecurityException
+	 *             If the desired field cannot be made accessible
 	 * @see #setValue(Object, Class, boolean, String, Object)
 	 */
 	public static void setValue(Object instance, boolean declared, String fieldName, Object value) throws IllegalArgumentException, IllegalAccessException, NoSuchFieldException, SecurityException {
@@ -352,33 +477,15 @@ public final class ReflectionUtils {
 	 * @since 1.0
 	 */
 	public enum PackageType {
-		MINECRAFT_SERVER("net.minecraft.server." + getServerVersion()),
-		CRAFTBUKKIT("org.bukkit.craftbukkit." + getServerVersion()),
-		CRAFTBUKKIT_BLOCK(CRAFTBUKKIT, "block"),
-		CRAFTBUKKIT_CHUNKIO(CRAFTBUKKIT, "chunkio"),
-		CRAFTBUKKIT_COMMAND(CRAFTBUKKIT, "command"),
-		CRAFTBUKKIT_CONVERSATIONS(CRAFTBUKKIT, "conversations"),
-		CRAFTBUKKIT_ENCHANTMENS(CRAFTBUKKIT, "enchantments"),
-		CRAFTBUKKIT_ENTITY(CRAFTBUKKIT, "entity"),
-		CRAFTBUKKIT_EVENT(CRAFTBUKKIT, "event"),
-		CRAFTBUKKIT_GENERATOR(CRAFTBUKKIT, "generator"),
-		CRAFTBUKKIT_HELP(CRAFTBUKKIT, "help"),
-		CRAFTBUKKIT_INVENTORY(CRAFTBUKKIT, "inventory"),
-		CRAFTBUKKIT_MAP(CRAFTBUKKIT, "map"),
-		CRAFTBUKKIT_METADATA(CRAFTBUKKIT, "metadata"),
-		CRAFTBUKKIT_POTION(CRAFTBUKKIT, "potion"),
-		CRAFTBUKKIT_PROJECTILES(CRAFTBUKKIT, "projectiles"),
-		CRAFTBUKKIT_SCHEDULER(CRAFTBUKKIT, "scheduler"),
-		CRAFTBUKKIT_SCOREBOARD(CRAFTBUKKIT, "scoreboard"),
-		CRAFTBUKKIT_UPDATER(CRAFTBUKKIT, "updater"),
-		CRAFTBUKKIT_UTIL(CRAFTBUKKIT, "util");
+		MINECRAFT_SERVER("net.minecraft.server." + getServerVersion()), CRAFTBUKKIT("org.bukkit.craftbukkit." + getServerVersion()), CRAFTBUKKIT_BLOCK(CRAFTBUKKIT, "block"), CRAFTBUKKIT_CHUNKIO(CRAFTBUKKIT, "chunkio"), CRAFTBUKKIT_COMMAND(CRAFTBUKKIT, "command"), CRAFTBUKKIT_CONVERSATIONS(CRAFTBUKKIT, "conversations"), CRAFTBUKKIT_ENCHANTMENS(CRAFTBUKKIT, "enchantments"), CRAFTBUKKIT_ENTITY(CRAFTBUKKIT, "entity"), CRAFTBUKKIT_EVENT(CRAFTBUKKIT, "event"), CRAFTBUKKIT_GENERATOR(CRAFTBUKKIT, "generator"), CRAFTBUKKIT_HELP(CRAFTBUKKIT, "help"), CRAFTBUKKIT_INVENTORY(CRAFTBUKKIT, "inventory"), CRAFTBUKKIT_MAP(CRAFTBUKKIT, "map"), CRAFTBUKKIT_METADATA(CRAFTBUKKIT, "metadata"), CRAFTBUKKIT_POTION(CRAFTBUKKIT, "potion"), CRAFTBUKKIT_PROJECTILES(CRAFTBUKKIT, "projectiles"), CRAFTBUKKIT_SCHEDULER(CRAFTBUKKIT, "scheduler"), CRAFTBUKKIT_SCOREBOARD(CRAFTBUKKIT, "scoreboard"), CRAFTBUKKIT_UPDATER(CRAFTBUKKIT, "updater"), CRAFTBUKKIT_UTIL(CRAFTBUKKIT, "util");
 
 		private final String path;
 
 		/**
 		 * Construct a new package type
 		 * 
-		 * @param path Path of the package
+		 * @param path
+		 *            Path of the package
 		 */
 		private PackageType(String path) {
 			this.path = path;
@@ -387,8 +494,10 @@ public final class ReflectionUtils {
 		/**
 		 * Construct a new package type
 		 * 
-		 * @param parent Parent package of the package
-		 * @param path Path of the package
+		 * @param parent
+		 *            Parent package of the package
+		 * @param path
+		 *            Path of the package
 		 */
 		private PackageType(PackageType parent, String path) {
 			this(parent + "." + path);
@@ -406,9 +515,11 @@ public final class ReflectionUtils {
 		/**
 		 * Returns the class with the given name
 		 * 
-		 * @param className Name of the desired class
+		 * @param className
+		 *            Name of the desired class
 		 * @return The class with the specified name
-		 * @throws ClassNotFoundException If the desired class with the specified name and package cannot be found
+		 * @throws ClassNotFoundException
+		 *             If the desired class with the specified name and package cannot be found
 		 */
 		public Class<?> getClass(String className) throws ClassNotFoundException {
 			return Class.forName(this + "." + className);
@@ -439,14 +550,7 @@ public final class ReflectionUtils {
 	 * @since 1.0
 	 */
 	public enum DataType {
-		BYTE(byte.class, Byte.class),
-		SHORT(short.class, Short.class),
-		INTEGER(int.class, Integer.class),
-		LONG(long.class, Long.class),
-		CHARACTER(char.class, Character.class),
-		FLOAT(float.class, Float.class),
-		DOUBLE(double.class, Double.class),
-		BOOLEAN(boolean.class, Boolean.class);
+		BYTE(byte.class, Byte.class), SHORT(short.class, Short.class), INTEGER(int.class, Integer.class), LONG(long.class, Long.class), CHARACTER(char.class, Character.class), FLOAT(float.class, Float.class), DOUBLE(double.class, Double.class), BOOLEAN(boolean.class, Boolean.class);
 
 		private static final Map<Class<?>, DataType> CLASS_MAP = new HashMap<Class<?>, DataType>();
 		private final Class<?> primitive;
@@ -463,8 +567,10 @@ public final class ReflectionUtils {
 		/**
 		 * Construct a new data type
 		 * 
-		 * @param primitive Primitive class of this data type
-		 * @param reference Reference class of this data type
+		 * @param primitive
+		 *            Primitive class of this data type
+		 * @param reference
+		 *            Reference class of this data type
 		 */
 		private DataType(Class<?> primitive, Class<?> reference) {
 			this.primitive = primitive;
@@ -492,7 +598,8 @@ public final class ReflectionUtils {
 		/**
 		 * Returns the data type with the given primitive/reference class
 		 * 
-		 * @param clazz Primitive/Reference class of the data type
+		 * @param clazz
+		 *            Primitive/Reference class of the data type
 		 * @return The data type
 		 */
 		public static DataType fromClass(Class<?> clazz) {
@@ -502,7 +609,8 @@ public final class ReflectionUtils {
 		/**
 		 * Returns the primitive class of the data type with the given reference class
 		 * 
-		 * @param clazz Reference class of the data type
+		 * @param clazz
+		 *            Reference class of the data type
 		 * @return The primitive class
 		 */
 		public static Class<?> getPrimitive(Class<?> clazz) {
@@ -513,7 +621,8 @@ public final class ReflectionUtils {
 		/**
 		 * Returns the reference class of the data type with the given primitive class
 		 * 
-		 * @param clazz Primitive class of the data type
+		 * @param clazz
+		 *            Primitive class of the data type
 		 * @return The reference class
 		 */
 		public static Class<?> getReference(Class<?> clazz) {
@@ -524,7 +633,8 @@ public final class ReflectionUtils {
 		/**
 		 * Returns the primitive class array of the given class array
 		 * 
-		 * @param classes Given class array
+		 * @param classes
+		 *            Given class array
 		 * @return The primitive class array
 		 */
 		public static Class<?>[] getPrimitive(Class<?>[] classes) {
@@ -539,7 +649,8 @@ public final class ReflectionUtils {
 		/**
 		 * Returns the reference class array of the given class array
 		 * 
-		 * @param classes Given class array
+		 * @param classes
+		 *            Given class array
 		 * @return The reference class array
 		 */
 		public static Class<?>[] getReference(Class<?>[] classes) {
@@ -554,7 +665,8 @@ public final class ReflectionUtils {
 		/**
 		 * Returns the primitive class array of the given object array
 		 * 
-		 * @param object Given object array
+		 * @param object
+		 *            Given object array
 		 * @return The primitive class array
 		 */
 		public static Class<?>[] getPrimitive(Object[] objects) {
@@ -569,7 +681,8 @@ public final class ReflectionUtils {
 		/**
 		 * Returns the reference class array of the given object array
 		 * 
-		 * @param object Given object array
+		 * @param object
+		 *            Given object array
 		 * @return The reference class array
 		 */
 		public static Class<?>[] getReference(Object[] objects) {
@@ -584,8 +697,10 @@ public final class ReflectionUtils {
 		/**
 		 * Compares two class arrays on equivalence
 		 * 
-		 * @param primary Primary class array
-		 * @param secondary Class array which is compared to the primary array
+		 * @param primary
+		 *            Primary class array
+		 * @param secondary
+		 *            Class array which is compared to the primary array
 		 * @return Whether these arrays are equal or not
 		 */
 		public static boolean compare(Class<?>[] primary, Class<?>[] secondary) {
@@ -615,105 +730,7 @@ public final class ReflectionUtils {
 	 * @since 1.0
 	 */
 	public enum PacketType {
-		HANDSHAKING_IN_SET_PROTOCOL("PacketHandshakingInSetProtocol"),
-		LOGIN_IN_ENCRYPTION_BEGIN("PacketLoginInEncryptionBegin"),
-		LOGIN_IN_START("PacketLoginInStart"),
-		LOGIN_OUT_DISCONNECT("PacketLoginOutDisconnect"),
-		LOGIN_OUT_ENCRYPTION_BEGIN("PacketLoginOutEncryptionBegin"),
-		LOGIN_OUT_SUCCESS("PacketLoginOutSuccess"),
-		PLAY_IN_ABILITIES("PacketPlayInAbilities"),
-		PLAY_IN_ARM_ANIMATION("PacketPlayInArmAnimation"),
-		PLAY_IN_BLOCK_DIG("PacketPlayInBlockDig"),
-		PLAY_IN_BLOCK_PLACE("PacketPlayInBlockPlace"),
-		PLAY_IN_CHAT("PacketPlayInChat"),
-		PLAY_IN_CLIENT_COMMAND("PacketPlayInClientCommand"),
-		PLAY_IN_CLOSE_WINDOW("PacketPlayInCloseWindow"),
-		PLAY_IN_CUSTOM_PAYLOAD("PacketPlayInCustomPayload"),
-		PLAY_IN_ENCHANT_ITEM("PacketPlayInEnchantItem"),
-		PLAY_IN_ENTITY_ACTION("PacketPlayInEntityAction"),
-		PLAY_IN_FLYING("PacketPlayInFlying"),
-		PLAY_IN_HELD_ITEM_SLOT("PacketPlayInHeldItemSlot"),
-		PLAY_IN_KEEP_ALIVE("PacketPlayInKeepAlive"),
-		PLAY_IN_LOOK("PacketPlayInLook"),
-		PLAY_IN_POSITION("PacketPlayInPosition"),
-		PLAY_IN_POSITION_LOOK("PacketPlayInPositionLook"),
-		PLAY_IN_SET_CREATIVE_SLOT("PacketPlayInSetCreativeSlot "),
-		PLAY_IN_SETTINGS("PacketPlayInSettings"),
-		PLAY_IN_STEER_VEHICLE("PacketPlayInSteerVehicle"),
-		PLAY_IN_TAB_COMPLETE("PacketPlayInTabComplete"),
-		PLAY_IN_TRANSACTION("PacketPlayInTransaction"),
-		PLAY_IN_UPDATE_SIGN("PacketPlayInUpdateSign"),
-		PLAY_IN_USE_ENTITY("PacketPlayInUseEntity"),
-		PLAY_IN_WINDOW_CLICK("PacketPlayInWindowClick"),
-		PLAY_OUT_ABILITIES("PacketPlayOutAbilities"),
-		PLAY_OUT_ANIMATION("PacketPlayOutAnimation"),
-		PLAY_OUT_ATTACH_ENTITY("PacketPlayOutAttachEntity"),
-		PLAY_OUT_BED("PacketPlayOutBed"),
-		PLAY_OUT_BLOCK_ACTION("PacketPlayOutBlockAction"),
-		PLAY_OUT_BLOCK_BREAK_ANIMATION("PacketPlayOutBlockBreakAnimation"),
-		PLAY_OUT_BLOCK_CHANGE("PacketPlayOutBlockChange"),
-		PLAY_OUT_CHAT("PacketPlayOutChat"),
-		PLAY_OUT_CLOSE_WINDOW("PacketPlayOutCloseWindow"),
-		PLAY_OUT_COLLECT("PacketPlayOutCollect"),
-		PLAY_OUT_CRAFT_PROGRESS_BAR("PacketPlayOutCraftProgressBar"),
-		PLAY_OUT_CUSTOM_PAYLOAD("PacketPlayOutCustomPayload"),
-		PLAY_OUT_ENTITY("PacketPlayOutEntity"),
-		PLAY_OUT_ENTITY_DESTROY("PacketPlayOutEntityDestroy"),
-		PLAY_OUT_ENTITY_EFFECT("PacketPlayOutEntityEffect"),
-		PLAY_OUT_ENTITY_EQUIPMENT("PacketPlayOutEntityEquipment"),
-		PLAY_OUT_ENTITY_HEAD_ROTATION("PacketPlayOutEntityHeadRotation"),
-		PLAY_OUT_ENTITY_LOOK("PacketPlayOutEntityLook"),
-		PLAY_OUT_ENTITY_METADATA("PacketPlayOutEntityMetadata"),
-		PLAY_OUT_ENTITY_STATUS("PacketPlayOutEntityStatus"),
-		PLAY_OUT_ENTITY_TELEPORT("PacketPlayOutEntityTeleport"),
-		PLAY_OUT_ENTITY_VELOCITY("PacketPlayOutEntityVelocity"),
-		PLAY_OUT_EXPERIENCE("PacketPlayOutExperience"),
-		PLAY_OUT_EXPLOSION("PacketPlayOutExplosion"),
-		PLAY_OUT_GAME_STATE_CHANGE("PacketPlayOutGameStateChange"),
-		PLAY_OUT_HELD_ITEM_SLOT("PacketPlayOutHeldItemSlot"),
-		PLAY_OUT_KEEP_ALIVE("PacketPlayOutKeepAlive"),
-		PLAY_OUT_KICK_DISCONNECT("PacketPlayOutKickDisconnect"),
-		PLAY_OUT_LOGIN("PacketPlayOutLogin"),
-		PLAY_OUT_MAP("PacketPlayOutMap"),
-		PLAY_OUT_MAP_CHUNK("PacketPlayOutMapChunk"),
-		PLAY_OUT_MAP_CHUNK_BULK("PacketPlayOutMapChunkBulk"),
-		PLAY_OUT_MULTI_BLOCK_CHANGE("PacketPlayOutMultiBlockChange"),
-		PLAY_OUT_NAMED_ENTITY_SPAWN("PacketPlayOutNamedEntitySpawn"),
-		PLAY_OUT_NAMED_SOUND_EFFECT("PacketPlayOutNamedSoundEffect"),
-		PLAY_OUT_OPEN_SIGN_EDITOR("PacketPlayOutOpenSignEditor"),
-		PLAY_OUT_OPEN_WINDOW("PacketPlayOutOpenWindow"),
-		PLAY_OUT_PLAYER_INFO("PacketPlayOutPlayerInfo"),
-		PLAY_OUT_POSITION("PacketPlayOutPosition"),
-		PLAY_OUT_REL_ENTITY_MOVE("PacketPlayOutRelEntityMove"),
-		PLAY_OUT_REL_ENTITY_MOVE_LOOK("PacketPlayOutRelEntityMoveLook"),
-		PLAY_OUT_REMOVE_ENTITY_EFFECT("PacketPlayOutRemoveEntityEffect"),
-		PLAY_OUT_RESPAWN("PacketPlayOutRespawn"),
-		PLAY_OUT_SCOREBOARD_DISPLAY_OBJECTIVE("PacketPlayOutScoreboardDisplayObjective"),
-		PLAY_OUT_SCOREBOARD_OBJECTIVE("PacketPlayOutScoreboardObjective"),
-		PLAY_OUT_SCOREBOARD_SCORE("PacketPlayOutScoreboardScore"),
-		PLAY_OUT_SCOREBOARD_TEAM("PacketPlayOutScoreboardTeam"),
-		PLAY_OUT_SET_SLOT("PacketPlayOutSetSlot"),
-		PLAY_OUT_SPAWN_ENTITY("PacketPlayOutSpawnEntity"),
-		PLAY_OUT_SPAWN_ENTITY_EXPERIENCE_ORB("PacketPlayOutSpawnEntityExperienceOrb"),
-		PLAY_OUT_SPAWN_ENTITY_LIVING("PacketPlayOutSpawnEntityLiving"),
-		PLAY_OUT_SPAWN_ENTITY_PAINTING("PacketPlayOutSpawnEntityPainting"),
-		PLAY_OUT_SPAWN_ENTITY_WEATHER("PacketPlayOutSpawnEntityWeather"),
-		PLAY_OUT_SPAWN_POSITION("PacketPlayOutSpawnPosition"),
-		PLAY_OUT_STATISTIC("PacketPlayOutStatistic"),
-		PLAY_OUT_TAB_COMPLETE("PacketPlayOutTabComplete"),
-		PLAY_OUT_TILE_ENTITY_DATA("PacketPlayOutTileEntityData"),
-		PLAY_OUT_TRANSACTION("PacketPlayOutTransaction"),
-		PLAY_OUT_UPDATE_ATTRIBUTES("PacketPlayOutUpdateAttributes"),
-		PLAY_OUT_UPDATE_HEALTH("PacketPlayOutUpdateHealth"),
-		PLAY_OUT_UPDATE_SIGN("PacketPlayOutUpdateSign"),
-		PLAY_OUT_UPDATE_TIME("PacketPlayOutUpdateTime"),
-		PLAY_OUT_WINDOW_ITEMS("PacketPlayOutWindowItems"),
-		PLAY_OUT_WORLD_EVENT("PacketPlayOutWorldEvent"),
-		PLAY_OUT_WORLD_PARTICLES("PacketPlayOutWorldParticles"),
-		STATUS_IN_PING("PacketStatusInPing"),
-		STATUS_IN_START("PacketStatusInStart"),
-		STATUS_OUT_PONG("PacketStatusOutPong"),
-		STATUS_OUT_SERVER_INFO("PacketStatusOutServerInfo");
+		HANDSHAKING_IN_SET_PROTOCOL("PacketHandshakingInSetProtocol"), LOGIN_IN_ENCRYPTION_BEGIN("PacketLoginInEncryptionBegin"), LOGIN_IN_START("PacketLoginInStart"), LOGIN_OUT_DISCONNECT("PacketLoginOutDisconnect"), LOGIN_OUT_ENCRYPTION_BEGIN("PacketLoginOutEncryptionBegin"), LOGIN_OUT_SUCCESS("PacketLoginOutSuccess"), PLAY_IN_ABILITIES("PacketPlayInAbilities"), PLAY_IN_ARM_ANIMATION("PacketPlayInArmAnimation"), PLAY_IN_BLOCK_DIG("PacketPlayInBlockDig"), PLAY_IN_BLOCK_PLACE("PacketPlayInBlockPlace"), PLAY_IN_CHAT("PacketPlayInChat"), PLAY_IN_CLIENT_COMMAND("PacketPlayInClientCommand"), PLAY_IN_CLOSE_WINDOW("PacketPlayInCloseWindow"), PLAY_IN_CUSTOM_PAYLOAD("PacketPlayInCustomPayload"), PLAY_IN_ENCHANT_ITEM("PacketPlayInEnchantItem"), PLAY_IN_ENTITY_ACTION("PacketPlayInEntityAction"), PLAY_IN_FLYING("PacketPlayInFlying"), PLAY_IN_HELD_ITEM_SLOT("PacketPlayInHeldItemSlot"), PLAY_IN_KEEP_ALIVE("PacketPlayInKeepAlive"), PLAY_IN_LOOK("PacketPlayInLook"), PLAY_IN_POSITION("PacketPlayInPosition"), PLAY_IN_POSITION_LOOK("PacketPlayInPositionLook"), PLAY_IN_SET_CREATIVE_SLOT("PacketPlayInSetCreativeSlot "), PLAY_IN_SETTINGS("PacketPlayInSettings"), PLAY_IN_STEER_VEHICLE("PacketPlayInSteerVehicle"), PLAY_IN_TAB_COMPLETE("PacketPlayInTabComplete"), PLAY_IN_TRANSACTION("PacketPlayInTransaction"), PLAY_IN_UPDATE_SIGN("PacketPlayInUpdateSign"), PLAY_IN_USE_ENTITY("PacketPlayInUseEntity"), PLAY_IN_WINDOW_CLICK("PacketPlayInWindowClick"), PLAY_OUT_ABILITIES("PacketPlayOutAbilities"), PLAY_OUT_ANIMATION("PacketPlayOutAnimation"), PLAY_OUT_ATTACH_ENTITY("PacketPlayOutAttachEntity"), PLAY_OUT_BED("PacketPlayOutBed"), PLAY_OUT_BLOCK_ACTION("PacketPlayOutBlockAction"), PLAY_OUT_BLOCK_BREAK_ANIMATION("PacketPlayOutBlockBreakAnimation"), PLAY_OUT_BLOCK_CHANGE("PacketPlayOutBlockChange"), PLAY_OUT_CHAT("PacketPlayOutChat"), PLAY_OUT_CLOSE_WINDOW("PacketPlayOutCloseWindow"), PLAY_OUT_COLLECT("PacketPlayOutCollect"), PLAY_OUT_CRAFT_PROGRESS_BAR("PacketPlayOutCraftProgressBar"), PLAY_OUT_CUSTOM_PAYLOAD("PacketPlayOutCustomPayload"), PLAY_OUT_ENTITY("PacketPlayOutEntity"), PLAY_OUT_ENTITY_DESTROY("PacketPlayOutEntityDestroy"), PLAY_OUT_ENTITY_EFFECT("PacketPlayOutEntityEffect"), PLAY_OUT_ENTITY_EQUIPMENT("PacketPlayOutEntityEquipment"), PLAY_OUT_ENTITY_HEAD_ROTATION("PacketPlayOutEntityHeadRotation"), PLAY_OUT_ENTITY_LOOK("PacketPlayOutEntityLook"), PLAY_OUT_ENTITY_METADATA("PacketPlayOutEntityMetadata"), PLAY_OUT_ENTITY_STATUS("PacketPlayOutEntityStatus"), PLAY_OUT_ENTITY_TELEPORT("PacketPlayOutEntityTeleport"), PLAY_OUT_ENTITY_VELOCITY("PacketPlayOutEntityVelocity"), PLAY_OUT_EXPERIENCE("PacketPlayOutExperience"), PLAY_OUT_EXPLOSION("PacketPlayOutExplosion"), PLAY_OUT_GAME_STATE_CHANGE("PacketPlayOutGameStateChange"), PLAY_OUT_HELD_ITEM_SLOT("PacketPlayOutHeldItemSlot"), PLAY_OUT_KEEP_ALIVE("PacketPlayOutKeepAlive"), PLAY_OUT_KICK_DISCONNECT("PacketPlayOutKickDisconnect"), PLAY_OUT_LOGIN("PacketPlayOutLogin"), PLAY_OUT_MAP("PacketPlayOutMap"), PLAY_OUT_MAP_CHUNK("PacketPlayOutMapChunk"), PLAY_OUT_MAP_CHUNK_BULK("PacketPlayOutMapChunkBulk"), PLAY_OUT_MULTI_BLOCK_CHANGE("PacketPlayOutMultiBlockChange"), PLAY_OUT_NAMED_ENTITY_SPAWN("PacketPlayOutNamedEntitySpawn"), PLAY_OUT_NAMED_SOUND_EFFECT("PacketPlayOutNamedSoundEffect"), PLAY_OUT_OPEN_SIGN_EDITOR("PacketPlayOutOpenSignEditor"), PLAY_OUT_OPEN_WINDOW("PacketPlayOutOpenWindow"), PLAY_OUT_PLAYER_INFO("PacketPlayOutPlayerInfo"), PLAY_OUT_POSITION("PacketPlayOutPosition"), PLAY_OUT_REL_ENTITY_MOVE("PacketPlayOutRelEntityMove"), PLAY_OUT_REL_ENTITY_MOVE_LOOK("PacketPlayOutRelEntityMoveLook"), PLAY_OUT_REMOVE_ENTITY_EFFECT("PacketPlayOutRemoveEntityEffect"), PLAY_OUT_RESPAWN("PacketPlayOutRespawn"), PLAY_OUT_SCOREBOARD_DISPLAY_OBJECTIVE("PacketPlayOutScoreboardDisplayObjective"), PLAY_OUT_SCOREBOARD_OBJECTIVE("PacketPlayOutScoreboardObjective"), PLAY_OUT_SCOREBOARD_SCORE("PacketPlayOutScoreboardScore"), PLAY_OUT_SCOREBOARD_TEAM("PacketPlayOutScoreboardTeam"), PLAY_OUT_SET_SLOT("PacketPlayOutSetSlot"), PLAY_OUT_SPAWN_ENTITY("PacketPlayOutSpawnEntity"), PLAY_OUT_SPAWN_ENTITY_EXPERIENCE_ORB("PacketPlayOutSpawnEntityExperienceOrb"), PLAY_OUT_SPAWN_ENTITY_LIVING("PacketPlayOutSpawnEntityLiving"), PLAY_OUT_SPAWN_ENTITY_PAINTING("PacketPlayOutSpawnEntityPainting"), PLAY_OUT_SPAWN_ENTITY_WEATHER("PacketPlayOutSpawnEntityWeather"), PLAY_OUT_SPAWN_POSITION("PacketPlayOutSpawnPosition"), PLAY_OUT_STATISTIC("PacketPlayOutStatistic"), PLAY_OUT_TAB_COMPLETE("PacketPlayOutTabComplete"), PLAY_OUT_TILE_ENTITY_DATA("PacketPlayOutTileEntityData"), PLAY_OUT_TRANSACTION("PacketPlayOutTransaction"), PLAY_OUT_UPDATE_ATTRIBUTES("PacketPlayOutUpdateAttributes"), PLAY_OUT_UPDATE_HEALTH("PacketPlayOutUpdateHealth"), PLAY_OUT_UPDATE_SIGN("PacketPlayOutUpdateSign"), PLAY_OUT_UPDATE_TIME("PacketPlayOutUpdateTime"), PLAY_OUT_WINDOW_ITEMS("PacketPlayOutWindowItems"), PLAY_OUT_WORLD_EVENT("PacketPlayOutWorldEvent"), PLAY_OUT_WORLD_PARTICLES("PacketPlayOutWorldParticles"), STATUS_IN_PING("PacketStatusInPing"), STATUS_IN_START("PacketStatusInStart"), STATUS_OUT_PONG("PacketStatusOutPong"), STATUS_OUT_SERVER_INFO("PacketStatusOutServerInfo");
 
 		private static final Map<String, PacketType> NAME_MAP = new HashMap<String, PacketType>();
 		private final String name;
@@ -729,7 +746,8 @@ public final class ReflectionUtils {
 		/**
 		 * Construct a new packet type
 		 * 
-		 * @param name Name of this packet
+		 * @param name
+		 *            Name of this packet
 		 */
 		private PacketType(String name) {
 			this.name = name;
@@ -748,7 +766,8 @@ public final class ReflectionUtils {
 		 * Returns the class of this packet
 		 * 
 		 * @return The packet class
-		 * @throws ClassNotFoundException If the packet class cannot be found (the name differs in your Bukkit version)
+		 * @throws ClassNotFoundException
+		 *             If the packet class cannot be found (the name differs in your Bukkit version)
 		 * 
 		 */
 		public Class<?> getPacket() throws ClassNotFoundException {

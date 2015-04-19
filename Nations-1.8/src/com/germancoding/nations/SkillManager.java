@@ -213,9 +213,8 @@ public class SkillManager {
 			if (skill == SkillType.GOLEMBESCHWÖRUNG)
 				return true;
 		}
-		if(clasS == ClassType.SPRENGMEISTER)
-		{
-			if(skill == SkillType.EXPLOSION)
+		if (clasS == ClassType.SPRENGMEISTER) {
+			if (skill == SkillType.EXPLOSION)
 				return true;
 		}
 		return false;

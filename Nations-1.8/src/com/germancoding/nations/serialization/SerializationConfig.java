@@ -11,50 +11,53 @@ import org.bukkit.configuration.file.YamlConfiguration;
 public class SerializationConfig {
 
 	private static YamlConfiguration config;
-	
-	protected SerializationConfig() {}
-	
+
+	protected SerializationConfig() {
+	}
+
 	/**
 	 * Get the data folder for this config
+	 * 
 	 * @return The config's data folder
 	 */
-	public static File getDataFolder(){
-		//this serialization system is meant to be embedded into another plugin
-		//therefore at least one plugin should always exist
+	public static File getDataFolder() {
+		// this serialization system is meant to be embedded into another plugin
+		// therefore at least one plugin should always exist
 		File pluginFolder = Bukkit.getServer().getPluginManager().getPlugins()[0].getDataFolder();
 		return new File(pluginFolder.getParentFile() + "/TacoSerialization/");
 	}
-	
+
 	/**
 	 * Get the config file
+	 * 
 	 * @return The config file
 	 */
-	public static File getConfigFile(){
+	public static File getConfigFile() {
 		return new File(getDataFolder() + "/config.yml");
 	}
-	
+
 	/**
 	 * Reload the config
 	 */
-	public static void reload(){
+	public static void reload() {
 		config = YamlConfiguration.loadConfiguration(getConfigFile());
 		setDefaults();
 		save();
 		Logger.getLogger("Minecraft").log(Level.INFO, "[TacoSerialization] Config reloaded");
 	}
-	
+
 	/**
 	 * Save the config
 	 */
-	public static void save(){
+	public static void save() {
 		try {
 			config.save(getConfigFile());
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
-	
-	private static void setDefaults(){
+
+	private static void setDefaults() {
 		addDefault("horse.color", true);
 		addDefault("horse.inventory", true);
 		addDefault("horse.jump-stength", true);
@@ -80,31 +83,34 @@ public class SerializationConfig {
 		addDefault("player-stats.saturation", true);
 		addDefault("wolf.collar-color", true);
 	}
-	
+
 	/**
 	 * Add a default value to the config. If the config does not have the given key, the key will be added
 	 * with the assocaiated value. Otherwise it will be ignored.
+	 * 
 	 * @param path
 	 * @param value
 	 */
-	public static void addDefault(String path, Object value){
-		if(!getConfig().contains(path))
+	public static void addDefault(String path, Object value) {
+		if (!getConfig().contains(path))
 			getConfig().set(path, value);
 	}
-	
-	private static YamlConfiguration getConfig(){
-		if(config == null){
+
+	private static YamlConfiguration getConfig() {
+		if (config == null) {
 			reload();
 		}
 		return config;
 	}
-	
+
 	/**
 	 * Get whether a certain key should be serialized when serializing an object.
-	 * @param path The path in the config
+	 * 
+	 * @param path
+	 *            The path in the config
 	 * @return Whether the key should be serialized
 	 */
-	public static boolean getShouldSerialize(String path){
+	public static boolean getShouldSerialize(String path) {
 		return getConfig().getBoolean(path);
 	}
 

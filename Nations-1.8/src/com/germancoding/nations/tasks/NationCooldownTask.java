@@ -66,8 +66,7 @@ public class NationCooldownTask implements Runnable {
 				}
 			}
 		}
-		if(Nations.DEBUG)
-		{
+		if (Nations.DEBUG) {
 			Nations.logger.info("[Cooldown] [Nation] New Cooldown: " + player + " , " + seconds);
 		}
 	}
@@ -83,8 +82,7 @@ public class NationCooldownTask implements Runnable {
 				}
 				Nations.scheduler.cancelTask(this.task);
 				cooldown = 0;
-				if(Nations.DEBUG)
-				{
+				if (Nations.DEBUG) {
 					Nations.logger.info("[Cooldown] [Nation] Cooldown finished at player " + p);
 				}
 			}

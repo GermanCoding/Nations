@@ -35,7 +35,7 @@ public class InventoryViewHandler implements Listener {
 		if (!list.containsKey(p))
 			list.put(p, 1);
 		Inventory inventory = Bukkit.createInventory(null, 9, "Wähle deine Klasse!");
-		
+
 		ItemStack krieger = new ItemStack(Material.IRON_SWORD, 1);
 		ItemMeta meta = krieger.getItemMeta();
 		meta.setDisplayName("Krieger");
@@ -43,14 +43,13 @@ public class InventoryViewHandler implements Listener {
 		lore.add("Schaden + Nahkampf.");
 		lore.add("Einfach und effektiv.");
 		lore.add("Fähigkeiten:");
-		for(Skill s: Skill.SKILLS)
-		{
-			if(SkillManager.isItemForClass(ClassType.KRIEGER, s.getSkillType()))
+		for (Skill s : Skill.SKILLS) {
+			if (SkillManager.isItemForClass(ClassType.KRIEGER, s.getSkillType()))
 				lore.add("- " + s.getFriendlyName());
 		}
 		meta.setLore(lore);
 		krieger.setItemMeta(meta);
-		
+
 		ItemStack windmagier = new ItemStack(Material.EYE_OF_ENDER, 1);
 		meta = windmagier.getItemMeta();
 		meta.setDisplayName("Windmagier");
@@ -58,14 +57,13 @@ public class InventoryViewHandler implements Listener {
 		lore.add("Wirbeln + fliegen.");
 		lore.add("Magie der Winde...");
 		lore.add("Fähigkeiten:");
-		for(Skill s: Skill.SKILLS)
-		{
-			if(SkillManager.isItemForClass(ClassType.WINDMAGIER, s.getSkillType()))
+		for (Skill s : Skill.SKILLS) {
+			if (SkillManager.isItemForClass(ClassType.WINDMAGIER, s.getSkillType()))
 				lore.add("- " + s.getFriendlyName());
 		}
 		meta.setLore(lore);
 		windmagier.setItemMeta(meta);
-		
+
 		ItemStack bogenschütze = new ItemStack(Material.ARROW, 1);
 		meta = bogenschütze.getItemMeta();
 		meta.setDisplayName("Bogenschütze");
@@ -73,14 +71,13 @@ public class InventoryViewHandler implements Listener {
 		lore.add("Schaden + Fernkampf.");
 		lore.add("Ziele gut und treffe gut.");
 		lore.add("Fähigkeiten:");
-		for(Skill s: Skill.SKILLS)
-		{
-			if(SkillManager.isItemForClass(ClassType.BOGENSCHÜTZE, s.getSkillType()))
+		for (Skill s : Skill.SKILLS) {
+			if (SkillManager.isItemForClass(ClassType.BOGENSCHÜTZE, s.getSkillType()))
 				lore.add("- " + s.getFriendlyName());
 		}
 		meta.setLore(lore);
 		bogenschütze.setItemMeta(meta);
-		
+
 		ItemStack medizinmann = new ItemStack(Material.BONE, 1);
 		meta = medizinmann.getItemMeta();
 		meta.setDisplayName("Medizinmann");
@@ -88,9 +85,8 @@ public class InventoryViewHandler implements Listener {
 		lore.add("Heilen + Schützen.");
 		lore.add("Die Unterstützungsklasse.");
 		lore.add("Fähigkeiten:");
-		for(Skill s: Skill.SKILLS)
-		{
-			if(SkillManager.isItemForClass(ClassType.MEDIZINMANN, s.getSkillType()))
+		for (Skill s : Skill.SKILLS) {
+			if (SkillManager.isItemForClass(ClassType.MEDIZINMANN, s.getSkillType()))
 				lore.add("- " + s.getFriendlyName());
 		}
 		meta.setLore(lore);
@@ -102,14 +98,13 @@ public class InventoryViewHandler implements Listener {
 		lore.add("Aktuell noch in der Testphase!");
 		lore.add("Der Tierfreund.");
 		lore.add("Fähigkeiten:");
-		for(Skill s: Skill.SKILLS)
-		{
-			if(SkillManager.isItemForClass(ClassType.TIERMEISTER, s.getSkillType()))
+		for (Skill s : Skill.SKILLS) {
+			if (SkillManager.isItemForClass(ClassType.TIERMEISTER, s.getSkillType()))
 				lore.add("- " + s.getFriendlyName());
 		}
 		meta.setLore(lore);
 		tiermeister.setItemMeta(meta);
-		
+
 		ItemStack sprengmeister = new ItemStack(Material.TNT, 1);
 		meta = sprengmeister.getItemMeta();
 		meta.setDisplayName("Sprengmeister");
@@ -117,9 +112,8 @@ public class InventoryViewHandler implements Listener {
 		lore.add("Bumm, bumm, bumm!");
 		lore.add("Jagt alles in die Luft.");
 		lore.add("Fähigkeiten:");
-		for(Skill s: Skill.SKILLS)
-		{
-			if(SkillManager.isItemForClass(ClassType.SPRENGMEISTER, s.getSkillType()))
+		for (Skill s : Skill.SKILLS) {
+			if (SkillManager.isItemForClass(ClassType.SPRENGMEISTER, s.getSkillType()))
 				lore.add("- " + s.getFriendlyName());
 		}
 		meta.setLore(lore);
@@ -203,13 +197,13 @@ public class InventoryViewHandler implements Listener {
 						openClassSelectMenu(p);
 					}
 					if (name.equalsIgnoreCase("Volk ändern")) {
-						if(!Nations.TESTING)
-						if ((NationCooldownTask.getRemainTime(p.getBukkitPlayer().getUniqueId().toString()) > 0)) {
-							String time = TimeParser.hoursToDate(NationCooldownTask.getRemainTime(p.getBukkitPlayer().getUniqueId().toString()));
-							p.getBukkitPlayer().sendMessage(ChatColor.GOLD + "[Nations] " + ChatColor.RED + "Aktion zur Zeit nicht möglich! (Cooldown: " + time + ")");
-							p.getBukkitPlayer().closeInventory();
-							return;
-						}
+						if (!Nations.TESTING)
+							if ((NationCooldownTask.getRemainTime(p.getBukkitPlayer().getUniqueId().toString()) > 0)) {
+								String time = TimeParser.hoursToDate(NationCooldownTask.getRemainTime(p.getBukkitPlayer().getUniqueId().toString()));
+								p.getBukkitPlayer().sendMessage(ChatColor.GOLD + "[Nations] " + ChatColor.RED + "Aktion zur Zeit nicht möglich! (Cooldown: " + time + ")");
+								p.getBukkitPlayer().closeInventory();
+								return;
+							}
 						p.getBukkitPlayer().closeInventory();
 						openNationSwitchMenu(p);
 					}
@@ -240,15 +234,13 @@ public class InventoryViewHandler implements Listener {
 					String nation = p.getNation();
 					boolean cont = false;
 					if (ChatColor.stripColor(nation).equalsIgnoreCase("Elfen") && !Balancer.dwarfsOverfilled()) {
-						Nations.broadcastMessageToNation("Elfen", ChatColor.GOLD + "[Nations] " + ChatColor.GRAY + p.getBukkitPlayer().getName() + ChatColor.GOLD + " hat dein Volk " + ChatColor.RED
-								+ "verlassen!");
+						Nations.broadcastMessageToNation("Elfen", ChatColor.GOLD + "[Nations] " + ChatColor.GRAY + p.getBukkitPlayer().getName() + ChatColor.GOLD + " hat dein Volk " + ChatColor.RED + "verlassen!");
 						p.setNation("Zwerge");
 						Nations.setDwarfPlayerCount(Nations.getDwarfPlayerCount() + 1);
 						Nations.setElfenPlayerCount(Nations.getElfenPayerCount() - 1);
 						cont = true;
 					} else if (ChatColor.stripColor(nation).equalsIgnoreCase("Zwerge") && !Balancer.elfenOverfilled()) {
-						Nations.broadcastMessageToNation("Zwerge", ChatColor.GOLD + "[Nations] " + ChatColor.GRAY + p.getBukkitPlayer().getName() + ChatColor.GOLD + " hat dein Volk " + ChatColor.RED
-								+ "verlassen!");
+						Nations.broadcastMessageToNation("Zwerge", ChatColor.GOLD + "[Nations] " + ChatColor.GRAY + p.getBukkitPlayer().getName() + ChatColor.GOLD + " hat dein Volk " + ChatColor.RED + "verlassen!");
 						p.setNation("Elfen");
 						Nations.setElfenPlayerCount(Nations.getElfenPayerCount() + 1);
 						Nations.setDwarfPlayerCount(Nations.getDwarfPlayerCount() - 1);
@@ -259,8 +251,7 @@ public class InventoryViewHandler implements Listener {
 						return;
 					}
 					if (cont) {
-						Nations.broadcastMessageToNation(p, ChatColor.GOLD + "[Nations] " + ChatColor.GRAY + p.getBukkitPlayer().getName() + ChatColor.GOLD + " ist deinem Volk " + ChatColor.GREEN
-								+ "beigetreten!");
+						Nations.broadcastMessageToNation(p, ChatColor.GOLD + "[Nations] " + ChatColor.GRAY + p.getBukkitPlayer().getName() + ChatColor.GOLD + " ist deinem Volk " + ChatColor.GREEN + "beigetreten!");
 						p.getBukkitPlayer().teleport(SpawnManager.getFirstNationSpawn(p));
 						new NationCooldownTask(p.getBukkitPlayer().getUniqueId().toString(), 2592000);
 					}

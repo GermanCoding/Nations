@@ -34,12 +34,11 @@ public class BlockListener implements Listener {
 	@EventHandler
 	public void onInventoryOpen(InventoryOpenEvent e) {
 		synchronized (invLock3) {
-			if(Nations.instanceOf((Player) e.getPlayer()) != null)
-			criticalPlayers.add(e.getPlayer().getUniqueId().toString());
+			if (Nations.instanceOf((Player) e.getPlayer()) != null)
+				criticalPlayers.add(e.getPlayer().getUniqueId().toString());
 		}
 	}
 
-	@SuppressWarnings("deprecation")
 	@EventHandler
 	public void onInventoryClick(InventoryClickEvent e) {
 		synchronized (invLock3) {
@@ -81,16 +80,14 @@ public class BlockListener implements Listener {
 					return;
 				}
 				if (cont) {
-					Nations.broadcastMessageToNation(p, ChatColor.GOLD + "[Nations] " + ChatColor.GRAY + p.getBukkitPlayer().getName() + ChatColor.GOLD + " ist deinem Volk " + ChatColor.GREEN
-							+ "beigetreten!");
+					Nations.broadcastMessageToNation(p, ChatColor.GOLD + "[Nations] " + ChatColor.GRAY + p.getBukkitPlayer().getName() + ChatColor.GOLD + " ist deinem Volk " + ChatColor.GREEN + "beigetreten!");
 					new NationCooldownTask(p.getBukkitPlayer().getUniqueId().toString(), 2592000);
 					inv1.get(player).close();
 					inv1.remove(player);
 					Nations.updatePlayerListName(p);
 					PlayerMarker.updatePlayer(p);
 					Location spawn = SpawnManager.getFirstNationSpawn(p);
-					if(spawn != null)
-					{
+					if (spawn != null) {
 						p.getBukkitPlayer().teleport(spawn, TeleportCause.PLUGIN);
 					}
 					InventoryViewHandler.openClassSelectMenu(p);
@@ -117,15 +114,12 @@ public class BlockListener implements Listener {
 			inv2.remove(e.getPlayer());
 		}
 	}
-	
+
 	@EventHandler
-	public void handleForceFieldExplosion(EntityExplodeEvent e)
-	{
-		for(Block b: e.blockList())
-		{
-			for(ForceField f: ForceField.FIELDS)
-			{
-				if(f.isInsideField(b.getLocation()))
+	public void handleForceFieldExplosion(EntityExplodeEvent e) {
+		for (Block b : e.blockList()) {
+			for (ForceField f : ForceField.FIELDS) {
+				if (f.isInsideField(b.getLocation()))
 					e.setCancelled(true);
 			}
 		}

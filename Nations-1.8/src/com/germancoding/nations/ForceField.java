@@ -38,7 +38,7 @@ public class ForceField {
 	}
 
 	public boolean canPlayerPassField(NationPlayer p, Location l) {
-		if(!p.hasNation())
+		if (!p.hasNation())
 			return true;
 		if (getNation().equalsIgnoreCase(p.getNation()))
 			return true;
@@ -77,12 +77,11 @@ public class ForceField {
 				throw new IllegalArgumentException("Min and max worlds for a force field are not equal!");
 		this.max = max;
 	}
-	
-	public void delete()
-	{
+
+	public void delete() {
 		FIELDS.remove(this);
 	}
-	
+
 	@Override
 	public String toString() {
 		return this.getClass().getName() + " [nation " + getNation() + " | min: " + getMin() + " | max: " + getMax() + "]";

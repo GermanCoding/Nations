@@ -8,9 +8,6 @@ import java.util.Random;
 //import net.minecraft.server.v1_6_R3.Packet52MultiBlockChange;
 //import net.minecraft.server.v1_6_R3.Packet53BlockChange;
 
-
-
-
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -46,10 +43,8 @@ public class SchutzSkill extends Skill implements Listener {
 			List<Location> list = lastModified.get(e.getPlayer().getName());
 			List<Location> circle = getCircle(to, 10);
 			for (Location l : list) {
-				if (!circle.contains(l))
-				{
-					for(Player p: e.getPlayer().getWorld().getPlayers())
-					{
+				if (!circle.contains(l)) {
+					for (Player p : e.getPlayer().getWorld().getPlayers()) {
 						p.sendBlockChange(l, l.getBlock().getType(), l.getBlock().getData());
 					}
 				}
@@ -57,10 +52,8 @@ public class SchutzSkill extends Skill implements Listener {
 			ArrayList<Location> newList = new ArrayList<Location>();
 			for (Location l : circle) {
 				newList.add(l.clone());
-				if (!list.contains(l))
-				{
-					for(Player p: e.getPlayer().getWorld().getPlayers())
-					{
+				if (!list.contains(l)) {
+					for (Player p : e.getPlayer().getWorld().getPlayers()) {
 						p.sendBlockChange(l, Material.WOOL, (byte) 14);
 					}
 				}
@@ -69,8 +62,7 @@ public class SchutzSkill extends Skill implements Listener {
 		} else if (state1 == 2) {
 			List<Location> list = lastModified.get(e.getPlayer().getName());
 			for (Location l : list) {
-				for(Player p: e.getPlayer().getWorld().getPlayers())
-				{
+				for (Player p : e.getPlayer().getWorld().getPlayers()) {
 					p.sendBlockChange(l, l.getBlock().getType(), l.getBlock().getData());
 				}
 			}
@@ -85,8 +77,7 @@ public class SchutzSkill extends Skill implements Listener {
 	public void blockSchutzDamage(EntityDamageEvent e) {
 		if (e.getEntity() instanceof Player) {
 			Player p = (Player) e.getEntity();
-			if (isNearSchutzPlayer(p) && random.nextInt(5) != 0)
-			{
+			if (isNearSchutzPlayer(p) && random.nextInt(5) != 0) {
 				e.setCancelled(true);
 			}
 		}
@@ -136,11 +127,9 @@ public class SchutzSkill extends Skill implements Listener {
 			Player p = Bukkit.getPlayer(s);
 			if (p != null && p.isOnline()) {
 				if (p.getWorld().getName().equals(check.getWorld().getName()) && !check.getName().equals(s)) {
-					if (p.getLocation().distance(check.getLocation()) < 10.1D)
-					{
+					if (p.getLocation().distance(check.getLocation()) < 10.1D) {
 						NationPlayer np = Nations.instanceOf(p);
-						if(np != null)
-						{
+						if (np != null) {
 							NationItemStack i = Util.getItemStackByType(np, SkillType.SCHUTZ);
 							LevelManager.addExperience(np, i, 0.5);
 						}
@@ -196,13 +185,13 @@ public class SchutzSkill extends Skill implements Listener {
 
 	@Override
 	public String[] getDescription() {
-		String[] desc = {"Schützt alle Verbündeten", "im Umkreis von einigen Blöcken!", "Achtung: Dich nicht!"};
+		String[] desc = { "Schützt alle Verbündeten", "im Umkreis von einigen Blöcken!", "Achtung: Dich nicht!" };
 		return desc;
 	}
 
 	@Override
 	public int getDefaultCooldown() {
-		return  1200; // 20 min
+		return 1200; // 20 min
 	}
 
 	@Override

@@ -33,16 +33,15 @@ public class DamageRemoverTask implements Runnable {
 
 	@Override
 	public void run() {
-		if(Nations.DEBUG)
-		System.out.println("Setting lastdamager of " + p.getBukkitPlayer().getName() + " to null");
+		if (Nations.DEBUG)
+			System.out.println("Setting lastdamager of " + p.getBukkitPlayer().getName() + " to null");
 		p.setLastdamager(null);
 		synchronized (lock) {
 			instances.remove(this);
 		}
 	}
-	
-	public static void cancel(NationPlayer p)
-	{
+
+	public static void cancel(NationPlayer p) {
 		DamageRemoverTask found = null;
 		for (DamageRemoverTask t : instances) {
 			if (t.p.equals(p)) {

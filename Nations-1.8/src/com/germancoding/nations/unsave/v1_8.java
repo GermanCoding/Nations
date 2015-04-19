@@ -6,7 +6,7 @@ import java.lang.reflect.Method;
 
 import org.bukkit.Location;
 
-public class v1_8 extends FakeDragon{
+public class v1_8 extends FakeDragon {
 	private Object dragon;
 	private int id;
 
@@ -127,7 +127,7 @@ public class v1_8 extends FakeDragon{
 		try {
 			packet = new net.minecraft.server.v1_8_R1.PacketPlayOutEntityTeleport(this.id, loc.getBlockX() * 32, loc.getBlockY() * 32, loc.getBlockZ() * 32, (byte) (loc.getYaw() * 256 / 360), (byte) (loc.getPitch() * 256 / 360), true);
 			// packet = PacketPlayOutEntityTeleport.getConstructor(new Class<?>[] { int.class, int.class, int.class, int.class, byte.class, byte.class , boolean.class}).newInstance(this.id, loc.getBlockX() * 32,
-				//	loc.getBlockY() * 32, loc.getBlockZ() * 32, (byte) ((int) loc.getYaw() * 256 / 360), (byte) ((int) loc.getPitch() * 256 / 360), true);
+			// loc.getBlockY() * 32, loc.getBlockZ() * 32, (byte) ((int) loc.getYaw() * 256 / 360), (byte) ((int) loc.getPitch() * 256 / 360), true);
 		} catch (IllegalArgumentException e) {
 			e.printStackTrace();
 		} catch (SecurityException e) {

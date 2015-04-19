@@ -16,9 +16,10 @@ import org.bukkit.potion.PotionEffectType;
 
 /**
  * This class was designed for switching between to inventories. One inventory in the Nations world and one for the other worlds.
- * @deprecated Replaced by Multiverse-Inventories. This class uses serialization by KILL3RTACO and is not up to date with the newest items in Minecraft. 
- * Furthermore the file system used here is outdated and not updated to work with uuids. Using this is not recommended,
- * altough this class may still work correctly.
+ * 
+ * @deprecated Replaced by Multiverse-Inventories. This class uses serialization by KILL3RTACO and is not up to date with the newest items in Minecraft.
+ *             Furthermore the file system used here is outdated and not updated to work with uuids. Using this is not recommended,
+ *             altough this class may still work correctly.
  * @author Max
  *
  */

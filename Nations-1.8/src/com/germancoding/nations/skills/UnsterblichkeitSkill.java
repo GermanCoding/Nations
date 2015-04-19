@@ -10,7 +10,7 @@ import com.germancoding.nations.NationPlayer;
 import com.germancoding.nations.Nations;
 import com.germancoding.nations.Util;
 
-public class UnsterblichkeitSkill extends Skill{
+public class UnsterblichkeitSkill extends Skill {
 
 	public int activate(final NationPlayer np) {
 		np.getBukkitPlayer().setMetadata("unsterblichkeit", new FixedMetadataValue(Nations.plugin, Boolean.valueOf(true)));
@@ -34,7 +34,7 @@ public class UnsterblichkeitSkill extends Skill{
 
 	@Override
 	public String[] getDescription() {
-		String[] desc = {"Werde für 60", "Sekunden unsterblich!", "Achtung: Du kannst keine", "Angriffe starten!"};
+		String[] desc = { "Werde für 60", "Sekunden unsterblich!", "Achtung: Du kannst keine", "Angriffe starten!" };
 		return desc;
 	}
 

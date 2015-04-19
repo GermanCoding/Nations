@@ -124,13 +124,13 @@ public class Nations extends JavaPlugin {
 
 	public static void addPlayer(final Player p, boolean startup) {
 		final NationPlayer np = ConfigManager.loadPlayer(p);
-		
+
 		synchronized (lock) {
 			activePlayers.add(np);
 		}
-		
+
 		ScoreboardHandler.addPlayer(np);
-		
+
 		if (!startup) {
 			if (np.hasNation()) {
 				ChatColor color = null;
@@ -148,7 +148,7 @@ public class Nations extends JavaPlugin {
 			p.sendMessage(ChatColor.GOLD + "[Nations] Dies ist eine frühe Entwicklungsversion die noch nicht zu 100% funktioniert!");
 			p.sendMessage(ChatColor.GOLD + "Dies ist noch nicht der fertige Spielmodus, sondern nur eine Entwicklungsversion!");
 			p.sendMessage(ChatColor.GOLD + "Für weitere Informationen besuche http://forum.aknm-craft.com/wbb3/index.php?page=Board&boardID=36");
-			
+
 			/*
 			 * scheduler.scheduleSyncDelayedTask(plugin, new Runnable() {
 			 * @Override public void run() { np.setCanRecChat(false); try { ConfigManager.greetPlayer(p, ChatColor.GOLD + "[Nations] Willkommen, " +
@@ -156,9 +156,9 @@ public class Nations extends JavaPlugin {
 			 * ChatColor.RED + "Fehler beim senden deiner Begrüßung :( " + e); } np.setCanRecChat(true); } }, 60l);
 			 */
 		}
-		
+
 		updatePlayerListName(np);
-		
+
 		if (Nations.DEBUG)
 			Nations.logger.info("[Core] Added player " + p.getName() + " to Nations. Startup: " + startup);
 
@@ -265,7 +265,6 @@ public class Nations extends JavaPlugin {
 	}
 
 	// Load and enable data.
-	@SuppressWarnings("deprecation")
 	public void enable(JavaPlugin p) {
 		plugin = p;
 		pm = Bukkit.getPluginManager();
@@ -474,13 +473,11 @@ public class Nations extends JavaPlugin {
 			if (args[0].equalsIgnoreCase("feld")) {
 				if (np.getBukkitPlayer().isOp()) {
 					Selection sel = ((WorldEditPlugin) Bukkit.getPluginManager().getPlugin("WorldEdit")).getSelection(p);
-					if (sel == null)
-					{
+					if (sel == null) {
 						p.sendMessage("Bitte markiere zuerst ein Gebiet mit WorldEdit!");
 						return true;
 					}
-					if (args.length < 2)
-					{
+					if (args.length < 2) {
 						p.sendMessage("Bitte gebe eine Fraktion an!");
 						return true;
 					}

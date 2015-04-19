@@ -201,13 +201,11 @@ public class TornadoSkill extends Skill implements Listener {
 				for (int i = 0; i < 10; i++) {
 					if (direction != null) {
 						location.add(direction);
-						for(ForceField f: ForceField.FIELDS)
-						{
-							if(f.isInsideField(location))
-							{
+						for (ForceField f : ForceField.FIELDS) {
+							if (f.isInsideField(location)) {
 								spawned.getBukkitPlayer().sendMessage(ChatColor.GOLD + "[Nations] " + ChatColor.RED + "Ein Kraftfeld hat deinen Tornado zurückgeworfen!");
 								Vector v = direction;
-								v = v.setX(v.getX() * - 1);
+								v = v.setX(v.getX() * -1);
 								v = v.setZ(v.getZ() * -1);
 								// v = v.multiply(2);
 								// location.setDirection(v);
@@ -264,7 +262,6 @@ public class TornadoSkill extends Skill implements Listener {
 
 	/*
 	 * @SuppressWarnings("deprecation")
-	 * 
 	 * @EventHandler public void onEntityChangeBlock(EntityChangeBlockEvent e) { if(e.getEntity().hasMetadata("vortex")) { new
 	 * ChangedBlock(e.getBlock().getLocation(), e.getBlock().getType(), e.getBlock().getData()); } }
 	 */
