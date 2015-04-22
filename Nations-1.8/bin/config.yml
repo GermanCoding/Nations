@@ -1,9 +1,0 @@
-###############################################################
-#Nations Config von GermanCoding/Nummer378
-###############################################################
-
-#Laedt Nations beim starten.
-enable-nations: true
-
-#Aktiviert den Debug Modus.
-debug: false
