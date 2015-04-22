@@ -147,7 +147,7 @@ public class Nations extends JavaPlugin {
 			}
 			p.sendMessage(ChatColor.GOLD + "[Nations] Dies ist eine frühe Entwicklungsversion die noch nicht zu 100% funktioniert!");
 			p.sendMessage(ChatColor.GOLD + "Dies ist noch nicht der fertige Spielmodus, sondern nur eine Entwicklungsversion!");
-			p.sendMessage(ChatColor.GOLD + "Für weitere Informationen besuche http://forum.aknm-craft.com/wbb3/index.php?page=Board&boardID=36");
+			p.sendMessage(ChatColor.GOLD + "Für weitere Informationen besuche http://forum.aknm-craft.com/index.php?page=Board&boardID=36");
 
 			/*
 			 * scheduler.scheduleSyncDelayedTask(plugin, new Runnable() {
