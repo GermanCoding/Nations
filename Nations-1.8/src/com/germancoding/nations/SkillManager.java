@@ -174,7 +174,7 @@ public class SkillManager {
 	}
 
 	/**
-	 * This check is a littlebit ulgy. It checks whether the given ClassType is compatible with the given SkillType.
+	 * This check is a littlebit ugly. It checks whether the given ClassType is compatible with the given SkillType.
 	 * 
 	 * @param clasS
 	 *            The ClassType to check.
