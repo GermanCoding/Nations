@@ -1,4 +1,4 @@
-<project name="Nations-1.8" default="dist" basedir=".">
+<project name="Nations-1.8" default="dist" basedir="./Nations-1.8">
     <description>
         simple example build file
     </description>
