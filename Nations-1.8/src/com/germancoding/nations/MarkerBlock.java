@@ -47,6 +47,11 @@ public class MarkerBlock {
 
 	@SuppressWarnings("deprecation")
 	public void update() {
+		if(!currentLocation.getWorld().equals(Nations.getNationWorld()))
+		{
+			Nations.logger.warning("Marker Block in wrong world! Should be in " + Nations.getNationWorld().getName()  + " but is in " + currentLocation.getWorld().getName() + "!");
+			return;
+		}
 		calculateLocation();
 		Map<Material, Byte> map = getBlockData();
 		if (this.lastChangedBlock != null)
@@ -60,6 +65,11 @@ public class MarkerBlock {
 		while (i.hasNext()) {
 			NationPlayer p = i.next();
 			if (p != player) {
+				if(!p.getBukkitPlayer().getWorld().equals(Nations.getNationWorld()))
+				{
+					Nations.logger.warning("Player " + p.getBukkitPlayer().getName() + " in wrong world! Should be in " + Nations.getNationWorld().getName()  + " but is in " + p.getBukkitPlayer().getWorld() + "!");
+					continue;
+				}
 				if (p.getBukkitPlayer().getLocation().distanceSquared(currentLocation) < (Bukkit.getViewDistance() * 16) * (Bukkit.getViewDistance() * 16))
 					p.getBukkitPlayer().sendBlockChange(currentLocation, m, data);
 			}
