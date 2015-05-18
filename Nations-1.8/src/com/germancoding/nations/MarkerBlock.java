@@ -47,12 +47,13 @@ public class MarkerBlock {
 
 	@SuppressWarnings("deprecation")
 	public void update() {
-		if(!currentLocation.getWorld().equals(Nations.getNationWorld()))
-		{
-			Nations.logger.warning("Marker Block in wrong world! Should be in " + Nations.getNationWorld().getName()  + " but is in " + currentLocation.getWorld().getName() + "!");
+		calculateLocation();
+		/*
+		if (!Nations.getNationWorld().equals(currentLocation.getWorld())) {
+			Nations.logger.warning("Marker Block in wrong world! Should be in " + Nations.getNationWorld().getName() + " but is in " + currentLocation.getWorld().getName() + "!");
 			return;
 		}
-		calculateLocation();
+		*/
 		Map<Material, Byte> map = getBlockData();
 		if (this.lastChangedBlock != null)
 			this.lastChangedBlock.restore();
@@ -65,9 +66,8 @@ public class MarkerBlock {
 		while (i.hasNext()) {
 			NationPlayer p = i.next();
 			if (p != player) {
-				if(!p.getBukkitPlayer().getWorld().equals(Nations.getNationWorld()))
-				{
-					Nations.logger.warning("Player " + p.getBukkitPlayer().getName() + " in wrong world! Should be in " + Nations.getNationWorld().getName()  + " but is in " + p.getBukkitPlayer().getWorld() + "!");
+				if (!p.getBukkitPlayer().getWorld().equals(currentLocation.getWorld())) {
+					// Nations.logger.warning("Player " + p.getBukkitPlayer().getName() + " in wrong world! Should be in " + Nations.getNationWorld().getName() + " but is in " + p.getBukkitPlayer().getWorld() + "!");
 					continue;
 				}
 				if (p.getBukkitPlayer().getLocation().distanceSquared(currentLocation) < (Bukkit.getViewDistance() * 16) * (Bukkit.getViewDistance() * 16))

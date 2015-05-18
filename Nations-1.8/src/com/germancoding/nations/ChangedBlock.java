@@ -50,8 +50,9 @@ public class ChangedBlock {
 			while (i.hasNext()) {
 				NationPlayer p = i.next();
 				Location playerLocation = p.getBukkitPlayer().getLocation();
-				if (playerLocation.distanceSquared(location) < ((Bukkit.getViewDistance() * 16) * (Bukkit.getViewDistance() * 16) - 1))
-					p.getBukkitPlayer().sendBlockChange(location, type, data);
+				if (playerLocation.getWorld().equals(location.getWorld()))
+					if (playerLocation.distanceSquared(location) < ((Bukkit.getViewDistance() * 16) * (Bukkit.getViewDistance() * 16) - 1))
+						p.getBukkitPlayer().sendBlockChange(location, type, data);
 			}
 		} else {
 			Nations.plugin.getLogger().warning("Unable to restore block at " + location.getX() + ", " + location.getBlockY() + ", " + location.getZ() + ", " + location.getWorld().getName());
