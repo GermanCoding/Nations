@@ -125,7 +125,7 @@ public class v1_8 extends FakeDragon {
 		Object packet = null;
 
 		try {
-			packet = new net.minecraft.server.v1_8_R3.PacketPlayOutEntityTeleport(this.id, loc.getBlockX() * 32, loc.getBlockY() * 32, loc.getBlockZ() * 32, (byte) (loc.getYaw() * 256 / 360), (byte) (loc.getPitch() * 256 / 360), true);
+			packet = new net.minecraft.server.v1_8_R1.PacketPlayOutEntityTeleport(this.id, loc.getBlockX() * 32, loc.getBlockY() * 32, loc.getBlockZ() * 32, (byte) (loc.getYaw() * 256 / 360), (byte) (loc.getPitch() * 256 / 360), true);
 			// packet = PacketPlayOutEntityTeleport.getConstructor(new Class<?>[] { int.class, int.class, int.class, int.class, byte.class, byte.class , boolean.class}).newInstance(this.id, loc.getBlockX() * 32,
 			// loc.getBlockY() * 32, loc.getBlockZ() * 32, (byte) ((int) loc.getYaw() * 256 / 360), (byte) ((int) loc.getPitch() * 256 / 360), true);
 		} catch (IllegalArgumentException e) {
