@@ -1,10 +1,8 @@
 package com.germancoding.nations.skills;
 
 import java.util.ArrayDeque;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -20,7 +18,6 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
 
-import com.germancoding.nations.ChangedBlock;
 import com.germancoding.nations.ForceField;
 import com.germancoding.nations.LevelManager;
 import com.germancoding.nations.NationItemStack;
@@ -31,11 +28,9 @@ import com.germancoding.nations.Util;
 public class TornadoSkill extends Skill implements Listener {
 
 	public int activate(NationPlayer np) {
-		spawnTornado(np, Nations.plugin, np.getBukkitPlayer().getLocation(), Material.DIRT, (byte) 0, np.getBukkitPlayer().getLocation().getDirection(), 0.1D, 80, (long) 20 * 20, false);
+		spawnTornado(np, Nations.plugin, np.getBukkitPlayer().getLocation(), Material.DIRT, (byte) 0, np.getBukkitPlayer().getLocation().getDirection(), 0.1D, 60, (long) 20 * 20, false);
 		return 20;
 	}
-
-	private static ArrayList<ChangedBlock> changedBlocks = new ArrayList<ChangedBlock>();
 
 	/**
 	 * Spawns a tornado at the given location l.
@@ -87,8 +82,11 @@ public class TornadoSkill extends Skill implements Listener {
 					Block b = l.getBlock();
 					entity = l.getWorld().spawnFallingBlock(l, b.getType(), b.getData());
 
-					if (b.getType() != Material.WATER)
-						b.setType(Material.AIR);
+					// No longer destroy blocks with the tornado
+					/*
+					 if (b.getType() != Material.WATER)
+					 * b.setType(Material.AIR);
+					 */
 
 					removable = false;
 				} else
@@ -99,14 +97,16 @@ public class TornadoSkill extends Skill implements Listener {
 			}
 
 			private void addMetadata() {
-				entity.setMetadata("vortex", new FixedMetadataValue(plugin, "protected"));
+				if (entity != null)
+					entity.setMetadata("vortex", new FixedMetadataValue(plugin, "protected"));
 			}
 
 			public void remove() {
 				if (removable || (!spew && (entity instanceof FallingBlock))) {
 					entity.remove();
 				}
-				entity.removeMetadata("vortex", plugin);
+				if (entity != null)
+					entity.removeMetadata("vortex", plugin);
 			}
 
 			@SuppressWarnings("deprecation")
@@ -122,7 +122,6 @@ public class TornadoSkill extends Skill implements Listener {
 				// Pick up blocks
 				Block b = entity.getLocation().add(v).getBlock();
 				if (b.getType() != Material.AIR && b.getType() != Material.WATER && b.getType() != Material.STATIONARY_WATER) {
-					changedBlocks.add(new ChangedBlock(b.getLocation(), b.getType(), b.getData()));
 					return new VortexBlock(b.getLocation(), b.getType(), b.getData());
 				}
 
@@ -243,6 +242,7 @@ public class TornadoSkill extends Skill implements Listener {
 					VortexBlock vb = blocks.getFirst();
 					vb.remove();
 					blocks.remove(vb);
+					checkListSize();
 				}
 			}
 
@@ -252,10 +252,6 @@ public class TornadoSkill extends Skill implements Listener {
 		new BukkitRunnable() {
 			public void run() {
 				plugin.getServer().getScheduler().cancelTask(id);
-				for (ChangedBlock b : changedBlocks) {
-					b.restore();
-				}
-				changedBlocks.clear();
 			}
 		}.runTaskLater(plugin, time);
 	}
