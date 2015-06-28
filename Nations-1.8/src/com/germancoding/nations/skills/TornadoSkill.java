@@ -84,7 +84,7 @@ public class TornadoSkill extends Skill implements Listener {
 
 					// No longer destroy blocks with the tornado
 					/*
-					 if (b.getType() != Material.WATER)
+					 * if (b.getType() != Material.WATER)
 					 * b.setType(Material.AIR);
 					 */
 

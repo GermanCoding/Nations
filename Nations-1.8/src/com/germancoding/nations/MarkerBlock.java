@@ -49,11 +49,11 @@ public class MarkerBlock {
 	public void update() {
 		calculateLocation();
 		/*
-		if (!Nations.getNationWorld().equals(currentLocation.getWorld())) {
-			Nations.logger.warning("Marker Block in wrong world! Should be in " + Nations.getNationWorld().getName() + " but is in " + currentLocation.getWorld().getName() + "!");
-			return;
-		}
-		*/
+		 * if (!Nations.getNationWorld().equals(currentLocation.getWorld())) {
+		 * Nations.logger.warning("Marker Block in wrong world! Should be in " + Nations.getNationWorld().getName() + " but is in " + currentLocation.getWorld().getName() + "!");
+		 * return;
+		 * }
+		 */
 		Map<Material, Byte> map = getBlockData();
 		if (this.lastChangedBlock != null)
 			this.lastChangedBlock.restore();
