@@ -228,36 +228,38 @@ public class InventoryViewHandler implements Listener {
 			}
 		}
 		if (what == 2) {
-			if (item.getItemMeta().hasDisplayName()) {
-				String name = ChatColor.stripColor(item.getItemMeta().getDisplayName());
-				if (name.equalsIgnoreCase("Bestätigen?")) {
-					String nation = p.getNation();
-					boolean cont = false;
-					if (ChatColor.stripColor(nation).equalsIgnoreCase("Elfen") && !Balancer.dwarfsOverfilled()) {
-						Nations.broadcastMessageToNation("Elfen", ChatColor.GOLD + "[Nations] " + ChatColor.GRAY + p.getBukkitPlayer().getName() + ChatColor.GOLD + " hat dein Volk " + ChatColor.RED + "verlassen!");
-						p.setNation("Zwerge");
-						Nations.setDwarfPlayerCount(Nations.getDwarfPlayerCount() + 1);
-						Nations.setElfenPlayerCount(Nations.getElfenPayerCount() - 1);
-						cont = true;
-					} else if (ChatColor.stripColor(nation).equalsIgnoreCase("Zwerge") && !Balancer.elfenOverfilled()) {
-						Nations.broadcastMessageToNation("Zwerge", ChatColor.GOLD + "[Nations] " + ChatColor.GRAY + p.getBukkitPlayer().getName() + ChatColor.GOLD + " hat dein Volk " + ChatColor.RED + "verlassen!");
-						p.setNation("Elfen");
-						Nations.setElfenPlayerCount(Nations.getElfenPayerCount() + 1);
-						Nations.setDwarfPlayerCount(Nations.getDwarfPlayerCount() - 1);
-						cont = true;
-					} else {
-						p.getBukkitPlayer().sendMessage(ChatColor.GOLD + "[Nations] " + ChatColor.RED + "Aktion zur Zeit nicht möglich! (Volk überfüllt)");
+			if (item.hasItemMeta()) {
+				if (item.getItemMeta().hasDisplayName()) {
+					String name = ChatColor.stripColor(item.getItemMeta().getDisplayName());
+					if (name.equalsIgnoreCase("Bestätigen?")) {
+						String nation = p.getNation();
+						boolean cont = false;
+						if (ChatColor.stripColor(nation).equalsIgnoreCase("Elfen") && !Balancer.dwarfsOverfilled()) {
+							Nations.broadcastMessageToNation("Elfen", ChatColor.GOLD + "[Nations] " + ChatColor.GRAY + p.getBukkitPlayer().getName() + ChatColor.GOLD + " hat dein Volk " + ChatColor.RED + "verlassen!");
+							p.setNation("Zwerge");
+							Nations.setDwarfPlayerCount(Nations.getDwarfPlayerCount() + 1);
+							Nations.setElfenPlayerCount(Nations.getElfenPayerCount() - 1);
+							cont = true;
+						} else if (ChatColor.stripColor(nation).equalsIgnoreCase("Zwerge") && !Balancer.elfenOverfilled()) {
+							Nations.broadcastMessageToNation("Zwerge", ChatColor.GOLD + "[Nations] " + ChatColor.GRAY + p.getBukkitPlayer().getName() + ChatColor.GOLD + " hat dein Volk " + ChatColor.RED + "verlassen!");
+							p.setNation("Elfen");
+							Nations.setElfenPlayerCount(Nations.getElfenPayerCount() + 1);
+							Nations.setDwarfPlayerCount(Nations.getDwarfPlayerCount() - 1);
+							cont = true;
+						} else {
+							p.getBukkitPlayer().sendMessage(ChatColor.GOLD + "[Nations] " + ChatColor.RED + "Aktion zur Zeit nicht möglich! (Volk überfüllt)");
+							p.getBukkitPlayer().closeInventory();
+							return;
+						}
+						if (cont) {
+							Nations.broadcastMessageToNation(p, ChatColor.GOLD + "[Nations] " + ChatColor.GRAY + p.getBukkitPlayer().getName() + ChatColor.GOLD + " ist deinem Volk " + ChatColor.GREEN + "beigetreten!");
+							p.getBukkitPlayer().teleport(SpawnManager.getFirstNationSpawn(p));
+							new NationCooldownTask(p.getBukkitPlayer().getUniqueId().toString(), 2592000);
+						}
+						Nations.updatePlayerListName(p);
+						PlayerMarker.updatePlayer(p);
 						p.getBukkitPlayer().closeInventory();
-						return;
 					}
-					if (cont) {
-						Nations.broadcastMessageToNation(p, ChatColor.GOLD + "[Nations] " + ChatColor.GRAY + p.getBukkitPlayer().getName() + ChatColor.GOLD + " ist deinem Volk " + ChatColor.GREEN + "beigetreten!");
-						p.getBukkitPlayer().teleport(SpawnManager.getFirstNationSpawn(p));
-						new NationCooldownTask(p.getBukkitPlayer().getUniqueId().toString(), 2592000);
-					}
-					Nations.updatePlayerListName(p);
-					PlayerMarker.updatePlayer(p);
-					p.getBukkitPlayer().closeInventory();
 				}
 			}
 		}
