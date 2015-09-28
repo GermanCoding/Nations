@@ -109,7 +109,6 @@ public class TornadoSkill extends Skill implements Listener {
 					entity.removeMetadata("vortex", plugin);
 			}
 
-			@SuppressWarnings("deprecation")
 			public VortexBlock tick() {
 
 				double radius = Math.sin(verticalTicker()) * 2;
@@ -119,9 +118,18 @@ public class TornadoSkill extends Skill implements Listener {
 
 				setVelocity(v);
 
-				// Pick up blocks
+				// Turn the tornado around
 				Block b = entity.getLocation().add(v).getBlock();
-				if (b.getType() != Material.AIR && b.getType() != Material.WATER && b.getType() != Material.STATIONARY_WATER) {
+				if (b.getType() != Material.AIR) {
+					Vector v1 = direction;
+					v1 = v1.setX(v1.getX() * -1);
+					v1 = v1.setZ(v1.getZ() * -1);
+					// v = v.multiply(2);
+					// location.setDirection(v);
+					direction.setX(v1.getX());
+					direction.setY(v1.getY());
+					direction.setZ(v1.getZ());
+					location.add(direction.multiply(2));
 					return new VortexBlock(b.getLocation(), b.getType(), b.getData());
 				}
 
