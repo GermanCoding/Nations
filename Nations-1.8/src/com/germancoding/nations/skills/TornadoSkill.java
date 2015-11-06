@@ -76,6 +76,7 @@ public class TornadoSkill extends Skill implements Listener {
 
 			@SuppressWarnings("deprecation")
 			public VortexBlock(Location l, Material m, byte d) {
+				System.out.println("New block");
 
 				if (l.getBlock().getType() != Material.AIR) {
 
@@ -88,7 +89,7 @@ public class TornadoSkill extends Skill implements Listener {
 					 * b.setType(Material.AIR);
 					 */
 
-					removable = false;
+					// removable = false;
 				} else
 					entity = l.getWorld().spawnFallingBlock(l, m, d);
 
@@ -118,28 +119,17 @@ public class TornadoSkill extends Skill implements Listener {
 
 				setVelocity(v);
 
-				// Turn the tornado around
-				Block b = entity.getLocation().add(v).getBlock();
-				if (b.getType() != Material.AIR) {
-					Vector v1 = direction;
-					v1 = v1.setX(v1.getX() * -1);
-					v1 = v1.setZ(v1.getZ() * -1);
-					// v = v.multiply(2);
-					// location.setDirection(v);
-					direction.setX(v1.getX());
-					direction.setY(v1.getY());
-					direction.setZ(v1.getZ());
-					location.add(direction.multiply(2));
-					return new VortexBlock(b.getLocation(), b.getType(), b.getData());
-				}
+				//TODO: Something was here before
 
 				Random random = new Random();
 
 				// Pick up other entities
 				List<Entity> entities = entity.getNearbyEntities(3.0D, 3.0D, 3.0D);
 				for (Entity e : entities) {
+					// System.out.println("Entity loop");
 					if (e.getType() != EntityType.PLAYER) {
 						if (e instanceof LivingEntity) {
+							System.out.println("Entity pickup");
 							boolean invertNumber1 = random.nextBoolean();
 							boolean invertNumber2 = random.nextBoolean();
 							int x = random.nextInt(5) + 2;
@@ -158,6 +148,7 @@ public class TornadoSkill extends Skill implements Listener {
 						Player p = (Player) e;
 						NationPlayer np = Nations.instanceOf(p);
 						if (np != null) {
+							System.out.println("player pickup");
 							if (!np.getNation().equals(spawned.getNation())) {
 								np.setLastdamager(spawned);
 								boolean invertNumber1 = random.nextBoolean();
@@ -202,6 +193,8 @@ public class TornadoSkill extends Skill implements Listener {
 			private ArrayDeque<VortexBlock> blocks = new ArrayDeque<VortexBlock>();
 
 			public void run() {
+				
+				System.out.println("run()");
 
 				// Spawns 10 blocks at the time, with a maximum of 200 blocks at
 				// the same time.
@@ -226,6 +219,7 @@ public class TornadoSkill extends Skill implements Listener {
 					checkListSize();
 					blocks.add(new VortexBlock(location, material, data));
 				}
+				
 
 				// Make all blocks in the list spin, and pick up any blocks that
 				// get in the way.
@@ -241,6 +235,24 @@ public class TornadoSkill extends Skill implements Listener {
 				for (VortexBlock vb : que) {
 					checkListSize();
 					blocks.add(vb);
+				}
+				
+				// Turn the tornado around
+				Block b = location.clone().add(direction).getBlock();
+				if (b.getType() != Material.AIR) {
+					System.out.println("turnaround");
+					Vector v1 = direction.clone();
+					v1 = v1.setX(v1.getX() * -1);
+					v1 = v1.setZ(v1.getZ() * -1);
+					// v = v.multiply(2);
+					// location.setDirection(v);
+					direction.setX(v1.getX());
+					direction.setY(v1.getY() + 0.1);
+					direction.setZ(v1.getZ());
+					System.out.println("X: " + direction.getX());
+					System.out.println("Z: " + direction.getZ());
+					location.add(direction);
+					// return new VortexBlock(b.getLocation(), b.getType(), b.getData());
 				}
 			}
 
