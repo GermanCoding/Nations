@@ -14,7 +14,7 @@ import org.bukkit.entity.Player;
 public class UnsaveUtils {
 	public static boolean newProtocol = false;
 	public static String version;
-	public static Class<?> fakeDragonClass = v1_8.class;
+	// public static Class<?> fakeDragonClass = v1_9.class;
 
 	static {
 		String name = Bukkit.getServer().getClass().getPackage().getName();
@@ -25,9 +25,11 @@ public class UnsaveUtils {
 		version = mcVersion + ".";
 	}
 
+	@Deprecated // Disabled for now!
 	public static FakeDragon newDragon(String message, Location loc) {
 		FakeDragon fakeDragon = null;
 
+		/*
 		try {
 			fakeDragon = (FakeDragon) fakeDragonClass.getConstructor(String.class, Location.class).newInstance(message, loc);
 		} catch (IllegalArgumentException e) {
@@ -43,6 +45,7 @@ public class UnsaveUtils {
 		} catch (NoSuchMethodException e) {
 			e.printStackTrace();
 		}
+		*/
 
 		return fakeDragon;
 	}

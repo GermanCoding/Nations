@@ -219,7 +219,9 @@ public class PacketUtils implements Listener {
 			return addDragon(player, cleanMessage(message));
 	}
 
+	@Deprecated // Disabled for now!
 	private static FakeDragon addDragon(Player player, String message) {
+		/*
 		FakeDragon dragon = UnsaveUtils.newDragon(message, player.getLocation().add(0, -150, 0));
 
 		UnsaveUtils.sendPacket(player, dragon.getSpawnPacket());
@@ -227,9 +229,13 @@ public class PacketUtils implements Listener {
 		players.put(player.getName(), dragon);
 
 		return dragon;
+		*/
+		return null;
 	}
 
+	@Deprecated // Disabled for now!
 	private static FakeDragon addDragon(Player player, Location loc, String message) {
+		/*
 		FakeDragon dragon = UnsaveUtils.newDragon(message, loc.add(0, -150, 0));
 
 		UnsaveUtils.sendPacket(player, dragon.getSpawnPacket());
@@ -237,5 +243,7 @@ public class PacketUtils implements Listener {
 		players.put(player.getName(), dragon);
 
 		return dragon;
+		*/
+		return null;
 	}
 }

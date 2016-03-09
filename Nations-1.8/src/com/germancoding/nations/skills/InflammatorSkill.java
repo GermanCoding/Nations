@@ -42,7 +42,7 @@ public class InflammatorSkill extends Skill {
 		if (e.getCause() == IgniteCause.FLINT_AND_STEEL) {
 			if (e.getPlayer() != null) {
 				try {
-					if (SkillManager.isSkillItem(e.getPlayer().getItemInHand())) {
+					if (SkillManager.isSkillItem(e.getPlayer().getInventory().getItemInMainHand())) {
 						e.setCancelled(true); // It's so sad that Bukkit ignores our setCancelled() in PlayerInteractEvent. So we have to do everything on our own...
 					}
 				} catch (IllegalItemException e1) {

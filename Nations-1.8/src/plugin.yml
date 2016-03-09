@@ -1,6 +1,6 @@
 name: Nations
 main: com.germancoding.nations.Nations
-version: 0.0.9
+version: 0.1.0
 website: http://www.aknm-craft.de
 author: GermanCoding/Nummer378
 commands:

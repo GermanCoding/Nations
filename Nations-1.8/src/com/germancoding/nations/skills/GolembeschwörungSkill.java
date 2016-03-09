@@ -27,9 +27,9 @@ import com.germancoding.nations.Nations;
 import com.germancoding.nations.Util;
 import com.google.common.collect.Lists;
 
-import org.bukkit.craftbukkit.v1_8_R1.entity.CraftEntity;
+import org.bukkit.craftbukkit.v1_9_R1.entity.*;
 
-import net.minecraft.server.v1_8_R1.EntityInsentient;
+import net.minecraft.server.v1_9_R1.EntityInsentient;
 
 public class GolembeschwörungSkill extends Skill implements Listener{
 
