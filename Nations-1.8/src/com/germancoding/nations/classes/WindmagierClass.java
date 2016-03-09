@@ -12,7 +12,8 @@ public class WindmagierClass extends NationClass {
 		ItemStack woodChestplate = new ItemStack(Material.LEATHER_CHESTPLATE, 1);
 		ItemStack woodBoots = new ItemStack(Material.LEATHER_BOOTS, 1);
 		ItemStack woodLeggings = new ItemStack(Material.LEATHER_LEGGINGS, 1);
-		ItemStack[] items = { woodSword, woodHelmet, woodChestplate, woodBoots, woodLeggings };
+		ItemStack web = new ItemStack(Material.WEB, 10);
+		ItemStack[] items = { woodSword, woodHelmet, woodChestplate, woodBoots, woodLeggings, web };
 		return items;
 	}
 

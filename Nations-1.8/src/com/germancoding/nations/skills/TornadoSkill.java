@@ -76,7 +76,7 @@ public class TornadoSkill extends Skill implements Listener {
 
 			@SuppressWarnings("deprecation")
 			public VortexBlock(Location l, Material m, byte d) {
-				System.out.println("New block");
+				// System.out.println("New block");
 
 				if (l.getBlock().getType() != Material.AIR) {
 
@@ -119,7 +119,6 @@ public class TornadoSkill extends Skill implements Listener {
 
 				setVelocity(v);
 
-				//TODO: Something was here before
 
 				Random random = new Random();
 
@@ -129,7 +128,7 @@ public class TornadoSkill extends Skill implements Listener {
 					// System.out.println("Entity loop");
 					if (e.getType() != EntityType.PLAYER) {
 						if (e instanceof LivingEntity) {
-							System.out.println("Entity pickup");
+							// System.out.println("Entity pickup");
 							boolean invertNumber1 = random.nextBoolean();
 							boolean invertNumber2 = random.nextBoolean();
 							int x = random.nextInt(5) + 2;
@@ -148,7 +147,7 @@ public class TornadoSkill extends Skill implements Listener {
 						Player p = (Player) e;
 						NationPlayer np = Nations.instanceOf(p);
 						if (np != null) {
-							System.out.println("player pickup");
+							// System.out.println("player pickup");
 							if (!np.getNation().equals(spawned.getNation())) {
 								np.setLastdamager(spawned);
 								boolean invertNumber1 = random.nextBoolean();
@@ -240,7 +239,7 @@ public class TornadoSkill extends Skill implements Listener {
 				// Turn the tornado around
 				Block b = location.clone().add(direction).getBlock();
 				if (b.getType() != Material.AIR) {
-					System.out.println("turnaround");
+					// System.out.println("turnaround");
 					Vector v1 = direction.clone();
 					v1 = v1.setX(v1.getX() * -1);
 					v1 = v1.setZ(v1.getZ() * -1);
@@ -249,8 +248,8 @@ public class TornadoSkill extends Skill implements Listener {
 					direction.setX(v1.getX());
 					direction.setY(v1.getY() + 0.1);
 					direction.setZ(v1.getZ());
-					System.out.println("X: " + direction.getX());
-					System.out.println("Z: " + direction.getZ());
+					// System.out.println("X: " + direction.getX());
+					// System.out.println("Z: " + direction.getZ());
 					location.add(direction);
 					// return new VortexBlock(b.getLocation(), b.getType(), b.getData());
 				}

@@ -212,6 +212,8 @@ public class SkillManager {
 		if (clasS == ClassType.TIERMEISTER) {
 			if (skill == SkillType.GOLEMBESCHWÖRUNG)
 				return true;
+			if(skill == SkillType.NACHTDERUNTOTEN)
+				return true;
 		}
 		if (clasS == ClassType.SPRENGMEISTER) {
 			if (skill == SkillType.EXPLOSION)

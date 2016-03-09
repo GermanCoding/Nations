@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import org.bukkit.Location;
 import org.bukkit.Material;
-import org.bukkit.World;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Snowball;
@@ -32,7 +31,7 @@ import org.bukkit.craftbukkit.v1_8_R1.entity.CraftEntity;
 
 import net.minecraft.server.v1_8_R1.EntityInsentient;
 
-public class GolembeschwoerungSkill extends Skill implements Listener{
+public class GolembeschwörungSkill extends Skill implements Listener{
 
 	@EventHandler
 	public void noTrail(final EntityBlockFormEvent e) {

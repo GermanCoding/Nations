@@ -1,7 +1,7 @@
 name: Nations
 main: com.germancoding.nations.Nations
-version: 0.0.8
-website: http://www.germancoding.com
+version: 0.0.9
+website: http://www.aknm-craft.de
 author: GermanCoding/Nummer378
 commands:
    n:

@@ -11,7 +11,9 @@ public class MedizinmannClass extends NationClass {
 		ItemStack dChestplate = new ItemStack(Material.IRON_CHESTPLATE, 1);
 		ItemStack dBoots = new ItemStack(Material.IRON_BOOTS, 1);
 		ItemStack dLeggings = new ItemStack(Material.IRON_LEGGINGS, 1);
-		ItemStack[] items = { dBoots, dChestplate, dHelmet, dLeggings };
+		ItemStack milk = new ItemStack(Material.MILK_BUCKET, 3);
+		ItemStack apple = new ItemStack(Material.APPLE, 32);
+		ItemStack[] items = { dBoots, dChestplate, dHelmet, dLeggings, milk, apple};
 		return items;
 	}
 
