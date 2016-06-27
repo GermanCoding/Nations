@@ -93,7 +93,10 @@ public class PacketUtils implements Listener {
 		removeBar(player);
 	}
 
+	@Deprecated
 	public static void setMessage(Player player, String message, boolean fullHealth) {
+		if (true)
+			return;
 		FakeDragon dragon = getDragon(player, message);
 
 		dragon.name = cleanMessage(message);
@@ -108,7 +111,10 @@ public class PacketUtils implements Listener {
 
 	}
 
+	@Deprecated
 	public static void setCountdownMessage(Player player, String message, float percent) {
+		if (true)
+			return;
 		FakeDragon dragon = getDragon(player, message);
 
 		dragon.name = cleanMessage(message);
@@ -119,7 +125,10 @@ public class PacketUtils implements Listener {
 		sendDragon(dragon, player);
 	}
 
+	@Deprecated
 	public static void setCountdownMessage(final Player player, String message, int seconds) {
+		if (true)
+			return;
 		FakeDragon dragon = getDragon(player, message);
 
 		dragon.name = cleanMessage(message);
@@ -166,6 +175,7 @@ public class PacketUtils implements Listener {
 		cancelTimer(player);
 	}
 
+	@Deprecated
 	public static void setHealth(Player player, float percent) {
 		if (!hasBar(player))
 			return;
@@ -212,6 +222,7 @@ public class PacketUtils implements Listener {
 		UnsaveUtils.sendPacket(player, dragon.getTeleportPacket(player.getLocation().add(0, -150, 0)));
 	}
 
+	@Deprecated
 	private static FakeDragon getDragon(Player player, String message) {
 		if (hasBar(player)) {
 			return players.get(player.getName());
@@ -219,31 +230,29 @@ public class PacketUtils implements Listener {
 			return addDragon(player, cleanMessage(message));
 	}
 
-	@Deprecated // Disabled for now!
-	private static FakeDragon addDragon(Player player, String message) {
+	@Deprecated
+	// Disabled for now!
+			private static
+			FakeDragon addDragon(Player player, String message) {
 		/*
-		FakeDragon dragon = UnsaveUtils.newDragon(message, player.getLocation().add(0, -150, 0));
-
-		UnsaveUtils.sendPacket(player, dragon.getSpawnPacket());
-
-		players.put(player.getName(), dragon);
-
-		return dragon;
-		*/
+		 * FakeDragon dragon = UnsaveUtils.newDragon(message, player.getLocation().add(0, -150, 0));
+		 * UnsaveUtils.sendPacket(player, dragon.getSpawnPacket());
+		 * players.put(player.getName(), dragon);
+		 * return dragon;
+		 */
 		return null;
 	}
 
-	@Deprecated // Disabled for now!
-	private static FakeDragon addDragon(Player player, Location loc, String message) {
+	@Deprecated
+	// Disabled for now!
+			private static
+			FakeDragon addDragon(Player player, Location loc, String message) {
 		/*
-		FakeDragon dragon = UnsaveUtils.newDragon(message, loc.add(0, -150, 0));
-
-		UnsaveUtils.sendPacket(player, dragon.getSpawnPacket());
-
-		players.put(player.getName(), dragon);
-
-		return dragon;
-		*/
+		 * FakeDragon dragon = UnsaveUtils.newDragon(message, loc.add(0, -150, 0));
+		 * UnsaveUtils.sendPacket(player, dragon.getSpawnPacket());
+		 * players.put(player.getName(), dragon);
+		 * return dragon;
+		 */
 		return null;
 	}
 }
