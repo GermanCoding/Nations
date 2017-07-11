@@ -105,10 +105,10 @@ public class SkillManager {
 					if (n.hasNation()) {
 						if (Util.canSee(p.getBukkitPlayer(), n.getBukkitPlayer())) {
 							if (n.getNation().equals(p.getNation())) {
-								message = ChatColor.GOLD + "[Nations] " + color + p.getBukkitPlayer().getName() + ChatColor.GREEN + " (Verbündeter) aktivierte die Fähigkeit " + ChatColor.GRAY + c.getFriendlyName() + ChatColor.GREEN + "!";
+								message = ChatColor.GOLD + "[Nations] " + color + p.getBukkitPlayer().getName() + ChatColor.GREEN + " (VerbÃ¼ndeter) aktivierte die FÃ¤higkeit " + ChatColor.GRAY + c.getFriendlyName() + ChatColor.GREEN + "!";
 								n.getBukkitPlayer().sendMessage(message);
 							} else {
-								message = ChatColor.GOLD + "[Nations] " + color + p.getBukkitPlayer().getName() + ChatColor.RED + " (Feind) aktivierte die Fähigkeit " + ChatColor.GRAY + c.getFriendlyName() + ChatColor.RED + "!";
+								message = ChatColor.GOLD + "[Nations] " + color + p.getBukkitPlayer().getName() + ChatColor.RED + " (Feind) aktivierte die FÃ¤higkeit " + ChatColor.GRAY + c.getFriendlyName() + ChatColor.RED + "!";
 								n.getBukkitPlayer().sendMessage(message);
 							}
 						}
@@ -116,11 +116,11 @@ public class SkillManager {
 				}
 				new ItemCooldownTask(item.getID(), item.getCooldown());
 				int useTime = c.activate(p);
-				PacketUtils.setCountdownMessage(p.getBukkitPlayer(), "Restzeit", useTime);
+				// PacketUtils.setCountdownMessage(p.getBukkitPlayer(), "Restzeit", useTime); // TODO: Disabled
 				break;
 			}
 		}
-		// p.getBukkitPlayer().sendMessage(ChatColor.GOLD + "[Nations] Du hast die Fähigkeit '" + convertEnumToNormalString(type) + "' aktiviert!");
+		p.getBukkitPlayer().sendMessage(ChatColor.GOLD + "[Nations] Du hast die FÃ¤higkeit '" + Util.convertEnumToNormalString(type) + "' aktiviert!");
 		p.getBukkitPlayer().updateInventory();
 	}
 
@@ -197,7 +197,7 @@ public class SkillManager {
 			if (skill == SkillType.FLY)
 				return true;
 		}
-		if (clasS == ClassType.BOGENSCHÜTZE) {
+		if (clasS == ClassType.BOGENSCHUETZE) {
 			if (skill == SkillType.PFEILHAGEL)
 				return true;
 			if (skill == SkillType.PREDATOR)
@@ -210,7 +210,7 @@ public class SkillManager {
 				return true;
 		}
 		if (clasS == ClassType.TIERMEISTER) {
-			if (skill == SkillType.GOLEMBESCHWÖRUNG)
+			if (skill == SkillType.GOLEMBESCHWÃ–RUNG)
 				return true;
 			if(skill == SkillType.NACHTDERUNTOTEN)
 				return true;
@@ -258,7 +258,7 @@ public class SkillManager {
 	public static void selectClass(NationPlayer p, ClassType newClass) {
 		if ((ClassCooldownTask.getRemainTime(p.getBukkitPlayer().getUniqueId().toString()) != 0) && (!Nations.TESTING)) {
 			int n = ClassCooldownTask.getRemainTime(p.getBukkitPlayer().getUniqueId().toString());
-			p.getBukkitPlayer().sendMessage(ChatColor.GOLD + "[Nations] " + ChatColor.RED + "Klasse wechseln ist erst in " + TimeParser.secondsToDate(n) + " wieder möglich!");
+			p.getBukkitPlayer().sendMessage(ChatColor.GOLD + "[Nations] " + ChatColor.RED + "Klasse wechseln ist erst in " + TimeParser.secondsToDate(n) + " wieder mÃ¶glich!");
 			return;
 		}
 		if (p.hasClass() && p.getClasS().getClassType() == newClass) {

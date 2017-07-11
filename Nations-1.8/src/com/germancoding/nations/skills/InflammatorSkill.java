@@ -151,7 +151,7 @@ public class InflammatorSkill extends Skill {
 
 	@Override
 	public String[] getDescription() {
-		String[] desc = { "Entzünde deine Gegner!" };
+		String[] desc = { "EntzÃ¼nde deine Gegner!" };
 		return desc;
 	}
 

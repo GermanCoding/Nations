@@ -33,13 +33,13 @@ public class LevelManager {
 			int newCooldown = i.getDefaultCooldown() - cooldownBoni;
 			i.setCooldownBoni(cooldownBoni);
 			i.setCooldown(newCooldown);
-			p.getBukkitPlayer().sendMessage(ChatColor.GOLD + "[Nations] Deine Fähigkeit " + s.getFriendlyName() + " hat sich auf Level " + currentLevel + " erhöht! Neue Cooldown: " + newCooldown + " Sekunden.");
+			p.getBukkitPlayer().sendMessage(ChatColor.GOLD + "[Nations] Deine FÃ¤higkeit " + s.getFriendlyName() + " hat sich auf Level " + currentLevel + " erhÃ¶ht! Neue Cooldown: " + newCooldown + " Sekunden.");
 			if (newCooldown <= i.getDefaultCooldown() / 10) {
 				currentExperience = -1;
 				newCooldown = i.getDefaultCooldown() / 10;
 				i.setCooldown(newCooldown);
 				i.setCooldownBoni(i.getDefaultCooldown() - newCooldown);
-				p.getBukkitPlayer().sendMessage(ChatColor.GOLD + "[Nations] Du hast das maximale Level (" + currentLevel + ") für diese Fähigkeit erreicht. Endgültige Cooldown: " + i.getCooldown() + " Sekunden.");
+				p.getBukkitPlayer().sendMessage(ChatColor.GOLD + "[Nations] Du hast das maximale Level (" + currentLevel + ") fÃ¼r diese FÃ¤higkeit erreicht. EndgÃ¼ltige Cooldown: " + i.getCooldown() + " Sekunden.");
 			}
 		}
 		i.setExperience(currentExperience);

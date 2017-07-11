@@ -41,7 +41,7 @@ public class PredatorSkill extends Skill {
 			final Location start = enemy.getLocation();
 			for (ForceField f : ForceField.FIELDS)
 				if (f.isInsideField(start)) {
-					p.sendMessage(ChatColor.GOLD + "[Nations] " + ChatColor.RED + "Predator-Start abgebrochen! Feindliches Ziel ist durch ein Kraftfeld geschützt!");
+					p.sendMessage(ChatColor.GOLD + "[Nations] " + ChatColor.RED + "Predator-Start abgebrochen! Feindliches Ziel ist durch ein Kraftfeld geschÃ¼tzt!");
 					ItemCooldownTask.kill(SkillManager.getIDOfItem(np.getBukkitPlayer().getItemInHand()));
 					return 1;
 				}
@@ -224,7 +224,7 @@ public class PredatorSkill extends Skill {
 
 	@Override
 	public String[] getDescription() {
-		String[] desc = { "Lässt eine Rakete", "von oben herabfallen!" };
+		String[] desc = { "LÃ¤sst eine Rakete", "von oben herabfallen!" };
 		return desc;
 	}
 

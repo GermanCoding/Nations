@@ -34,7 +34,7 @@ public class InventoryViewHandler implements Listener {
 	public static void openClassSelectMenu(NationPlayer p) {
 		if (!list.containsKey(p))
 			list.put(p, 1);
-		Inventory inventory = Bukkit.createInventory(null, 9, "Wähle deine Klasse!");
+		Inventory inventory = Bukkit.createInventory(null, 9, "WÃ¤hle deine Klasse!");
 
 		ItemStack krieger = new ItemStack(Material.IRON_SWORD, 1);
 		ItemMeta meta = krieger.getItemMeta();
@@ -42,7 +42,7 @@ public class InventoryViewHandler implements Listener {
 		ArrayList<String> lore = new ArrayList<String>();
 		lore.add("Schaden + Nahkampf.");
 		lore.add("Einfach und effektiv.");
-		lore.add("Fähigkeiten:");
+		lore.add("FÃ¤higkeiten:");
 		for (Skill s : Skill.SKILLS) {
 			if (SkillManager.isItemForClass(ClassType.KRIEGER, s.getSkillType()))
 				lore.add("- " + s.getFriendlyName());
@@ -56,7 +56,7 @@ public class InventoryViewHandler implements Listener {
 		lore.clear();
 		lore.add("Wirbeln + fliegen.");
 		lore.add("Magie der Winde...");
-		lore.add("Fähigkeiten:");
+		lore.add("FÃ¤higkeiten:");
 		for (Skill s : Skill.SKILLS) {
 			if (SkillManager.isItemForClass(ClassType.WINDMAGIER, s.getSkillType()))
 				lore.add("- " + s.getFriendlyName());
@@ -64,27 +64,27 @@ public class InventoryViewHandler implements Listener {
 		meta.setLore(lore);
 		windmagier.setItemMeta(meta);
 
-		ItemStack bogenschütze = new ItemStack(Material.ARROW, 1);
-		meta = bogenschütze.getItemMeta();
-		meta.setDisplayName("Bogenschütze");
+		ItemStack bogenschuetze = new ItemStack(Material.ARROW, 1);
+		meta = bogenschuetze.getItemMeta();
+		meta.setDisplayName("BogenschÃ¼tze");
 		lore.clear();
 		lore.add("Schaden + Fernkampf.");
 		lore.add("Ziele gut und treffe gut.");
-		lore.add("Fähigkeiten:");
+		lore.add("FÃ¤higkeiten:");
 		for (Skill s : Skill.SKILLS) {
-			if (SkillManager.isItemForClass(ClassType.BOGENSCHÜTZE, s.getSkillType()))
+			if (SkillManager.isItemForClass(ClassType.BOGENSCHUETZE, s.getSkillType()))
 				lore.add("- " + s.getFriendlyName());
 		}
 		meta.setLore(lore);
-		bogenschütze.setItemMeta(meta);
+		bogenschuetze.setItemMeta(meta);
 
 		ItemStack medizinmann = new ItemStack(Material.BONE, 1);
 		meta = medizinmann.getItemMeta();
 		meta.setDisplayName("Medizinmann");
 		lore.clear();
-		lore.add("Heilen + Schützen.");
-		lore.add("Die Unterstützungsklasse.");
-		lore.add("Fähigkeiten:");
+		lore.add("Heilen + SchÃ¼tzen.");
+		lore.add("Die UnterstÃ¼tzungsklasse.");
+		lore.add("FÃ¤higkeiten:");
 		for (Skill s : Skill.SKILLS) {
 			if (SkillManager.isItemForClass(ClassType.MEDIZINMANN, s.getSkillType()))
 				lore.add("- " + s.getFriendlyName());
@@ -97,7 +97,7 @@ public class InventoryViewHandler implements Listener {
 		lore.clear();
 		lore.add("Aktuell noch in der Testphase!");
 		lore.add("Der Tierfreund.");
-		lore.add("Fähigkeiten:");
+		lore.add("FÃ¤higkeiten:");
 		for (Skill s : Skill.SKILLS) {
 			if (SkillManager.isItemForClass(ClassType.TIERMEISTER, s.getSkillType()))
 				lore.add("- " + s.getFriendlyName());
@@ -111,14 +111,14 @@ public class InventoryViewHandler implements Listener {
 		lore.clear();
 		lore.add("Bumm, bumm, bumm!");
 		lore.add("Jagt alles in die Luft.");
-		lore.add("Fähigkeiten:");
+		lore.add("FÃ¤higkeiten:");
 		for (Skill s : Skill.SKILLS) {
 			if (SkillManager.isItemForClass(ClassType.SPRENGMEISTER, s.getSkillType()))
 				lore.add("- " + s.getFriendlyName());
 		}
 		meta.setLore(lore);
 		sprengmeister.setItemMeta(meta);
-		inventory.addItem(krieger, windmagier, bogenschütze, medizinmann, tiermeister, sprengmeister);
+		inventory.addItem(krieger, windmagier, bogenschuetze, medizinmann, tiermeister, sprengmeister);
 		p.getBukkitPlayer().openInventory(inventory);
 	}
 
@@ -126,7 +126,7 @@ public class InventoryViewHandler implements Listener {
 		Inventory inventory = Bukkit.createInventory(null, 9, "Sicher?");
 		ItemStack confirm = new ItemStack(Material.BEACON, 1);
 		ItemMeta meta = confirm.getItemMeta();
-		meta.setDisplayName("Bestätigen?");
+		meta.setDisplayName("BestÃ¤tigen?");
 		ArrayList<String> lore = new ArrayList<String>();
 		lore.add("Bist du sicher, dass");
 		lore.add("du dein Volk zu");
@@ -134,7 +134,7 @@ public class InventoryViewHandler implements Listener {
 			lore.add(ChatColor.RED + "Elfen");
 		else
 			lore.add(ChatColor.BLUE + "Zwerge");
-		lore.add("ändern willst?");
+		lore.add("Ã„ndern willst?");
 		meta.setLore(lore);
 		confirm.setItemMeta(meta);
 		list.put(p, 2);
@@ -144,10 +144,10 @@ public class InventoryViewHandler implements Listener {
 
 	public static void openSelectMenu(NationPlayer p) {
 		list.put(p, 0);
-		Inventory inventory = Bukkit.createInventory(null, 9, "Was möchtest du tun?");
+		Inventory inventory = Bukkit.createInventory(null, 9, "Was mÃ¶chtest du tun?");
 		ItemStack klasse = new ItemStack(Material.SLIME_BALL, 1);
 		ItemMeta meta = klasse.getItemMeta();
-		meta.setDisplayName("Klasse ändern");
+		meta.setDisplayName("Klasse Ã¤ndern");
 		ArrayList<String> lore = new ArrayList<String>();
 		boolean cooldown = ClassCooldownTask.getRemainTime(p.getBukkitPlayer().getUniqueId().toString()) > 0;
 		if (cooldown) {
@@ -155,13 +155,13 @@ public class InventoryViewHandler implements Listener {
 			lore.add("Cooldown!");
 		} else {
 			lore.add("Klicke hier um die");
-			lore.add("Klasse zu ändern!");
+			lore.add("Klasse zu Ã¤ndern!");
 		}
 		meta.setLore(lore);
 		klasse.setItemMeta(meta);
 		ItemStack volk = new ItemStack(Material.SLIME_BALL, 1);
 		meta = volk.getItemMeta();
-		meta.setDisplayName("Volk ändern");
+		meta.setDisplayName("Volk Ã¤ndern");
 		lore.clear();
 		cooldown = NationCooldownTask.getRemainTime(p.getBukkitPlayer().getUniqueId().toString()) != 0;
 		if (cooldown) {
@@ -169,7 +169,7 @@ public class InventoryViewHandler implements Listener {
 			lore.add("Cooldown!");
 		} else {
 			lore.add("Klicke hier um dein");
-			lore.add("Volk zu ändern!");
+			lore.add("Volk zu Ã¤ndern!");
 		}
 		meta.setLore(lore);
 		volk.setItemMeta(meta);
@@ -191,16 +191,16 @@ public class InventoryViewHandler implements Listener {
 			if (item.hasItemMeta()) {
 				if (item.getItemMeta().hasDisplayName()) {
 					String name = ChatColor.stripColor(item.getItemMeta().getDisplayName());
-					if (name.equals("Klasse ändern")) {
+					if (name.equals("Klasse Ã¤ndern")) {
 						list.put(p, 1);
 						p.getBukkitPlayer().closeInventory();
 						openClassSelectMenu(p);
 					}
-					if (name.equalsIgnoreCase("Volk ändern")) {
+					if (name.equalsIgnoreCase("Volk Ã¤ndern")) {
 						if (!Nations.TESTING)
 							if ((NationCooldownTask.getRemainTime(p.getBukkitPlayer().getUniqueId().toString()) > 0)) {
 								String time = TimeParser.hoursToDate(NationCooldownTask.getRemainTime(p.getBukkitPlayer().getUniqueId().toString()));
-								p.getBukkitPlayer().sendMessage(ChatColor.GOLD + "[Nations] " + ChatColor.RED + "Aktion zur Zeit nicht möglich! (Cooldown: " + time + ")");
+								p.getBukkitPlayer().sendMessage(ChatColor.GOLD + "[Nations] " + ChatColor.RED + "Aktion zur Zeit nicht mÃ¶glich! (Cooldown: " + time + ")");
 								p.getBukkitPlayer().closeInventory();
 								return;
 							}
@@ -231,7 +231,7 @@ public class InventoryViewHandler implements Listener {
 			if (item.hasItemMeta()) {
 				if (item.getItemMeta().hasDisplayName()) {
 					String name = ChatColor.stripColor(item.getItemMeta().getDisplayName());
-					if (name.equalsIgnoreCase("Bestätigen?")) {
+					if (name.equalsIgnoreCase("BestÃ¤tigen?")) {
 						String nation = p.getNation();
 						boolean cont = false;
 						if (ChatColor.stripColor(nation).equalsIgnoreCase("Elfen") && !Balancer.dwarfsOverfilled()) {
@@ -247,7 +247,7 @@ public class InventoryViewHandler implements Listener {
 							Nations.setDwarfPlayerCount(Nations.getDwarfPlayerCount() - 1);
 							cont = true;
 						} else {
-							p.getBukkitPlayer().sendMessage(ChatColor.GOLD + "[Nations] " + ChatColor.RED + "Aktion zur Zeit nicht möglich! (Volk überfüllt)");
+							p.getBukkitPlayer().sendMessage(ChatColor.GOLD + "[Nations] " + ChatColor.RED + "Aktion zur Zeit nicht mÃ¶glich! (Volk Ã¼berfï¿½llt)");
 							p.getBukkitPlayer().closeInventory();
 							return;
 						}

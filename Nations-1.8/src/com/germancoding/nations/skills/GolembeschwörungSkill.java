@@ -27,11 +27,11 @@ import com.germancoding.nations.Nations;
 import com.germancoding.nations.Util;
 import com.google.common.collect.Lists;
 
-import org.bukkit.craftbukkit.v1_10_R1.entity.*;
+import org.bukkit.craftbukkit.v1_12_R1.entity.*;
 
-import net.minecraft.server.v1_10_R1.EntityInsentient;
+import net.minecraft.server.v1_12_R1.EntityInsentient;
 
-public class GolembeschwörungSkill extends Skill implements Listener{
+public class GolembeschwÃ¶rungSkill extends Skill implements Listener{
 
 	@EventHandler
 	public void noTrail(final EntityBlockFormEvent e) {
@@ -159,12 +159,12 @@ public class GolembeschwörungSkill extends Skill implements Listener{
 
 	@Override
 	public SkillType getSkillType() {
-		return SkillType.GOLEMBESCHWÖRUNG;
+		return SkillType.GOLEMBESCHWÃ–RUNG;
 	}
 
 	@Override
 	public String[] getDescription() {
-		String[] desc = { "Beschwört 4 Golems die", "dich verteidigen und", "Feinde angreifen!" };
+		String[] desc = { "BeschwÃ¶rt 4 Golems die", "dich verteidigen und", "Feinde angreifen!" };
 		return desc;
 	}
 
@@ -180,6 +180,6 @@ public class GolembeschwörungSkill extends Skill implements Listener{
 
 	@Override
 	public String getFriendlyName() {
-		return "Golembeschwörung";
+		return "GolembeschwÃ¶rung";
 	}
 }

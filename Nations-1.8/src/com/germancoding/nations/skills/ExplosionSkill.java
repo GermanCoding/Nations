@@ -101,7 +101,7 @@ public class ExplosionSkill extends Skill {
 
 	@Override
 	public String[] getDescription() {
-		String[] desc = { "Erzeugt eine", "groﬂe Explosion", "in deiner", "aktuellen Blickrichtung!" };
+		String[] desc = { "Erzeugt eine", "gro√üe Explosion", "in deiner", "aktuellen Blickrichtung!" };
 		return desc;
 	}
 

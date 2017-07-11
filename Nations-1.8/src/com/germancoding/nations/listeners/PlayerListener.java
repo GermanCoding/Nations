@@ -241,7 +241,7 @@ public class PlayerListener implements Listener {
 			if (!e.getTo().getBlock().getLocation().equals(e.getFrom().getBlock().getLocation())) {
 				for (ForceField field : ForceField.FIELDS) {
 					if (!field.canPlayerPassField(np, e.getTo())) {
-						np.getBukkitPlayer().sendMessage(ChatColor.GOLD + "[Nations] " + ChatColor.RED + "Du wurdest von einem Kraftfeld zurückgeworfen!");
+						np.getBukkitPlayer().sendMessage(ChatColor.GOLD + "[Nations] " + ChatColor.RED + "Du wurdest von einem Kraftfeld zurÃ¼ckgeworfen!");
 						Location min = field.getMin();
 						Location max = field.getMax();
 						double midX = (min.getX() + max.getX()) / 2;
@@ -400,7 +400,7 @@ public class PlayerListener implements Listener {
 				e.setDeathMessage(e.getDeathMessage().replace(p.getName(), ChatColor.GRAY + p.getName() + ChatColor.WHITE + " von den " + color + nation + ChatColor.WHITE));
 				np.setDeath(np.getDeath() + 1);
 			} else {
-				e.setDeathMessage(ChatColor.GOLD + "[Nations] " + ChatColor.GRAY + p.getName() + ChatColor.GOLD + " von den " + color + nation + ChatColor.GOLD + " wurde von " + ChatColor.RED + killer.getName() + ChatColor.GOLD + " getötet");
+				e.setDeathMessage(ChatColor.GOLD + "[Nations] " + ChatColor.GRAY + p.getName() + ChatColor.GOLD + " von den " + color + nation + ChatColor.GOLD + " wurde von " + ChatColor.RED + killer.getName() + ChatColor.GOLD + " getÃ¶tet");
 				Nations.instanceOf(killer).setKills(Nations.instanceOf(killer).getKills() + 1);
 				np.setDeath(np.getDeath() + 1);
 				if (np.getNation().equalsIgnoreCase("Zwerge")) {
@@ -457,7 +457,7 @@ public class PlayerListener implements Listener {
 	public void onPlayerDropItem(PlayerDropItemEvent e) {
 		try {
 			if (SkillManager.isSkillItem(e.getItemDrop().getItemStack())) {
-				e.getPlayer().sendMessage(ChatColor.GOLD + "[Nations] " + ChatColor.RED + "Du kannst keine Fähigkeiten droppen!");
+				e.getPlayer().sendMessage(ChatColor.GOLD + "[Nations] " + ChatColor.RED + "Du kannst keine FÃ¤higkeiten droppen!");
 				e.setCancelled(true);
 			}
 		} catch (IllegalItemException e1) {
@@ -469,7 +469,7 @@ public class PlayerListener implements Listener {
 	public void onItemEnchant(EnchantItemEvent e) {
 		try {
 			if (SkillManager.isSkillItem(e.getItem())) {
-				e.getEnchanter().sendMessage(ChatColor.GOLD + "[Nations] " + ChatColor.RED + "Du kannst keine Fähigkeiten enchanten!");
+				e.getEnchanter().sendMessage(ChatColor.GOLD + "[Nations] " + ChatColor.RED + "Du kannst keine FÃ¤higkeiten enchanten!");
 				e.setCancelled(true);
 			}
 		} catch (IllegalItemException e1) {

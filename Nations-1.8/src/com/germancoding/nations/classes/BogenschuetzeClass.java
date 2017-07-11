@@ -21,7 +21,7 @@ public class BogenschuetzeClass extends NationClass {
 
 	@Override
 	public ClassType getClassType() {
-		return ClassType.BOGENSCHÜTZE;
+		return ClassType.BOGENSCHUETZE;
 	}
 
 }

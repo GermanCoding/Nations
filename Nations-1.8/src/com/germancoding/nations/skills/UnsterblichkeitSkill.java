@@ -34,7 +34,7 @@ public class UnsterblichkeitSkill extends Skill {
 
 	@Override
 	public String[] getDescription() {
-		String[] desc = { "Werde für 60", "Sekunden unsterblich!", "Achtung: Du kannst keine", "Angriffe starten!" };
+		String[] desc = { "Werde fÃ¼r 60", "Sekunden unsterblich!", "Achtung: Du kannst keine", "Angriffe starten!" };
 		return desc;
 	}
 

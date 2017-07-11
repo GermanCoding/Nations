@@ -185,7 +185,7 @@ public class SchutzSkill extends Skill implements Listener {
 
 	@Override
 	public String[] getDescription() {
-		String[] desc = { "Schützt alle Verbündeten", "im Umkreis von einigen Blöcken!", "Achtung: Dich nicht!" };
+		String[] desc = { "SchÃ¼tzt alle VerbÃ¼ndeten", "im Umkreis von einigen BlÃ¶cken!", "Achtung: Dich nicht!" };
 		return desc;
 	}
 

@@ -27,8 +27,8 @@ import com.germancoding.nations.tasks.ItemCooldownTask;
 public class NationItemStack {
 
 	private ItemMeta meta;
-	private Object localLock = new Object(); // Lock für das Objekt, wird nur von den Gettern und Settern benutzt
-	private static Object mainLock = new Object(); // Globaler Lock zum schützen der Instanzen
+	private Object localLock = new Object(); // Lock fï¿½r das Objekt, wird nur von den Gettern und Settern benutzt
+	private static Object mainLock = new Object(); // Globaler Lock zum schï¿½tzen der Instanzen
 	private String playerUuid;
 	private int ID;
 	private SkillType type;
@@ -180,7 +180,7 @@ public class NationItemStack {
 		int ID = getFreeID();
 		ArrayList<String> lore = new ArrayList<String>();
 		lore.addAll(text);
-		lore.add("Fähigkeit bereit!");
+		lore.add("FÃ¤higkeit bereit!");
 		lore.add("-------");
 		lore.add("ID: " + ID);
 		ItemStack newItem = createItem(name, lore, material);
@@ -478,7 +478,7 @@ public class NationItemStack {
 		for (String s : getItemMeta().getLore()) {
 			if (ChatColor.stripColor(s).startsWith("Cooldown:")) {
 				List<String> lore = getItemMeta().getLore();
-				lore.set(lore.indexOf(s), "Fähigkeit bereit!");
+				lore.set(lore.indexOf(s), "FÃ¤higkeit bereit!");
 				getItemMeta().setLore(lore);
 			}
 		}
@@ -490,7 +490,7 @@ public class NationItemStack {
 	 */
 	public void setItemCooldown(int n) {
 		for (String s : getItemMeta().getLore()) {
-			if (ChatColor.stripColor(s).startsWith("Cooldown:") || ChatColor.stripColor(s).startsWith("Fähigkeit bereit!")) {
+			if (ChatColor.stripColor(s).startsWith("Cooldown:") || ChatColor.stripColor(s).startsWith("FÃ¤higkeit bereit!")) {
 				int hour = n / 60 / 60;
 				int min = (n - hour * 60 * 60) / 60;
 				int sec = (n - hour * 60 * 60 - min * 60);

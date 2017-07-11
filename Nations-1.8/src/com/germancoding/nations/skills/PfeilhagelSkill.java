@@ -97,7 +97,7 @@ public class PfeilhagelSkill extends Skill {
 
 	@Override
 	public String[] getDescription() {
-		String[] desc = { "Schieﬂe einen Pfeilhagel", "auf deine Gegner!" };
+		String[] desc = { "Schie√üe einen Pfeilhagel", "auf deine Gegner!" };
 		return desc;
 	}
 

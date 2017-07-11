@@ -44,7 +44,7 @@ public class AusbruchDerWindeSkill extends Skill {
 
 	@Override
 	public String[] getDescription() {
-		String[] desc = { "Stößt deine", "Feinde zurück!" };
+		String[] desc = { "StÃ¶ÃŸt deine", "Feinde zurÃ¼ck!" };
 		return desc;
 	}
 

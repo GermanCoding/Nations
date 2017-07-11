@@ -35,6 +35,7 @@ import com.germancoding.nations.tasks.PvpTask;
 import com.germancoding.nations.tasks.ScoreboardTask;
 import com.germancoding.nations.tasks.VisibilityCooldownTask;
 import com.germancoding.nations.unsave.PacketUtils;
+
 import com.sk89q.worldedit.bukkit.WorldEditPlugin;
 import com.sk89q.worldedit.bukkit.selections.Selection;
 
@@ -145,15 +146,15 @@ public class Nations extends JavaPlugin {
 			} else {
 				broadcastMessage(ChatColor.GOLD + "[Nations] " + ChatColor.GRAY + np.getBukkitPlayer().getName() + ChatColor.GOLD + " hat Nations " + ChatColor.GREEN + "betreten");
 			}
-			p.sendMessage(ChatColor.GOLD + "[Nations] Dies ist eine frühe Entwicklungsversion die noch nicht zu 100% funktioniert!");
+			p.sendMessage(ChatColor.GOLD + "[Nations] Dies ist eine frÃ¼he Entwicklungsversion die noch nicht zu 100% funktioniert!");
 			p.sendMessage(ChatColor.GOLD + "Dies ist noch nicht der fertige Spielmodus, sondern nur eine Entwicklungsversion!");
-			p.sendMessage(ChatColor.GOLD + "Für weitere Informationen besuche http://forum.aknm-craft.com/index.php?page=Board&boardID=36");
+			p.sendMessage(ChatColor.GOLD + "FÃ¼r weitere Informationen besuche <Link zurzeit nicht verfÃ¼gbar>"); // http://forum.aknm-craft.com/index.php?page=Board&boardID=36");
 
 			/*
 			 * scheduler.scheduleSyncDelayedTask(plugin, new Runnable() {
 			 * @Override public void run() { np.setCanRecChat(false); try { ConfigManager.greetPlayer(p, ChatColor.GOLD + "[Nations] Willkommen, " +
 			 * np.getBukkitPlayer().getName()); } catch (IOException e) { np.getBukkitPlayer().sendMessage(ChatColor.GOLD + "[Nations] " +
-			 * ChatColor.RED + "Fehler beim senden deiner Begrüßung :( " + e); } np.setCanRecChat(true); } }, 60l);
+			 * ChatColor.RED + "Fehler beim senden deiner Begrï¿½ï¿½ung :( " + e); } np.setCanRecChat(true); } }, 60l);
 			 */
 		}
 
@@ -383,7 +384,7 @@ public class Nations extends JavaPlugin {
 			Player p = (Player) sender;
 			// And here starts the long, long list of commands with their arguments...
 			if (instanceOf(p) == null) {
-				p.sendMessage(ChatColor.GOLD + "[Nations] " + ChatColor.RED + "Begebe dich zunächst in die Nations-Welt!");
+				p.sendMessage(ChatColor.GOLD + "[Nations] " + ChatColor.RED + "Begebe dich zunÃ¤chst in die Nations-Welt!");
 				return false;
 			}
 			NationPlayer np = instanceOf(p);
@@ -414,11 +415,11 @@ public class Nations extends JavaPlugin {
 				String nation = args[1];
 				if (nation.equalsIgnoreCase("Zwerge")) {
 					SpawnManager.addLocationZwerge(p.getLocation());
-					p.sendMessage("Spawn für die Zwerge hinzugefügt");
+					p.sendMessage("Spawn fÃ¼r die Zwerge hinzugefÃ¼gt");
 					return true;
 				} else {
 					SpawnManager.addLocationElfen(p.getLocation());
-					p.sendMessage("Spawn für die Elfen hinzugefügt");
+					p.sendMessage("Spawn fÃ¼r die Elfen hinzugefÃ¼gt");
 					return true;
 				}
 			}
@@ -483,7 +484,7 @@ public class Nations extends JavaPlugin {
 					}
 					String nation = args[1];
 					new ForceField(nation, sel.getMinimumPoint(), sel.getMaximumPoint());
-					p.sendMessage("Kraftfeld für Fraktion '" + nation + "' hinzugefügt");
+					p.sendMessage("Kraftfeld fÃ¼r Fraktion '" + nation + "' hinzugefÃ¼gt");
 					return true;
 				}
 				return true;
@@ -495,7 +496,7 @@ public class Nations extends JavaPlugin {
 	}
 
 	public static void handleNewPlayer(NationPlayer p) {
-		Inventory inv = Bukkit.createInventory(p.getBukkitPlayer(), 9, "Wähle dein Volk!");
+		Inventory inv = Bukkit.createInventory(p.getBukkitPlayer(), 9, "WÃ¤hle dein Volk!");
 		ItemStack zwerge = new ItemStack(Material.WATER_BUCKET);
 		ItemMeta meta = zwerge.getItemMeta();
 		meta.setDisplayName(ChatColor.BLUE + "Zwerge");
@@ -505,7 +506,7 @@ public class Nations extends JavaPlugin {
 			lore.add("ein Zwerg zu werden!");
 		} else {
 			lore.add("Die Zwerge sind");
-			lore.add("aktuell überfüllt!");
+			lore.add("aktuell Ã¼berfÃ¼llt!");
 		}
 		meta.setLore(lore);
 		zwerge.setItemMeta(meta);
@@ -519,7 +520,7 @@ public class Nations extends JavaPlugin {
 			lore.add("ein Elf zu werden!");
 		} else {
 			lore.add("Die Elfen sind");
-			lore.add("aktuell überfüllt!");
+			lore.add("aktuell Ã¼berfÃ¼llt!");
 		}
 		meta.setLore(lore);
 		elfen.setItemMeta(meta);

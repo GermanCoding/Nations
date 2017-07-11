@@ -409,7 +409,7 @@ public class ConfigManager {
 			if (!itemList.contains(i.getID()))
 				itemList.add(i.getID());
 			else {
-				Nations.plugin.getLogger().warning("Für " + playeruuid + " wurden mehrere Items mit ID " + i.getID() + " gefunden!");
+				Nations.plugin.getLogger().warning("Fï¿½r " + playeruuid + " wurden mehrere Items mit ID " + i.getID() + " gefunden!");
 				continue;
 			}
 			File file = new File(itemRoot, "item-" + i.getID() + ".yml");
@@ -462,7 +462,7 @@ public class ConfigManager {
 			type = ClassType.CORRUPT;
 		}
 		if (type == ClassType.CORRUPT) {
-			p.sendMessage(ChatColor.GOLD + "[Nations] " + ChatColor.RED + "Fehler beim laden deiner Klasse! Bitte wähle deine Klasse neu! /n wechseln");
+			p.sendMessage(ChatColor.GOLD + "[Nations] " + ChatColor.RED + "Fehler beim laden deiner Klasse! Bitte wÃ¤hle deine Klasse neu! /n wechseln");
 			new ClassCooldownTask(p.getUniqueId().toString(), 1); // Create a new one second cooldown. This will kill a currently running class cooldown.
 			for (NationItemStack i : NationItemStack.getItemsOf(p.getUniqueId().toString())) {
 				i.unregister();

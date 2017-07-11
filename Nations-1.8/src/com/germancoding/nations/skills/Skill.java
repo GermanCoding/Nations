@@ -25,5 +25,5 @@ public abstract class Skill implements Listener {
 
 	public abstract String getFriendlyName();
 
-	public static Skill[] SKILLS = { new BlutrauschSkill(), new GolembeschwörungSkill(), new PfeilhagelSkill(), new SchutzSkill(), new TornadoSkill(), new UnsterblichkeitSkill(), new AusbruchDerWindeSkill(), new InflammatorSkill(), new FlySkill(), new PredatorSkill(), new ExplosionSkill(), new NachtDerUntotenSkill() };
+	public static Skill[] SKILLS = {new BlutrauschSkill(), new GolembeschwÃ¶rungSkill(), new PfeilhagelSkill(), new SchutzSkill(), new TornadoSkill(), new UnsterblichkeitSkill(), new AusbruchDerWindeSkill(), new InflammatorSkill(), new FlySkill(), new PredatorSkill(), new ExplosionSkill(), new NachtDerUntotenSkill()};
 }

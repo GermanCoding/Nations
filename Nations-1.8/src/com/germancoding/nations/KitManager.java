@@ -26,7 +26,7 @@ public class KitManager {
 		if (check) {
 			if (KitCooldownTask.getRemainTime(p.getBukkitPlayer().getUniqueId().toString()) != 0) {
 				int n = KitCooldownTask.getRemainTime(p.getBukkitPlayer().getUniqueId().toString());
-				p.getBukkitPlayer().sendMessage(ChatColor.GOLD + "[Nations] " + ChatColor.RED + "Kit anfordern ist erst in " + TimeParser.secondsToDate(n) + " wieder möglich!");
+				p.getBukkitPlayer().sendMessage(ChatColor.GOLD + "[Nations] " + ChatColor.RED + "Kit anfordern ist erst in " + TimeParser.secondsToDate(n) + " wieder mÃ¶glich!");
 				return;
 			}
 		}

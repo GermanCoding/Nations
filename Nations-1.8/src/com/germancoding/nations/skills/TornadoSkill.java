@@ -202,7 +202,7 @@ public class TornadoSkill extends Skill implements Listener {
 						location.add(direction);
 						for (ForceField f : ForceField.FIELDS) {
 							if (f.isInsideField(location)) {
-								spawned.getBukkitPlayer().sendMessage(ChatColor.GOLD + "[Nations] " + ChatColor.RED + "Ein Kraftfeld hat deinen Tornado zurückgeworfen!");
+								spawned.getBukkitPlayer().sendMessage(ChatColor.GOLD + "[Nations] " + ChatColor.RED + "Ein Kraftfeld hat deinen Tornado zurï¿½ckgeworfen!");
 								Vector v = direction;
 								v = v.setX(v.getX() * -1);
 								v = v.setZ(v.getZ() * -1);
@@ -288,7 +288,7 @@ public class TornadoSkill extends Skill implements Listener {
 
 	@Override
 	public String[] getDescription() {
-		String[] desc = { "Wirbelt alles", "für 20 Sekunden", "in die Luft!" };
+		String[] desc = { "Wirbelt alles", "fÃ¼r 20 Sekunden", "in die Luft!" };
 		return desc;
 	}
 
