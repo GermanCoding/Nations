@@ -7,6 +7,10 @@ import com.germancoding.nations.skills.SkillType;
 
 public class Util {
 
+	public static int differ(int a, int b) {
+		return Math.max(a, b) - Math.min(a, b);
+	}
+	
 	public static NationItemStack getItemStackByType(NationPlayer p, SkillType t) {
 		for (NationItemStack i : NationItemStack.getItemsOf(p.getBukkitPlayer().getUniqueId().toString())) {
 			if (i.getType() == t)

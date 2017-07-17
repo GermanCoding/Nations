@@ -35,7 +35,7 @@ import com.germancoding.nations.tasks.PvpTask;
 import com.germancoding.nations.tasks.ScoreboardTask;
 import com.germancoding.nations.tasks.VisibilityCooldownTask;
 import com.germancoding.nations.unsave.PacketUtils;
-
+import com.germancoding.nations.unsave.WorldBorderUnsave;
 import com.sk89q.worldedit.bukkit.WorldEditPlugin;
 import com.sk89q.worldedit.bukkit.selections.Selection;
 
@@ -56,6 +56,7 @@ public class Nations extends JavaPlugin {
 	public static BukkitScheduler scheduler;
 	public static Logger logger;
 	public static ScoreboardManager sm;
+	public static WorldBorderUnsave border;
 	private static World nationWorld;
 	private static ArrayList<NationPlayer> activePlayers;
 	private static int zwergenPoints;
@@ -159,6 +160,8 @@ public class Nations extends JavaPlugin {
 		}
 
 		updatePlayerListName(np);
+		
+		BookManager.giveGeneralInfoBook(p);
 
 		if (Nations.DEBUG)
 			Nations.logger.info("[Core] Added player " + p.getName() + " to Nations. Startup: " + startup);
@@ -220,6 +223,7 @@ public class Nations extends JavaPlugin {
 			updatePlayerListName(p);
 			PlayerMarker.removeItem(p.getBukkitPlayer());
 			ScoreboardHandler.removePlayer(p);
+			border.clearPlayer(p.getBukkitPlayer());
 			ChatColor color = null;
 			if (p.getNation().equalsIgnoreCase("Zwerge"))
 				color = ChatColor.BLUE;
@@ -272,6 +276,7 @@ public class Nations extends JavaPlugin {
 		scheduler = Bukkit.getScheduler();
 		logger = plugin.getLogger();
 		sm = Bukkit.getScoreboardManager();
+		border = new WorldBorderUnsave();
 		activePlayers = new ArrayList<NationPlayer>();
 		boolean continueLoad = ConfigManager.enable(p); // Load the data from disk
 		if (!continueLoad) {
@@ -307,7 +312,7 @@ public class Nations extends JavaPlugin {
 		for (Skill c : Skill.SKILLS) {
 			c.register(plugin);
 		}
-		scheduler.scheduleSyncRepeatingTask(plugin, new ConfigTask(), 20 * 60, 20 * 60 * 3);
+		scheduler.runTaskTimerAsynchronously(plugin, new ConfigTask(), 20 * 60, 20 * 60 * 3);
 		scheduler.scheduleSyncRepeatingTask(plugin, new NationItemStackUpdateTask(), 5, 5);
 		// marker.runTaskTimer(plugin, 1, 1);
 		Nations.log("Nations aktiviert!");
@@ -352,6 +357,7 @@ public class Nations extends JavaPlugin {
 		PvpTask.shutdown();
 		VisibilityCooldownTask.shutdown();
 		ConfigManager.disable();
+		border = null;
 		pm = null;
 		scheduler = null;
 		nationWorld = null;
@@ -424,9 +430,9 @@ public class Nations extends JavaPlugin {
 				}
 			}
 			if (args[0].equalsIgnoreCase("testing")) {
-				if (np.getBukkitPlayer().isOp()) {
-					broadcastMessage(ChatColor.GOLD + "[Nations] Testmodus wurde aktiviert! Cooldowns abgeschaltet!");
-					TESTING = true;
+				if (np.getBukkitPlayer().isOp() || np.getBukkitPlayer().hasPermission("nations.admin")) {
+					broadcastMessage(ChatColor.GOLD + "[Nations] Testmodus wurde " + (!TESTING ? "aktiviert! Cooldowns abgeschaltet!" : "deaktiviert"));
+					TESTING = !TESTING;
 				}
 				return true;
 			}

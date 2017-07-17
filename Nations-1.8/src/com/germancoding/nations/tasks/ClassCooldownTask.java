@@ -54,13 +54,14 @@ public class ClassCooldownTask implements Runnable {
 			synchronized (mainLock) {
 				instances.add(this);
 			}
-			this.task = Nations.scheduler.scheduleSyncRepeatingTask(Nations.plugin, this, 20L, 20L);
+			// Nations.scheduler.runTaskTimerAsynchronously(plugin, task, delay, period)
+			this.task = Nations.scheduler.runTaskTimerAsynchronously(Nations.plugin, this, 20L, 20L).getTaskId();
 		} else {
 			synchronized (mainLock) {
 				for (ClassCooldownTask t : instances) {
 					if (t.p.equals(uuid)) {
 						Nations.scheduler.cancelTask(t.task);
-						t.task = Nations.scheduler.scheduleSyncRepeatingTask(Nations.plugin, t, 20L, 20L);
+						t.task = Nations.scheduler.runTaskTimerAsynchronously(Nations.plugin, t, 20L, 20L).getTaskId();
 						t.cooldown = seconds;
 					}
 				}

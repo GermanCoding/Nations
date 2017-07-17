@@ -66,7 +66,7 @@ public class InventoryViewHandler implements Listener {
 
 		ItemStack bogenschuetze = new ItemStack(Material.ARROW, 1);
 		meta = bogenschuetze.getItemMeta();
-		meta.setDisplayName("Bogenschütze");
+		meta.setDisplayName("Bogenschuetze");
 		lore.clear();
 		lore.add("Schaden + Fernkampf.");
 		lore.add("Ziele gut und treffe gut.");
@@ -247,7 +247,7 @@ public class InventoryViewHandler implements Listener {
 							Nations.setDwarfPlayerCount(Nations.getDwarfPlayerCount() - 1);
 							cont = true;
 						} else {
-							p.getBukkitPlayer().sendMessage(ChatColor.GOLD + "[Nations] " + ChatColor.RED + "Aktion zur Zeit nicht möglich! (Volk überf�llt)");
+							p.getBukkitPlayer().sendMessage(ChatColor.GOLD + "[Nations] " + ChatColor.RED + "Aktion zur Zeit nicht möglich! (Volk überfüllt)");
 							p.getBukkitPlayer().closeInventory();
 							return;
 						}

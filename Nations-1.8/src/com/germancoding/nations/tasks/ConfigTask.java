@@ -12,11 +12,17 @@ public class ConfigTask implements Runnable {
 	public void run() {
 		ConfigManager.saveDataToConfig();
 		// Workaround for invalid tablist - refresh the tablist on every save ~ 3 minutes
-		Iterator<NationPlayer> i = Nations.getIteratorOfPlayers();
-		while (i.hasNext()) {
-			NationPlayer p = i.next();
-			Nations.updatePlayerListName(p);
-		}
+		Nations.scheduler.runTask(Nations.plugin, new Runnable() {
+			
+			@Override
+			public void run() {
+				Iterator<NationPlayer> i = Nations.getIteratorOfPlayers();
+				while (i.hasNext()) {
+					NationPlayer p = i.next();
+					Nations.updatePlayerListName(p);
+				}
+			}
+		});
 	}
 
 }

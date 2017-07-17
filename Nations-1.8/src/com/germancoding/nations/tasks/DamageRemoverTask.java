@@ -27,7 +27,7 @@ public class DamageRemoverTask implements Runnable {
 				instances.remove(found);
 			instances.add(this);
 			this.p = p;
-			this.task = Nations.scheduler.scheduleSyncRepeatingTask(Nations.plugin, this, 20 * 10L, 20 * 10L);
+			this.task = Nations.scheduler.runTaskTimerAsynchronously(Nations.plugin, this, 20 * 10L, 20 * 10L).getTaskId();
 		}
 	}
 

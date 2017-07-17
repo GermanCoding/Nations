@@ -120,7 +120,7 @@ public class SkillManager {
 				break;
 			}
 		}
-		p.getBukkitPlayer().sendMessage(ChatColor.GOLD + "[Nations] Du hast die Fähigkeit '" + Util.convertEnumToNormalString(type) + "' aktiviert!");
+		// p.getBukkitPlayer().sendMessage(ChatColor.GOLD + "[Nations] Du hast die Fähigkeit '" + Util.convertEnumToNormalString(type) + "' aktiviert!");
 		p.getBukkitPlayer().updateInventory();
 	}
 

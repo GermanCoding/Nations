@@ -9,12 +9,14 @@ import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
+import org.bukkit.block.Block;
 import org.bukkit.entity.Arrow;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event.Result;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
+import org.bukkit.event.block.Action;
 import org.bukkit.event.enchantment.EnchantItemEvent;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
@@ -48,6 +50,8 @@ import com.germancoding.nations.skills.SkillType;
 import com.germancoding.nations.tasks.DamageRemoverTask;
 import com.germancoding.nations.tasks.PvpTask;
 import com.germancoding.nations.tasks.VisibilityCooldownTask;
+import com.griefcraft.lwc.LWC;
+import com.griefcraft.model.Protection;
 
 public class PlayerListener implements Listener {
 
@@ -222,7 +226,7 @@ public class PlayerListener implements Listener {
 	public void onPlayerMove(PlayerMoveEvent e) {
 		if (!Nations.hasNationWorld())
 			return;
-		Player p = e.getPlayer();
+		final Player p = e.getPlayer();
 		World w = Nations.getNationWorld();
 		World current = p.getWorld();
 		if (current.equals(w) || current == w) {
@@ -238,9 +242,29 @@ public class PlayerListener implements Listener {
 			if (!np.hasClass() && !e.getTo().getBlock().getLocation().equals(e.getFrom().getBlock().getLocation())) {
 				InventoryViewHandler.openClassSelectMenu(np);
 			}
-			if (!e.getTo().getBlock().getLocation().equals(e.getFrom().getBlock().getLocation())) {
-				for (ForceField field : ForceField.FIELDS) {
+			if (!e.getTo().getBlock().getLocation().equals(e.getFrom().getBlock().getLocation())) { // Only update on full block change to save ressources
+				for (final ForceField field : ForceField.FIELDS) {
+					if (field.isNearField(e.getTo())) {
+						if (np.hasNation() && field.getNation().equalsIgnoreCase(np.getNation())) {
+
+							if (field.isInsideField(e.getFrom()) && !field.isInsideField(e.getTo())) {
+								np.getBukkitPlayer().sendMessage(ChatColor.GOLD + "[Nations] " + ChatColor.GRAY + "Du " + ChatColor.RED + "verlässt" + ChatColor.GRAY + " den vom Kraftfeld geschützen Bereich.");
+							} else if (field.isInsideField(e.getTo()) && !field.isInsideField(e.getFrom())) {
+								np.getBukkitPlayer().sendMessage(ChatColor.GOLD + "[Nations] " + ChatColor.GRAY + "Du " + ChatColor.GREEN + "betrittst" + ChatColor.GRAY + " den vom Kraftfeld geschützen Bereich.");
+							}
+
+						}
+
+						if (field.isCloseToInsideEdge(e.getTo())) {
+							// System.out.println("Location is close to edge!");
+							Nations.border.removeBorder(p);
+						} else if (field.isInsideAndAwayFromEdges(e.getTo())) {
+							Nations.border.optSendBorder(field, p);
+						}
+					}
 					if (!field.canPlayerPassField(np, e.getTo())) {
+						Nations.border.sendPulsingBorder(field, p);
+
 						np.getBukkitPlayer().sendMessage(ChatColor.GOLD + "[Nations] " + ChatColor.RED + "Du wurdest von einem Kraftfeld zurückgeworfen!");
 						Location min = field.getMin();
 						Location max = field.getMax();
@@ -350,7 +374,7 @@ public class PlayerListener implements Listener {
 		}
 	}
 
-	@EventHandler
+	@EventHandler(priority = EventPriority.HIGHEST)
 	public void onPlayerRespawn(PlayerRespawnEvent e) {
 		NationPlayer np = Nations.instanceOf(e.getPlayer());
 		if (np == null || !np.hasNation())
@@ -440,6 +464,15 @@ public class PlayerListener implements Listener {
 		World w = Nations.getNationWorld();
 		World current = p.getWorld();
 		if (current.equals(w) || current == w) {
+			if (e.getAction() == Action.RIGHT_CLICK_BLOCK) {
+				Block b = e.getClickedBlock();
+				Protection pr = LWC.getInstance().findProtection(b);
+				if (pr != null) {
+					pr.remove();
+					e.getPlayer().sendMessage("Sicherung gelöscht.");
+				}
+			}
+
 			NationPlayer np = Nations.instanceOf(p);
 			if (np == null)
 				return;

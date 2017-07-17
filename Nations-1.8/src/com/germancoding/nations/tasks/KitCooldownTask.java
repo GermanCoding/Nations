@@ -54,13 +54,13 @@ public class KitCooldownTask implements Runnable {
 			synchronized (mainLock) {
 				instances.add(this);
 			}
-			this.task = Nations.scheduler.scheduleSyncRepeatingTask(Nations.plugin, this, 20L, 20L);
+			this.task = Nations.scheduler.runTaskTimerAsynchronously(Nations.plugin, this, 20L, 20L).getTaskId();
 		} else {
 			synchronized (mainLock) {
 				for (KitCooldownTask t : instances) {
 					if (t.p.equals(player)) {
 						Nations.scheduler.cancelTask(t.task);
-						t.task = Nations.scheduler.scheduleSyncRepeatingTask(Nations.plugin, t, 20L, 20L);
+						t.task = Nations.scheduler.runTaskTimerAsynchronously(Nations.plugin, t, 20L, 20L).getTaskId();
 						t.cooldown = seconds;
 					}
 				}
